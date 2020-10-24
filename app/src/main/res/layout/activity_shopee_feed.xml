@@ -71,7 +71,7 @@
                                 android:layout_width="30dp"
                                 android:layout_height="30dp"
                                 android:scaleType="fitXY"
-                                android:src="@drawable/hang"></com.google.android.material.imageview.ShapeableImageView>
+                                android:src="@drawable/time"></com.google.android.material.imageview.ShapeableImageView>
                         </LinearLayout>
 
                         <LinearLayout
@@ -109,7 +109,7 @@
                                 android:layout_width="30dp"
                                 android:layout_height="30dp"
                                 android:scaleType="fitXY"
-                                android:src="@drawable/hang"></com.google.android.material.imageview.ShapeableImageView>
+                                android:src="@drawable/review"></com.google.android.material.imageview.ShapeableImageView>
                         </LinearLayout>
 
                         <LinearLayout
@@ -147,7 +147,7 @@
                                 android:layout_width="30dp"
                                 android:layout_height="30dp"
                                 android:scaleType="fitXY"
-                                android:src="@drawable/hang"></com.google.android.material.imageview.ShapeableImageView>
+                                android:src="@drawable/singer"></com.google.android.material.imageview.ShapeableImageView>
                         </LinearLayout>
 
                         <LinearLayout
@@ -185,7 +185,7 @@
                                 android:layout_width="30dp"
                                 android:layout_height="30dp"
                                 android:scaleType="fitXY"
-                                android:src="@drawable/hang"></com.google.android.material.imageview.ShapeableImageView>
+                                android:src="@drawable/search"></com.google.android.material.imageview.ShapeableImageView>
                         </LinearLayout>
 
                         <LinearLayout
@@ -223,7 +223,7 @@
                                 android:layout_width="30dp"
                                 android:layout_height="30dp"
                                 android:scaleType="fitXY"
-                                android:src="@drawable/hang"></com.google.android.material.imageview.ShapeableImageView>
+                                android:src="@drawable/sale"></com.google.android.material.imageview.ShapeableImageView>
                         </LinearLayout>
 
                         <LinearLayout
@@ -261,7 +261,7 @@
                                 android:layout_width="30dp"
                                 android:layout_height="30dp"
                                 android:scaleType="fitXY"
-                                android:src="@drawable/hang"></com.google.android.material.imageview.ShapeableImageView>
+                                android:src="@drawable/time"></com.google.android.material.imageview.ShapeableImageView>
                         </LinearLayout>
 
                         <LinearLayout
@@ -299,7 +299,7 @@
                                 android:layout_width="30dp"
                                 android:layout_height="30dp"
                                 android:scaleType="fitXY"
-                                android:src="@drawable/hang"></com.google.android.material.imageview.ShapeableImageView>
+                                android:src="@drawable/review"></com.google.android.material.imageview.ShapeableImageView>
                         </LinearLayout>
 
                         <LinearLayout
@@ -337,7 +337,7 @@
                                 android:layout_width="30dp"
                                 android:layout_height="30dp"
                                 android:scaleType="fitXY"
-                                android:src="@drawable/hang"></com.google.android.material.imageview.ShapeableImageView>
+                                android:src="@drawable/sale"></com.google.android.material.imageview.ShapeableImageView>
                         </LinearLayout>
 
                         <LinearLayout
@@ -362,9 +362,9 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         android:layout_weight="1"
-        android:scrollbars="vertical"
-        android:layout_marginTop="5dp">
+        android:scrollbars="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -373,7 +373,7 @@
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
-                android:layout_height="400dp">
+                android:layout_height="550dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -404,7 +404,7 @@
 
                     <com.google.android.material.imageview.ShapeableImageView
                         android:layout_width="match_parent"
-                        android:layout_height="250dp"
+                        android:layout_height="400dp"
                         android:layout_marginTop="10dp"
                         android:scaleType="fitXY"
                         android:src="@drawable/hang"></com.google.android.material.imageview.ShapeableImageView>
@@ -515,7 +515,7 @@
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
-                android:layout_height="400dp">
+                android:layout_height="550dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -546,7 +546,7 @@
 
                     <com.google.android.material.imageview.ShapeableImageView
                         android:layout_width="match_parent"
-                        android:layout_height="250dp"
+                        android:layout_height="400dp"
                         android:layout_marginTop="10dp"
                         android:scaleType="fitXY"
                         android:src="@drawable/hang"></com.google.android.material.imageview.ShapeableImageView>
@@ -657,7 +657,7 @@
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
-                android:layout_height="400dp">
+                android:layout_height="550dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -688,7 +688,7 @@
 
                     <com.google.android.material.imageview.ShapeableImageView
                         android:layout_width="match_parent"
-                        android:layout_height="250dp"
+                        android:layout_height="400dp"
                         android:layout_marginTop="10dp"
                         android:scaleType="fitXY"
                         android:src="@drawable/hang"></com.google.android.material.imageview.ShapeableImageView>
@@ -799,7 +799,7 @@
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
-                android:layout_height="400dp">
+                android:layout_height="550dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -830,7 +830,7 @@
 
                     <com.google.android.material.imageview.ShapeableImageView
                         android:layout_width="match_parent"
-                        android:layout_height="250dp"
+                        android:layout_height="400dp"
                         android:layout_marginTop="10dp"
                         android:scaleType="fitXY"
                         android:src="@drawable/hang"></com.google.android.material.imageview.ShapeableImageView>
@@ -941,7 +941,7 @@
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
-                android:layout_height="400dp">
+                android:layout_height="550dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -972,7 +972,7 @@
 
                     <com.google.android.material.imageview.ShapeableImageView
                         android:layout_width="match_parent"
-                        android:layout_height="250dp"
+                        android:layout_height="400dp"
                         android:layout_marginTop="10dp"
                         android:scaleType="fitXY"
                         android:src="@drawable/hang"></com.google.android.material.imageview.ShapeableImageView>
@@ -1080,6 +1080,149 @@
                     </LinearLayout>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="550dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="10dp"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="30dp"
+                            android:layout_height="match_parent"
+                            android:padding="2dp"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/hang"></com.google.android.material.imageview.ShapeableImageView>
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:padding="8dp"
+                            android:text="vnshopeelive"
+                            android:textColor="#000000"
+                            android:textSize="10dp"></com.google.android.material.textview.MaterialTextView>
+                    </LinearLayout>
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="400dp"
+                        android:layout_marginTop="10dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/hang"></com.google.android.material.imageview.ShapeableImageView>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_marginLeft="10dp"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/like"></ImageView>
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="3dp"
+                                android:layout_marginTop="3dp"
+                                android:text="1000"
+                                android:textColor="#000000"></com.google.android.material.textview.MaterialTextView>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_marginLeft="10dp"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/comment"></ImageView>
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="3dp"
+                                android:layout_marginTop="3dp"
+                                android:text="1000"
+                                android:textColor="#000000"></com.google.android.material.textview.MaterialTextView>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_marginLeft="10dp"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/view"></ImageView>
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="3dp"
+                                android:layout_marginTop="3dp"
+                                android:text="1000"
+                                android:textColor="#000000"></com.google.android.material.textview.MaterialTextView>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:text="vnshopeelive"
+                            android:textColor="#000000"
+
+                            android:textStyle="bold"></com.google.android.material.textview.MaterialTextView>
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:text="Công bố kết quả chiến thắng 10 ngày đại chiến "
+                            android:textColor="#000000"></com.google.android.material.textview.MaterialTextView>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:text="Xem toàn bộ các bình luận "></com.google.android.material.textview.MaterialTextView>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
         </LinearLayout>
 
     </ScrollView>

@@ -29,7 +29,7 @@ public class ShoppeLiveActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shoppe_live);
         // get data for list
-        lists = new int[]{R.drawable.home1, R.drawable.home2, R.drawable.home3, R.drawable.home4, R.drawable.home5};
+        lists = new int[]{R.drawable.live1, R.drawable.live2, R.drawable.live3, R.drawable.live4, R.drawable.home5};
         carouselView = findViewById(R.id.carouselView);
         carouselView.setPageCount(lists.length);
 
