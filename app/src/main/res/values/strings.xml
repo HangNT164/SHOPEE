@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Shopee</string>
+    <string-array name="notifications">
+        <item>Đơn hàng 1</item>
+        <item>Đơn hàng 2</item>
+        <item>Đơn hàng 3</item>
+        <item>Đơn hàng 4</item>
+        <item>Đơn hàng 5</item>
+        <item>Đơn hàng 6</item>
+        <item>Đơn hàng 7</item>
+    </string-array>
+    <string-array name="detailNotifications">
+        <item>Detail đơn hàng 1</item>
+        <item>Detail đơn hàng 2</item>
+        <item>Detail đơn hàng 3</item>
+        <item>Detail đơn hàng 4</item>
+        <item>Detail đơn hàng 5</item>
+        <item>Detail đơn hàng 6</item>
+        <item>Detail đơn hàng 7</item>
+    </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

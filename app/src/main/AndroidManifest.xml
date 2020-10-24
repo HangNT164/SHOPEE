@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.shopee">
+    <!-- permission -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/logoapp"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.SHOPEE">
+        <activity android:name=".ShopeeFeedActivity"></activity>
+        <activity android:name=".ForgotPasswordActivity" />
+        <activity android:name=".ResgiterActivity" />
+        <activity
+            android:name=".LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".SupportActivity" />
+        <activity android:name=".ShoppeLiveActivity" />
+        <activity android:name=".SettingActivity" />
+        <activity android:name=".NotificaionActivity" />
+        <activity android:name=".NewProductActivity" />
+        <activity android:name=".MessageActivity" />
+        <activity android:name=".InformationShopActivity" />
+        <activity android:name=".InformationAccountActivity" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".HotProductActivity" />
+        <activity android:name=".GetAllProductActivity" />
+        <activity android:name=".DetailProductActivity" />
+        <activity android:name=".CategoryProductActivity" />
+        <activity android:name=".CartActivity" />
+        <activity android:name=".IndexActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
