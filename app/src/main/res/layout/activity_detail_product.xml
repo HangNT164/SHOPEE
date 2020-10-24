@@ -243,7 +243,7 @@
             <com.google.android.material.button.MaterialButton
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Thêm vào giỏ"></com.google.android.material.button.MaterialButton>
+                android:text="@string/addCart"></com.google.android.material.button.MaterialButton>
 
 
         </com.google.android.material.card.MaterialCardView>
@@ -260,14 +260,16 @@
             <com.google.android.material.button.MaterialButton
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Mua ngay"></com.google.android.material.button.MaterialButton>
+                android:text="@string/buy"></com.google.android.material.button.MaterialButton>
 
 
         </com.google.android.material.card.MaterialCardView>
     </LinearLayout>
 
-    <include
-        layout="@layout/footer"
+    <!--Footer-->
+    <fragment
+        android:id="@+id/fragmentFooter"
+        android:name="com.fragment.FooterFragement"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"></fragment>
 </LinearLayout>

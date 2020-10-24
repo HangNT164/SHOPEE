@@ -53,7 +53,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
                     android:padding="5dp"
-                    android:text="Sản phẩm mới"
+                    android:text="@string/addCart"
                     android:textColor="#020303"
                     android:textSize="15dp"></TextView>
 
@@ -261,7 +261,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
-                    android:text="Sản phẩm bán chạy"
+                    android:text="@string/hotProduct"
                     android:textColor="#020303"></TextView>
 
                 <HorizontalScrollView
@@ -441,7 +441,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
-                    android:text="Tất cả sản phẩm"
+                    android:text="@string/allProduct"
                     android:textColor="#020303"></TextView>
 
                 <HorizontalScrollView

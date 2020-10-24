@@ -35,7 +35,7 @@
             android:fontFamily="@font/roboto_slab"
             android:gravity="center"
             android:padding="1dp"
-            android:text="Shopee là nền tảng thương mại điện tử hàng đầu ở Đông Nam Á và Đài Loan."
+            android:text="@string/header"
             android:textColor="#8a918c"
             android:textSize="15dp"></TextView>
 
@@ -45,7 +45,7 @@
             android:fontFamily="@font/roboto_slab"
             android:gravity="center"
             android:padding="10dp"
-            android:text="Ra mắt năm 2015, nền tảng thương mại Shopee được xây dựng nhằm cung cấp cho người sử dùng những trải nghiệm dễ dàng, an toàn và nhanh chóng khi mua sắm trực tuyến thông qua hệ thống hỗ trợ thanh toán và vận hành vững mạnh."
+            android:text="@string/bodyFirst"
             android:textColor="#8a918c"
             android:textSize="15dp"></TextView>
 
@@ -55,9 +55,7 @@
             android:fontFamily="@font/roboto_slab"
             android:gravity="center"
             android:padding="10dp"
-            android:text="Chúng tôi có niềm tin mạnh mẽ rằng trải nghiệm mua sắm trực tuyến phải đơn giản, dễ dàng và mang đến cảm xúc vui thích. Niềm tin này truyền cảm hứng và thúc đẩy chúng tôi mỗi ngày tại Shopee.
-
-KHÁM PHÁ SHOPEE"
+            android:text="@string/bodySecond"
             android:textColor="#8a918c"
             android:textSize="15dp"></TextView>
 
@@ -68,7 +66,7 @@ KHÁM PHÁ SHOPEE"
             android:gravity="center"
             android:paddingTop="10dp"
             android:paddingBottom="35dp"
-            android:text="Đến với chúng tôi"
+            android:text="@string/goIndex"
             android:textColor="#151515"
             android:textSize="20dp"
             android:textStyle="bold">>

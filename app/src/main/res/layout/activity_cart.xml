@@ -28,9 +28,9 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:gravity="center"
-            android:text="Giỏ hàng"
             android:textColor="#000000"
-            android:textSize="20dp"></TextView>
+            android:textSize="20dp"
+            tools:text="@string/cart"></TextView>
 
         <ScrollView
             android:layout_width="match_parent"
@@ -69,7 +69,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingTop="10dp"
-                        android:text="Hông có gì"
+                        android:text="@string/cartEmpty"
                         android:textColor="#000000"
                         android:textSize="20dp"></TextView>
                 </LinearLayout>
@@ -84,7 +84,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingTop="10dp"
-                        android:text="Mua ngay"></com.google.android.material.button.MaterialButton>
+                        android:text="@string/buy"></com.google.android.material.button.MaterialButton>
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>

@@ -25,7 +25,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginBottom="10dp"
             android:gravity="center"
-            android:text="Tin nhắn"
+            android:text="@string/Message"
             android:textColor="#020303"
             android:textSize="23dp"
             android:textStyle="bold"></TextView>

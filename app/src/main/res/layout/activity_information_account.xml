@@ -88,9 +88,9 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Đơn mua"
-                                android:textSize="8dp"
-                                android:textColor="#000000"></TextView>
+                                android:text="@string/orders"
+                                android:textColor="#000000"
+                                android:textSize="8dp"></TextView>
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
                 </LinearLayout>
@@ -120,9 +120,9 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Chờ xác nhận"
-                                android:textSize="8dp"
-                                android:textColor="#000000"></TextView>
+                                android:text="@string/comfirm"
+                                android:textColor="#000000"
+                                android:textSize="8dp"></TextView>
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
                 </LinearLayout>
@@ -153,9 +153,9 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Đang giao"
-                                android:textSize="8dp"
-                                android:textColor="#000000"></TextView>
+                                android:text="@string/orderGiao"
+                                android:textColor="#000000"
+                                android:textSize="8dp"></TextView>
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
                 </LinearLayout>
@@ -186,9 +186,9 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Giao thành công"
-                                android:textSize="8dp"
-                                android:textColor="#000000"></TextView>
+                                android:text="@string/orderSuccess"
+                                android:textColor="#000000"
+                                android:textSize="8dp"></TextView>
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
                 </LinearLayout>

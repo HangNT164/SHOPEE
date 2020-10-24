@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:gravity="center"
-        android:text="Thiết lập tài khoản"
+        android:text="@string/settingAccoutn"
         android:textColor="#000000"
         android:textSize="20dp"></TextView>
 

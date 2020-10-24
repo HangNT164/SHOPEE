@@ -20,4 +20,35 @@
     </string-array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="cart">Giỏ hàng</string>
+    <string name="cartEmpty">Hông có gì</string>
+    <string name="buy">Mua ngay</string>
+    <string name="addCart">Thêm vào giỏ</string>
+    <string name="allProduct">Tất cả sản phẩm</string>
+    <string name="hotProduct">Sản phẩm bán chạy</string>
+    <string name="orders">Đơn mua</string>
+    <string name="comfirm">Chờ xác nhận</string>
+    <string name="orderGiao">Đang giao</string>
+    <string name="orderSuccess">Giao thành công</string>
+    <string name="ourStory">Câu chuyện của chúng tôi</string>
+    <string name="header">Shopee là nền tảng thương mại điện tử hàng đầu ở Đông Nam Á và Đài Loan.</string>
+    <string name="bodyFirst">Ra mắt năm 2015, nền tảng thương mại Shopee được xây dựng nhằm cung cấp cho người sử dùng những trải nghiệm dễ dàng, an toàn và nhanh chóng khi mua sắm trực tuyến thông qua hệ thống hỗ trợ thanh toán và vận hành vững mạnh.</string>
+    <string name="bodySecond">Chúng tôi có niềm tin mạnh mẽ rằng trải nghiệm mua sắm trực tuyến phải đơn giản, dễ dàng và mang đến cảm xúc vui thích. Niềm tin này truyền cảm hứng và thúc đẩy chúng tôi mỗi ngày tại Shopee.  KHÁM PHÁ SHOPEE</string>
+    <string name="goIndex">Đến với chúng tôi</string>
+    <string name="newProduct">Sản phẩm mới</string>
+    <string name="category">Danh mục</string>
+    <string name="Message">Tin nhắn</string>
+    <string name="notification">Thông báo</string>
+    <string name="settingAccoutn">Thiết lập tài khoản</string>
+    <string name="shopeeFeed">Shopee Feed</string>
+    <string name="shopeeLive">Shopee live</string>
+    <string name="home">"Trang chủ "</string>
+    <string name="account">Tài khoản</string>
+    <string name="forgotPass">Quên mật khẩu</string>
+    <string name="code">Gửi mã</string>
+    <string name="confirmPass">Xác nhận mã</string>
+    <string name="login">Đăng nhập</string>
+    <string name="textLogin">Bạn chưa có tài khoản? Đăng ký</string>
+    <string name="register">Đăng kí</string>
+    <string name="textRegister">Bạn có tài khoản ? Đăng nhập</string>
 </resources>

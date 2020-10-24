@@ -40,7 +40,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Trang chủ "
+                    android:text="@string/home"
                     android:textColor="#020303"
                     android:textSize="10dp" />
 
@@ -80,8 +80,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Shopee Feed"
                     android:paddingTop="3dp"
+                    android:text="@string/shopeeFeed"
                     android:textColor="#020303"
                     android:textSize="10dp" />
 
@@ -121,9 +121,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Shopee Live"
-                    android:textColor="#020303"
                     android:paddingTop="3dp"
+                    android:text="@string/shopeeLive"
+                    android:textColor="#020303"
                     android:textSize="10dp" />
 
             </LinearLayout>
@@ -162,8 +162,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Thông báo"
                     android:paddingTop="3dp"
+                    android:text="@string/notification"
                     android:textColor="#020303"
                     android:textSize="10dp" />
 
@@ -203,8 +203,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Tài khoản"
                     android:paddingTop="3dp"
+                    android:text="@string/account"
                     android:textColor="#020303"
                     android:textSize="10dp" />
 
