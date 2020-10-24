@@ -8,18 +8,17 @@
     android:orientation="vertical"
     tools:context=".SupportActivity">
 
-    <fragment
-        android:id="@+id/fragmentHeader"
-        android:name="com.fragment.HeaderFragement"
-        android:layout_width="match_parent"
-        android:layout_height="35dp"></fragment>
     <!--    Body-->
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="40dp"
         android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="130dp"
+            android:src="@drawable/logo"></ImageView>
 
         <TextView
             android:layout_width="match_parent"
@@ -142,12 +141,5 @@
             android:textSize="15dp"></TextView>
 
     </LinearLayout>
-
-
-    <fragment
-        android:id="@+id/fragmentFooter"
-        android:name="com.fragment.FooterFragement"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"></fragment>
 
 </LinearLayout>

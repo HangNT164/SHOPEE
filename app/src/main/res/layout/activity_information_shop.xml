@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,17 +7,11 @@
     android:orientation="vertical"
     tools:context=".InformationShopActivity">
 
-    <fragment
-        android:id="@+id/fragmentHeader"
-        android:name="com.fragment.HeaderFragement"
-        android:layout_width="match_parent"
-        android:layout_height="35dp"></fragment>
     <!--    Body-->
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="40dp"
         android:orientation="vertical">
 
         <ImageView
@@ -81,12 +74,5 @@ KHÁM PHÁ SHOPEE"
             android:textStyle="bold">>
         </TextView>
     </LinearLayout>
-
-
-    <fragment
-        android:id="@+id/fragmentFooter"
-        android:name="com.fragment.FooterFragement"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"></fragment>
 
 </LinearLayout>
