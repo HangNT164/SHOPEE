@@ -60,5 +60,4 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok:1.18.16'
     //noinspection GradleCompatible
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
-
 }
