@@ -13,14 +13,14 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@Entity(tableName = "size")
-public class Size {
+@Entity(tableName = "status_order")
+public class StatusOrder {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo
-    private  int id;
+    private int id;
 
-    @ColumnInfo(name = "size_name")
-    private String sizeName;
+    @ColumnInfo(name = "status_order_name")
+    private String statusOrderName;
 
     @ColumnInfo(defaultValue = "0")
     private boolean deleted;
