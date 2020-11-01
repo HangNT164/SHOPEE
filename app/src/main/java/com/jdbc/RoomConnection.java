@@ -49,7 +49,7 @@ import static com.jdbc.RoomConnection.DATABASE_VERSION;
 public abstract class RoomConnection extends RoomDatabase {
     private static RoomConnection roomConnection;
 
-    public static final int DATABASE_VERSION = 2;
+    public static final int DATABASE_VERSION = 1;
     public static final String DATABASE_NAME = "SHOPEE_DATABASE";
 
     public abstract AccountDao accountDao();
@@ -58,7 +58,7 @@ public abstract class RoomConnection extends RoomDatabase {
 
     public abstract CategoryDao categoryDao();
 
-    public abstract CustomInfoDao customInforDao();
+    public abstract CustomInfoDao customInfoDao();
 
     public abstract EvaluateDao evaluateDao();
 
