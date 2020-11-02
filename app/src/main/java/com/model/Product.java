@@ -19,6 +19,10 @@ public class Product {
     @ColumnInfo(name = "sub_cate_id")
     private int subCateID;
 
+    @ForeignKey(entity = Brand.class, parentColumns = {"id"}, childColumns = {"brand_id"}, onDelete = ForeignKey.CASCADE)
+    @ColumnInfo(name = "brand_id")
+    private int brandID;
+
     @ColumnInfo(name = "product_code")
     private String productCode;
 
@@ -29,7 +33,7 @@ public class Product {
     private int quantity;
 
     @ColumnInfo(name = "sell_price", defaultValue = "0")
-    private int sellPrice;
+    private double sellPrice;
 
     @ColumnInfo(name = "origin_price", defaultValue = "0")
     private int originPrice;
@@ -43,10 +47,28 @@ public class Product {
     @ColumnInfo(name = "create__date", defaultValue = "CURRENT_TIMESTAMP")
     private String createDate;
 
-    public Product(int id, int sizeID, int subCateID, String productCode, String productName, int quantity, int sellPrice, int originPrice, String color, String description, String createDate) {
+    public Product() {
+    }
+
+    public Product(int sizeID, int subCateID, int brandID, String productCode, String productName, int quantity, double sellPrice, int originPrice, String color, String description, String createDate) {
+        this.sizeID = sizeID;
+        this.subCateID = subCateID;
+        this.brandID = brandID;
+        this.productCode = productCode;
+        this.productName = productName;
+        this.quantity = quantity;
+        this.sellPrice = sellPrice;
+        this.originPrice = originPrice;
+        this.color = color;
+        this.description = description;
+        this.createDate = createDate;
+    }
+
+    public Product(int id, int sizeID, int subCateID, int brandID, String productCode, String productName, int quantity, double sellPrice, int originPrice, String color, String description, String createDate) {
         this.id = id;
         this.sizeID = sizeID;
         this.subCateID = subCateID;
+        this.brandID = brandID;
         this.productCode = productCode;
         this.productName = productName;
         this.quantity = quantity;
@@ -55,22 +77,6 @@ public class Product {
         this.color = color;
         this.description = description;
         this.createDate = createDate;
-    }
-
-    public Product(int sizeID, int subCateID, String productCode, String productName, int quantity, int sellPrice, int originPrice, String color, String description, String createDate) {
-        this.sizeID = sizeID;
-        this.subCateID = subCateID;
-        this.productCode = productCode;
-        this.productName = productName;
-        this.quantity = quantity;
-        this.sellPrice = sellPrice;
-        this.originPrice = originPrice;
-        this.color = color;
-        this.description = description;
-        this.createDate = createDate;
-    }
-
-    public Product() {
     }
 
     public int getId() {
@@ -121,11 +127,11 @@ public class Product {
         this.quantity = quantity;
     }
 
-    public int getSellPrice() {
+    public double getSellPrice() {
         return sellPrice;
     }
 
-    public void setSellPrice(int sellPrice) {
+    public void setSellPrice(double sellPrice) {
         this.sellPrice = sellPrice;
     }
 
@@ -161,12 +167,21 @@ public class Product {
         this.createDate = createDate;
     }
 
+    public int getBrandID() {
+        return brandID;
+    }
+
+    public void setBrandID(int brandID) {
+        this.brandID = brandID;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
                 "id=" + id +
                 ", sizeID=" + sizeID +
                 ", subCateID=" + subCateID +
+                ", brandID=" + brandID +
                 ", productCode='" + productCode + '\'' +
                 ", productName='" + productName + '\'' +
                 ", quantity=" + quantity +

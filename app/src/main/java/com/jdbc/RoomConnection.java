@@ -8,6 +8,7 @@ import androidx.room.RoomDatabase;
 
 import com.dao.AccountDao;
 import com.dao.AccountDetailDao;
+import com.dao.BrandDao;
 import com.dao.CategoryDao;
 import com.dao.CustomInfoDao;
 import com.dao.EvaluateDao;
@@ -85,6 +86,8 @@ public abstract class RoomConnection extends RoomDatabase {
     public abstract StatusOrderDao statusOrderDao();
 
     public abstract SubCategoryDao subCategoryDao();
+
+    public abstract BrandDao brandDao();
 
     public static RoomDatabase getInstance(Context context) {
         if (roomConnection == null) {

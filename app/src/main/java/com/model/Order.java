@@ -28,7 +28,7 @@ public class Order {
     private int accountDetailID;
 
     @ColumnInfo(name = "total_price")
-    private int totalPrice;
+    private double totalPrice;
 
     @ColumnInfo(name = "note")
     private String note;
@@ -36,7 +36,7 @@ public class Order {
     @ColumnInfo(name = "create_date", defaultValue = "CURRENT_TIMESTAMP")
     private String createDate;
 
-    public Order(int id, int paymentDetailID, int statusOrderID, int customInfoID, int accountDetailID, int totalPrice, String note, String createDate) {
+    public Order(int id, int paymentDetailID, int statusOrderID, int customInfoID, int accountDetailID, double totalPrice, String note, String createDate) {
         this.id = id;
         this.paymentDetailID = paymentDetailID;
         this.statusOrderID = statusOrderID;
@@ -47,7 +47,7 @@ public class Order {
         this.createDate = createDate;
     }
 
-    public Order(int paymentDetailID, int statusOrderID, int customInfoID, int accountDetailID, int totalPrice, String note, String createDate) {
+    public Order(int paymentDetailID, int statusOrderID, int customInfoID, int accountDetailID, double totalPrice, String note, String createDate) {
         this.paymentDetailID = paymentDetailID;
         this.statusOrderID = statusOrderID;
         this.customInfoID = customInfoID;
@@ -100,11 +100,11 @@ public class Order {
         this.accountDetailID = accountDetailID;
     }
 
-    public int getTotalPrice() {
+    public double getTotalPrice() {
         return totalPrice;
     }
 
-    public void setTotalPrice(int totalPrice) {
+    public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
     }
 

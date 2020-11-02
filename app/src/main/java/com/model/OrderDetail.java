@@ -23,10 +23,10 @@ public class OrderDetail {
     private String productName;
 
     @ColumnInfo(name = "origin_price", defaultValue = "0")
-    private int originPrice;
+    private double originPrice;
 
     @ColumnInfo(name = "sell_price", defaultValue = "0")
-    private int sellPrice;
+    private double sellPrice;
 
     @ColumnInfo(defaultValue = "0")
     private int quantity;
@@ -37,7 +37,8 @@ public class OrderDetail {
     @ColumnInfo(name = "ship_date")
     private String shipDate;
 
-    public OrderDetail(int orderID, int productID, String productName, int originPrice, int sellPrice, int quantity, String createDate, String shipDate) {
+    public OrderDetail(int id, int orderID, int productID, String productName, double originPrice, double sellPrice, int quantity, String createDate, String shipDate) {
+        this.id = id;
         this.orderID = orderID;
         this.productID = productID;
         this.productName = productName;
@@ -48,8 +49,7 @@ public class OrderDetail {
         this.shipDate = shipDate;
     }
 
-    public OrderDetail(int id, int orderID, int productID, String productName, int originPrice, int sellPrice, int quantity, String createDate, String shipDate) {
-        this.id = id;
+    public OrderDetail(int orderID, int productID, String productName, double originPrice, double sellPrice, int quantity, String createDate, String shipDate) {
         this.orderID = orderID;
         this.productID = productID;
         this.productName = productName;
@@ -95,19 +95,19 @@ public class OrderDetail {
         this.productName = productName;
     }
 
-    public int getOriginPrice() {
+    public double getOriginPrice() {
         return originPrice;
     }
 
-    public void setOriginPrice(int originPrice) {
+    public void setOriginPrice(double originPrice) {
         this.originPrice = originPrice;
     }
 
-    public int getSellPrice() {
+    public double getSellPrice() {
         return sellPrice;
     }
 
-    public void setSellPrice(int sellPrice) {
+    public void setSellPrice(double sellPrice) {
         this.sellPrice = sellPrice;
     }
 

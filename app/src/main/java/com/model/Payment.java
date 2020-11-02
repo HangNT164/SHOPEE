@@ -2,7 +2,6 @@ package com.model;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
-import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "payment")
@@ -11,20 +10,19 @@ public class Payment {
     @ColumnInfo
     private int id;
 
-    @ForeignKey(entity = PaymentDetail.class, parentColumns = {"id"}, childColumns = {"payment_detail_id"}, onDelete = ForeignKey.CASCADE)
-    @ColumnInfo(name = "payment_detail_id")
-    private int paymentDetailID;
+    @ColumnInfo(name = "payment_name")
+    private String paymentName;
 
-    public Payment(int id, int paymentDetailID) {
-        this.id = id;
-        this.paymentDetailID = paymentDetailID;
-    }
-
-    public Payment(int paymentDetailID) {
-        this.paymentDetailID = paymentDetailID;
+    public Payment(String paymentName) {
+        this.paymentName = paymentName;
     }
 
     public Payment() {
+    }
+
+    public Payment(int id, String paymentName) {
+        this.id = id;
+        this.paymentName = paymentName;
     }
 
     public int getId() {
@@ -35,19 +33,19 @@ public class Payment {
         this.id = id;
     }
 
-    public int getPaymentDetailID() {
-        return paymentDetailID;
+    public String getPaymentName() {
+        return paymentName;
     }
 
-    public void setPaymentDetailID(int paymentDetailID) {
-        this.paymentDetailID = paymentDetailID;
+    public void setPaymentName(String paymentName) {
+        this.paymentName = paymentName;
     }
 
     @Override
     public String toString() {
         return "Payment{" +
                 "id=" + id +
-                ", paymentDetailID=" + paymentDetailID +
+                ", paymentName='" + paymentName + '\'' +
                 '}';
     }
 }
