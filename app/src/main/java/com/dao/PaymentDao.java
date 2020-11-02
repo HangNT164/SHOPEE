@@ -1,6 +1,7 @@
 package com.dao;
 
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
@@ -18,11 +19,11 @@ public interface PaymentDao {
     Payment getOne(int id);
 
     @Insert
-    boolean add(Payment payment);
+    void add(Payment payment);
 
     @Update
-    boolean update(Payment payment);
+    void update(Payment payment);
 
-    @Query("UPDATE payment SET deleted = 1 WHERE id = :id")
-    boolean delete(int id);
+    @Delete
+    void delete(Payment payment);
 }

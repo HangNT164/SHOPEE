@@ -1,6 +1,7 @@
 package com.dao;
 
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
@@ -18,11 +19,11 @@ public interface ImageDao {
     Image getOne(int id);
 
     @Insert
-    boolean add(Image image);
+    void add(Image image);
 
     @Update
-    boolean update(Image image);
+    void update(Image image);
 
-    @Query("UPDATE image SET deleted = 1 WHERE id = :id")
-    boolean delete(int id);
+    @Delete
+    void delete(Image image);
 }

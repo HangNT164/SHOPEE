@@ -1,6 +1,7 @@
 package com.dao;
 
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
@@ -18,11 +19,11 @@ public interface OrderDetailDao {
     OrderDetail getOne(int id);
 
     @Insert
-    boolean add(OrderDetail orderDetail);
+    void add(OrderDetail orderDetail);
 
     @Update
-    boolean update(OrderDetail orderDetail);
+    void update(OrderDetail orderDetail);
 
-    @Query("UPDATE order_detail SET deleted = 1 WHERE id = :id")
-    boolean delete(int id);
+    @Delete
+    void delete(OrderDetail orderDetail);
 }

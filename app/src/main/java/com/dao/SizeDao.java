@@ -1,6 +1,7 @@
 package com.dao;
 
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
@@ -18,11 +19,11 @@ public interface SizeDao {
     Size getOne(int id);
 
     @Insert
-    boolean add(Size size);
+    void add(Size size);
 
     @Update
-    boolean update(Size size);
+    void update(Size size);
 
-    @Query("UPDATE size SET deleted = 1 WHERE id = :id")
-    boolean delete(int id);
+    @Delete
+    void delete(Size size);
 }

@@ -4,15 +4,6 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-
-@Builder
-@Getter
-@Setter
-@ToString
 @Entity(tableName = "role")
 public class Role {
     @PrimaryKey(autoGenerate = true)
@@ -22,6 +13,39 @@ public class Role {
     @ColumnInfo(name = "role_name")
     private String roleName;
 
-    @ColumnInfo(defaultValue = "0")
-    private boolean deleted;
+    public Role(int id, String roleName) {
+        this.id = id;
+        this.roleName = roleName;
+    }
+
+    public Role(String roleName) {
+        this.roleName = roleName;
+    }
+
+    public Role() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getRoleName() {
+        return roleName;
+    }
+
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
+    }
+
+    @Override
+    public String toString() {
+        return "Role{" +
+                "id=" + id +
+                ", roleName='" + roleName + '\'' +
+                '}';
+    }
 }

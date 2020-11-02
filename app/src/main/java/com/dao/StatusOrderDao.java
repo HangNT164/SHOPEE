@@ -1,6 +1,7 @@
 package com.dao;
 
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
@@ -18,11 +19,11 @@ public interface StatusOrderDao {
     StatusOrder getOne(int id);
 
     @Insert
-    boolean add(StatusOrder statusOrder);
+    void add(StatusOrder statusOrder);
 
     @Update
-    boolean update(StatusOrder statusOrder);
+    void update(StatusOrder statusOrder);
 
-    @Query("UPDATE status_order SET deleted = 1 WHERE id = :id")
-    boolean delete(int id);
+    @Delete
+    void delete(StatusOrder statusOrder);
 }

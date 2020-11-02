@@ -1,6 +1,7 @@
 package com.dao;
 
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
@@ -18,11 +19,11 @@ public interface ImageAvatarDao {
     ImageAvatar getOne(int id);
 
     @Insert
-    boolean add(ImageAvatar imageAvatar);
+    void add(ImageAvatar imageAvatar);
 
     @Update
-    boolean update(ImageAvatar imageAvatar);
+    void update(ImageAvatar imageAvatar);
 
-    @Query("UPDATE image_avatar SET deleted = 1 WHERE id = :id")
-    boolean delete(int id);
+    @Delete
+    void delete(ImageAvatar imageAvatar);
 }

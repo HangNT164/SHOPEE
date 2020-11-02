@@ -5,15 +5,6 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-
-@Builder
-@Getter
-@Setter
-@ToString
 @Entity(tableName = "evaluate")
 public class Evaluate {
     @PrimaryKey(autoGenerate = true)
@@ -34,6 +25,72 @@ public class Evaluate {
     @ColumnInfo(defaultValue = "0")
     private int star;
 
-    @ColumnInfo(defaultValue = "0")
-    private boolean deleted;
+    public Evaluate(int accountDetailID, int productID, String description, int star) {
+        this.accountDetailID = accountDetailID;
+        this.productID = productID;
+        this.description = description;
+        this.star = star;
+    }
+
+    public Evaluate(int id, int accountDetailID, int productID, String description, int star) {
+        this.id = id;
+        this.accountDetailID = accountDetailID;
+        this.productID = productID;
+        this.description = description;
+        this.star = star;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getAccountDetailID() {
+        return accountDetailID;
+    }
+
+    public void setAccountDetailID(int accountDetailID) {
+        this.accountDetailID = accountDetailID;
+    }
+
+    public int getProductID() {
+        return productID;
+    }
+
+    public void setProductID(int productID) {
+        this.productID = productID;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public int getStar() {
+        return star;
+    }
+
+    public void setStar(int star) {
+        this.star = star;
+    }
+
+    public Evaluate() {
+    }
+
+    @Override
+    public String toString() {
+        return "Evaluate{" +
+                "id=" + id +
+                ", accountDetailID=" + accountDetailID +
+                ", productID=" + productID +
+                ", description='" + description + '\'' +
+                ", star=" + star +
+                '}';
+    }
 }

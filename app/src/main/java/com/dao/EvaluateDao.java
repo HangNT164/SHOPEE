@@ -1,6 +1,7 @@
 package com.dao;
 
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
@@ -18,11 +19,11 @@ public interface EvaluateDao {
     Evaluate getOne(int id);
 
     @Insert
-    boolean add(Evaluate evaluate);
+    void add(Evaluate evaluate);
 
     @Update
-    boolean update(Evaluate evaluate);
+    void update(Evaluate evaluate);
 
-    @Query("UPDATE evaluate SET deleted = 1 WHERE id = :id")
-    boolean delete(int id);
+    @Delete
+    void delete(Evaluate evaluate);
 }

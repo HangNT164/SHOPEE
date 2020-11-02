@@ -4,15 +4,6 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-
-@Builder
-@Getter
-@Setter
-@ToString
 @Entity(tableName = "status_order")
 public class StatusOrder {
     @PrimaryKey(autoGenerate = true)
@@ -22,6 +13,39 @@ public class StatusOrder {
     @ColumnInfo(name = "status_order_name")
     private String statusOrderName;
 
-    @ColumnInfo(defaultValue = "0")
-    private boolean deleted;
+    public StatusOrder(int id, String statusOrderName) {
+        this.id = id;
+        this.statusOrderName = statusOrderName;
+    }
+
+    public StatusOrder(String statusOrderName) {
+        this.statusOrderName = statusOrderName;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getStatusOrderName() {
+        return statusOrderName;
+    }
+
+    public void setStatusOrderName(String statusOrderName) {
+        this.statusOrderName = statusOrderName;
+    }
+
+    public StatusOrder() {
+    }
+
+    @Override
+    public String toString() {
+        return "StatusOrder{" +
+                "id=" + id +
+                ", statusOrderName='" + statusOrderName + '\'' +
+                '}';
+    }
 }

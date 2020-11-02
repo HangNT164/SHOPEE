@@ -5,15 +5,6 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-
-@Builder
-@Getter
-@Setter
-@ToString
 @Entity(tableName = "image_avatar")
 public class ImageAvatar {
     @PrimaryKey(autoGenerate = true)
@@ -27,6 +18,50 @@ public class ImageAvatar {
     @ColumnInfo(name = "image_link")
     private String imageLink;
 
-    @ColumnInfo(defaultValue = "0")
-    private boolean deleted;
+    public ImageAvatar(int id, int accountDetailID, String imageLink) {
+        this.id = id;
+        this.accountDetailID = accountDetailID;
+        this.imageLink = imageLink;
+    }
+
+    public ImageAvatar(int accountDetailID, String imageLink) {
+        this.accountDetailID = accountDetailID;
+        this.imageLink = imageLink;
+    }
+
+    public ImageAvatar() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getAccountDetailID() {
+        return accountDetailID;
+    }
+
+    public void setAccountDetailID(int accountDetailID) {
+        this.accountDetailID = accountDetailID;
+    }
+
+    public String getImageLink() {
+        return imageLink;
+    }
+
+    public void setImageLink(String imageLink) {
+        this.imageLink = imageLink;
+    }
+
+    @Override
+    public String toString() {
+        return "ImageAvatar{" +
+                "id=" + id +
+                ", accountDetailID=" + accountDetailID +
+                ", imageLink='" + imageLink + '\'' +
+                '}';
+    }
 }

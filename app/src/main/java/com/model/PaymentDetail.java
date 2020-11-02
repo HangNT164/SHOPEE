@@ -4,24 +4,48 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-
-@Builder
-@Getter
-@Setter
-@ToString
 @Entity(tableName = "payment_detail")
 public class PaymentDetail {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo
-    private  int id;
+    private int id;
 
     @ColumnInfo(name = "payment_detail_name")
     private String paymentDetailName;
 
-    @ColumnInfo(defaultValue = "0")
-    private  boolean deleted;
+    public PaymentDetail(int id, String paymentDetailName) {
+        this.id = id;
+        this.paymentDetailName = paymentDetailName;
+    }
+
+    public PaymentDetail() {
+    }
+
+    public PaymentDetail(String paymentDetailName) {
+        this.paymentDetailName = paymentDetailName;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getPaymentDetailName() {
+        return paymentDetailName;
+    }
+
+    public void setPaymentDetailName(String paymentDetailName) {
+        this.paymentDetailName = paymentDetailName;
+    }
+
+    @Override
+    public String toString() {
+        return "PaymentDetail{" +
+                "id=" + id +
+                ", paymentDetailName='" + paymentDetailName + '\'' +
+                '}';
+    }
 }

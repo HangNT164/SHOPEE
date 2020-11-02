@@ -50,7 +50,7 @@ public abstract class RoomConnection extends RoomDatabase {
     private static RoomConnection roomConnection;
 
     public static final int DATABASE_VERSION = 1;
-    public static final String DATABASE_NAME = "SHOPEE_DATABASE";
+    public static final String DATABASE_NAME = "SHOPEE_DATABASE.db";
 
     public abstract AccountDao accountDao();
 

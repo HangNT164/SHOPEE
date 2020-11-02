@@ -5,15 +5,6 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-
-@Builder
-@Getter
-@Setter
-@ToString
 @Entity(tableName = "order_detail")
 public class OrderDetail {
     @PrimaryKey(autoGenerate = true)
@@ -46,6 +37,116 @@ public class OrderDetail {
     @ColumnInfo(name = "ship_date")
     private String shipDate;
 
-    @ColumnInfo(defaultValue = "0")
-    private boolean deleted;
+    public OrderDetail(int orderID, int productID, String productName, int originPrice, int sellPrice, int quantity, String createDate, String shipDate) {
+        this.orderID = orderID;
+        this.productID = productID;
+        this.productName = productName;
+        this.originPrice = originPrice;
+        this.sellPrice = sellPrice;
+        this.quantity = quantity;
+        this.createDate = createDate;
+        this.shipDate = shipDate;
+    }
+
+    public OrderDetail(int id, int orderID, int productID, String productName, int originPrice, int sellPrice, int quantity, String createDate, String shipDate) {
+        this.id = id;
+        this.orderID = orderID;
+        this.productID = productID;
+        this.productName = productName;
+        this.originPrice = originPrice;
+        this.sellPrice = sellPrice;
+        this.quantity = quantity;
+        this.createDate = createDate;
+        this.shipDate = shipDate;
+    }
+
+    public OrderDetail() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getOrderID() {
+        return orderID;
+    }
+
+    public void setOrderID(int orderID) {
+        this.orderID = orderID;
+    }
+
+    public int getProductID() {
+        return productID;
+    }
+
+    public void setProductID(int productID) {
+        this.productID = productID;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public int getOriginPrice() {
+        return originPrice;
+    }
+
+    public void setOriginPrice(int originPrice) {
+        this.originPrice = originPrice;
+    }
+
+    public int getSellPrice() {
+        return sellPrice;
+    }
+
+    public void setSellPrice(int sellPrice) {
+        this.sellPrice = sellPrice;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public String getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(String createDate) {
+        this.createDate = createDate;
+    }
+
+    public String getShipDate() {
+        return shipDate;
+    }
+
+    public void setShipDate(String shipDate) {
+        this.shipDate = shipDate;
+    }
+
+    @Override
+    public String toString() {
+        return "OrderDetail{" +
+                "id=" + id +
+                ", orderID=" + orderID +
+                ", productID=" + productID +
+                ", productName='" + productName + '\'' +
+                ", originPrice=" + originPrice +
+                ", sellPrice=" + sellPrice +
+                ", quantity=" + quantity +
+                ", createDate='" + createDate + '\'' +
+                ", shipDate='" + shipDate + '\'' +
+                '}';
+    }
 }

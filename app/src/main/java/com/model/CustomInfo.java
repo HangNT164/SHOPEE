@@ -4,15 +4,6 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-
-@Builder
-@Getter
-@Setter
-@ToString
 @Entity(tableName = "custom_info")
 public class CustomInfo {
     @PrimaryKey(autoGenerate = true)
@@ -28,6 +19,61 @@ public class CustomInfo {
     @ColumnInfo
     private String address;
 
-    @ColumnInfo(defaultValue = "0")
-    private boolean deleted;
+    public CustomInfo(int id, String customerName, String mobile, String address) {
+        this.id = id;
+        this.customerName = customerName;
+        this.mobile = mobile;
+        this.address = address;
+    }
+
+    public CustomInfo(String customerName, String mobile, String address) {
+        this.customerName = customerName;
+        this.mobile = mobile;
+        this.address = address;
+    }
+
+    public CustomInfo() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    @Override
+    public String toString() {
+        return "CustomInfo{" +
+                "id=" + id +
+                ", customerName='" + customerName + '\'' +
+                ", mobile='" + mobile + '\'' +
+                ", address='" + address + '\'' +
+                '}';
+    }
 }

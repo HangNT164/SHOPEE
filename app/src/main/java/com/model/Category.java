@@ -4,15 +4,6 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-
-@Builder
-@Getter
-@Setter
-@ToString
 @Entity(tableName = "category")
 public class Category {
     @PrimaryKey(autoGenerate = true)
@@ -25,6 +16,50 @@ public class Category {
     @ColumnInfo(name = "category_name")
     private String categoryName;
 
-    @ColumnInfo(defaultValue = "0")
-    private boolean deleted;
+    public Category(int id, String categoryCode, String categoryName) {
+        this.id = id;
+        this.categoryCode = categoryCode;
+        this.categoryName = categoryName;
+    }
+
+    public Category(String categoryCode, String categoryName) {
+        this.categoryCode = categoryCode;
+        this.categoryName = categoryName;
+    }
+
+    public Category() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getCategoryCode() {
+        return categoryCode;
+    }
+
+    public void setCategoryCode(String categoryCode) {
+        this.categoryCode = categoryCode;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
+
+    @Override
+    public String toString() {
+        return "Category{" +
+                "id=" + id +
+                ", categoryCode='" + categoryCode + '\'' +
+                ", categoryName='" + categoryName + '\'' +
+                '}';
+    }
 }

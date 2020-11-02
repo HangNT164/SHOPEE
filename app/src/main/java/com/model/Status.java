@@ -5,15 +5,6 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-
-@Builder
-@Getter
-@Setter
-@ToString
 @Entity(tableName = "status")
 public class Status {
     @PrimaryKey(autoGenerate = true)
@@ -30,6 +21,61 @@ public class Status {
     @ColumnInfo(name = "status_name")
     private String statusName;
 
-    @ColumnInfo(defaultValue = "0")
-    private boolean deleted;
+    public Status(int productID, int descriptionStatus, String statusName) {
+        this.productID = productID;
+        this.descriptionStatus = descriptionStatus;
+        this.statusName = statusName;
+    }
+
+    public Status(int id, int productID, int descriptionStatus, String statusName) {
+        this.id = id;
+        this.productID = productID;
+        this.descriptionStatus = descriptionStatus;
+        this.statusName = statusName;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getProductID() {
+        return productID;
+    }
+
+    public void setProductID(int productID) {
+        this.productID = productID;
+    }
+
+    public int getDescriptionStatus() {
+        return descriptionStatus;
+    }
+
+    public void setDescriptionStatus(int descriptionStatus) {
+        this.descriptionStatus = descriptionStatus;
+    }
+
+    public String getStatusName() {
+        return statusName;
+    }
+
+    public void setStatusName(String statusName) {
+        this.statusName = statusName;
+    }
+
+    public Status() {
+    }
+
+    @Override
+    public String toString() {
+        return "Status{" +
+                "id=" + id +
+                ", productID=" + productID +
+                ", descriptionStatus=" + descriptionStatus +
+                ", statusName='" + statusName + '\'' +
+                '}';
+    }
 }

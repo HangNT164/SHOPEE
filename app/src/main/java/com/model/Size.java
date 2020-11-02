@@ -4,24 +4,48 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-
-@Builder
-@Getter
-@Setter
-@ToString
 @Entity(tableName = "size")
 public class Size {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo
-    private  int id;
+    private int id;
 
     @ColumnInfo(name = "size_name")
     private String sizeName;
 
-    @ColumnInfo(defaultValue = "0")
-    private boolean deleted;
+    public Size(int id, String sizeName) {
+        this.id = id;
+        this.sizeName = sizeName;
+    }
+
+    public Size() {
+    }
+
+    public Size(String sizeName) {
+        this.sizeName = sizeName;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getSizeName() {
+        return sizeName;
+    }
+
+    public void setSizeName(String sizeName) {
+        this.sizeName = sizeName;
+    }
+
+    @Override
+    public String toString() {
+        return "Size{" +
+                "id=" + id +
+                ", sizeName='" + sizeName + '\'' +
+                '}';
+    }
 }

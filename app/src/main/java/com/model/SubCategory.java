@@ -5,15 +5,6 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-
-@Builder
-@Getter
-@Setter
-@ToString
 @Entity(tableName = "sub_category")
 public class SubCategory {
     @PrimaryKey(autoGenerate = true)
@@ -30,6 +21,61 @@ public class SubCategory {
     @ColumnInfo(name = "sub_cate_name")
     private String subCategoryName;
 
-    @ColumnInfo(defaultValue = "0")
-    private boolean deleted;
+    public SubCategory(int categoryID, String subCategoryCode, String subCategoryName) {
+        this.categoryID = categoryID;
+        this.subCategoryCode = subCategoryCode;
+        this.subCategoryName = subCategoryName;
+    }
+
+    public SubCategory(int id, int categoryID, String subCategoryCode, String subCategoryName) {
+        this.id = id;
+        this.categoryID = categoryID;
+        this.subCategoryCode = subCategoryCode;
+        this.subCategoryName = subCategoryName;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getCategoryID() {
+        return categoryID;
+    }
+
+    public void setCategoryID(int categoryID) {
+        this.categoryID = categoryID;
+    }
+
+    public String getSubCategoryCode() {
+        return subCategoryCode;
+    }
+
+    public void setSubCategoryCode(String subCategoryCode) {
+        this.subCategoryCode = subCategoryCode;
+    }
+
+    public String getSubCategoryName() {
+        return subCategoryName;
+    }
+
+    public void setSubCategoryName(String subCategoryName) {
+        this.subCategoryName = subCategoryName;
+    }
+
+    public SubCategory() {
+    }
+
+    @Override
+    public String toString() {
+        return "SubCategory{" +
+                "id=" + id +
+                ", categoryID=" + categoryID +
+                ", subCategoryCode='" + subCategoryCode + '\'' +
+                ", subCategoryName='" + subCategoryName + '\'' +
+                '}';
+    }
 }
