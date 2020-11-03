@@ -44,7 +44,7 @@ public class Product {
     @ColumnInfo
     private String description;
 
-    @ColumnInfo(name = "create__date", defaultValue = "CURRENT_TIMESTAMP")
+    @ColumnInfo(name = "create_date", defaultValue = "CURRENT_TIMESTAMP")
     private String createDate;
 
     public Product() {

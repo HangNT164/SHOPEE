@@ -26,6 +26,7 @@ import com.dao.StatusOrderDao;
 import com.dao.SubCategoryDao;
 import com.model.Account;
 import com.model.AccountDetail;
+import com.model.Brand;
 import com.model.Category;
 import com.model.CustomInfo;
 import com.model.Evaluate;
@@ -44,7 +45,7 @@ import com.model.SubCategory;
 
 import static com.jdbc.RoomConnection.DATABASE_VERSION;
 
-@Database(entities = {Account.class, AccountDetail.class, Category.class, CustomInfo.class, Evaluate.class, Image.class, ImageAvatar.class, Order.class, OrderDetail.class, Payment.class, PaymentDetail.class, Product.class, Role.class, Size.class, Status.class, StatusOrder.class, SubCategory.class},
+@Database(entities = {Account.class, AccountDetail.class, Category.class, CustomInfo.class, Evaluate.class, Image.class, ImageAvatar.class, Order.class, OrderDetail.class, Payment.class, PaymentDetail.class, Product.class, Role.class, Size.class, Status.class, StatusOrder.class, SubCategory.class, Brand.class},
         version = DATABASE_VERSION)
 
 public abstract class RoomConnection extends RoomDatabase {
