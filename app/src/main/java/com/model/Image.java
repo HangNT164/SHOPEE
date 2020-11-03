@@ -2,6 +2,7 @@ package com.model;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "image")
@@ -10,21 +11,35 @@ public class Image {
     @ColumnInfo
     private int id;
 
+    @ForeignKey(entity = Product.class, parentColumns = {"id"}, childColumns = {"product_id"}, onDelete = ForeignKey.CASCADE)
+    @ColumnInfo(name = "product_id")
+    private int productID;
+
     @ColumnInfo(name = "image_link")
     private String imageLink;
 
     @ColumnInfo(defaultValue = "0")
     private boolean cover;
 
-    public Image(int id, String imageLink, boolean cover) {
+    public Image(int id, int productID, String imageLink, boolean cover) {
         this.id = id;
+        this.productID = productID;
         this.imageLink = imageLink;
         this.cover = cover;
     }
 
-    public Image(String imageLink, boolean cover) {
+    public Image(int productID, String imageLink, boolean cover) {
+        this.productID = productID;
         this.imageLink = imageLink;
         this.cover = cover;
+    }
+
+    public int getProductID() {
+        return productID;
+    }
+
+    public void setProductID(int productID) {
+        this.productID = productID;
     }
 
     public int getId() {
@@ -58,6 +73,7 @@ public class Image {
     public String toString() {
         return "Image{" +
                 "id=" + id +
+                ", productID=" + productID +
                 ", imageLink='" + imageLink + '\'' +
                 ", cover=" + cover +
                 '}';

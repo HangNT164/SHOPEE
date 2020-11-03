@@ -11,10 +11,6 @@ public class Product {
     @ColumnInfo
     private int id;
 
-    @ForeignKey(entity = Size.class, parentColumns = {"id"}, childColumns = {"size_id"}, onDelete = ForeignKey.CASCADE)
-    @ColumnInfo(name = "size_id")
-    private int sizeID;
-
     @ForeignKey(entity = SubCategory.class, parentColumns = {"id"}, childColumns = {"sub_cate_id"}, onDelete = ForeignKey.CASCADE)
     @ColumnInfo(name = "sub_cate_id")
     private int subCateID;
@@ -50,8 +46,7 @@ public class Product {
     public Product() {
     }
 
-    public Product(int sizeID, int subCateID, int brandID, String productCode, String productName, int quantity, double sellPrice, int originPrice, String color, String description, String createDate) {
-        this.sizeID = sizeID;
+    public Product( int subCateID, int brandID, String productCode, String productName, int quantity, double sellPrice, int originPrice, String color, String description, String createDate) {
         this.subCateID = subCateID;
         this.brandID = brandID;
         this.productCode = productCode;
@@ -64,9 +59,8 @@ public class Product {
         this.createDate = createDate;
     }
 
-    public Product(int id, int sizeID, int subCateID, int brandID, String productCode, String productName, int quantity, double sellPrice, int originPrice, String color, String description, String createDate) {
+    public Product(int id,int subCateID, int brandID, String productCode, String productName, int quantity, double sellPrice, int originPrice, String color, String description, String createDate) {
         this.id = id;
-        this.sizeID = sizeID;
         this.subCateID = subCateID;
         this.brandID = brandID;
         this.productCode = productCode;
@@ -85,14 +79,6 @@ public class Product {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getSizeID() {
-        return sizeID;
-    }
-
-    public void setSizeID(int sizeID) {
-        this.sizeID = sizeID;
     }
 
     public int getSubCateID() {
@@ -179,7 +165,6 @@ public class Product {
     public String toString() {
         return "Product{" +
                 "id=" + id +
-                ", sizeID=" + sizeID +
                 ", subCateID=" + subCateID +
                 ", brandID=" + brandID +
                 ", productCode='" + productCode + '\'' +

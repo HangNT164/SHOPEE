@@ -9,6 +9,7 @@ public class Brand {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo
     private int id;
+
     @ColumnInfo(name = "brand_name")
     private String brandName;
 
