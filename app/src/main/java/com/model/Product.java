@@ -29,7 +29,7 @@ public class Product {
     @ColumnInfo(name = "product_name")
     private String productName;
 
-    @ColumnInfo
+    @ColumnInfo(defaultValue = "0")
     private int quantity;
 
     @ColumnInfo(name = "sell_price", defaultValue = "0")

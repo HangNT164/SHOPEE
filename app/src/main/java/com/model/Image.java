@@ -10,7 +10,7 @@ public class Image {
     @ColumnInfo
     private int id;
 
-    @ColumnInfo
+    @ColumnInfo(name = "image_link")
     private String imageLink;
 
     @ColumnInfo(defaultValue = "0")

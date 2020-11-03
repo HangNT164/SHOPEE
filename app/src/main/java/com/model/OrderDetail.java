@@ -1,5 +1,6 @@
 package com.model;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
@@ -35,6 +36,7 @@ public class OrderDetail {
     private String createDate;
 
     @ColumnInfo(name = "ship_date")
+    @NonNull
     private String shipDate;
 
     public OrderDetail(int id, int orderID, int productID, String productName, double originPrice, double sellPrice, int quantity, String createDate, String shipDate) {
