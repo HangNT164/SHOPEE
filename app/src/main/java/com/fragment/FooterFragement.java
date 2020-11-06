@@ -10,12 +10,16 @@ import android.widget.ImageView;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.model.AccountDetail;
 import com.shopee.InformationAccountActivity;
+import com.shopee.LoginActivity;
 import com.shopee.MainActivity;
 import com.shopee.NotificaionActivity;
 import com.shopee.R;
 import com.shopee.ShopeeFeedActivity;
 import com.shopee.ShoppeLiveActivity;
+
+import static com.util.Helper.getSavedObjectFromPreference;
 
 public class FooterFragement extends Fragment {
     @Nullable
@@ -46,7 +50,13 @@ public class FooterFragement extends Fragment {
         accountSetting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), InformationAccountActivity.class);
+                AccountDetail accountDetail = getSavedObjectFromPreference(getContext(), "mPreference", "account", AccountDetail.class);
+                Intent intent;
+                if (accountDetail != null) {
+                    intent = new Intent(getContext(), InformationAccountActivity.class);
+                } else {
+                    intent = new Intent(getContext(), LoginActivity.class);
+                }
                 startActivity(intent);
             }
         });

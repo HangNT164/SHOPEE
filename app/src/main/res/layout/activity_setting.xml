@@ -8,15 +8,6 @@
     android:orientation="vertical"
     tools:context=".SettingActivity">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:gravity="center"
-        android:text="@string/settingAccoutn"
-        android:textColor="#000000"
-        android:textSize="20dp"></TextView>
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -26,72 +17,242 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-
+            <!--Header-->
             <LinearLayout
+                android:id="@+id/imageBia"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="150dp"
+                android:background="#e87d81"
+                android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:gravity="left"
-                    android:text="Tài khoản của tôi"
-                    android:textSize="10dp"></TextView>
 
-                <ListView
-                    android:id="@+id/taiKhoanCuaToi"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                </ListView>
-
+                <ImageView
+                    android:id="@+id/imageAvatar"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="180dp"
+                    android:layout_marginTop="45dp"
+                    android:scaleType="center"
+                    android:src="@drawable/avatar"></ImageView>
             </LinearLayout>
 
-            <LinearLayout
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_marginBottom="10dp">
 
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:gravity="left"
-                    android:text="Hỗ trợ"
-                    android:textSize="10dp"></TextView>
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
 
-                <ListView
-                    android:id="@+id/hoTro"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:text="@string/name"
+                        android:textColor="#000000"
+                        android:textSize="15dp"></TextView>
 
-                </ListView>
+                    <TextView
+                        android:id="@+id/nameSetting"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="250dp"
+                        android:layout_marginTop="10dp"
+                        android:text="HangNguyen"
+                        android:textColor="#000000"
+                        android:textSize="15dp"></TextView>
 
-            </LinearLayout>
+                </LinearLayout>
 
-            <LinearLayout
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_marginBottom="10dp">
 
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:gravity="left"
-                    android:text="Cài đặt"
-                    android:textSize="10dp"></TextView>
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
 
-                <ListView
-                    android:id="@+id/caiDat"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:text="@string/phone"
+                        android:textColor="#000000"
+                        android:textSize="15dp"></TextView>
+
+                    <TextView
+                        android:id="@+id/phoneSetting"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="210dp"
+                        android:layout_marginTop="10dp"
+                        android:text="0942578685"
+                        android:textColor="#000000"
+                        android:textSize="15dp"></TextView>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp">
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
 
-                </ListView>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:text="@string/address"
+                        android:textColor="#000000"
+                        android:textSize="15dp"></TextView>
 
-            </LinearLayout>
+                    <TextView
+                        android:id="@+id/addressSetting"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="250dp"
+                        android:layout_marginTop="10dp"
+                        android:text="Nam Định"
+                        android:textColor="#000000"
+                        android:textSize="15dp"></TextView>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:text="@string/createDate"
+                        android:textColor="#000000"
+                        android:textSize="15dp"></TextView>
+
+                    <TextView
+                        android:id="@+id/dateSetting"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="220dp"
+                        android:layout_marginTop="10dp"
+                        android:text="02/11/2020"
+                        android:textColor="#000000"
+                        android:textSize="15dp"></TextView>
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:text="@string/networkAccount"
+                        android:textColor="#000000"
+                        android:textSize="15dp"></TextView>
+
+                    <TextView
+                        android:id="@+id/changeNetWorkAccount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="215dp"
+                        android:layout_marginTop="10dp"
+                        android:text=">"
+                        android:textSize="15dp"></TextView>
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:text="@string/networkLienKet"
+                        android:textColor="#000000"
+                        android:textSize="15dp"></TextView>
+
+                    <TextView
+                        android:id="@+id/changeAccountLienKet"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="245dp"
+                        android:layout_marginTop="10dp"
+                        android:text=">"
+                        android:textSize="15dp"></TextView>
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:text="@string/password"
+                        android:textColor="#000000"
+                        android:textSize="15dp"></TextView>
+
+
+                    <TextView
+                        android:id="@+id/changePassword"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="300dp"
+                        android:layout_marginTop="10dp"
+                        android:text=">"
+                        android:textSize="15dp"></TextView>
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
     </ScrollView>
 

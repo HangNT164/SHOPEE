@@ -26,4 +26,7 @@ public interface ImageAvatarDao {
 
     @Delete
     void delete(ImageAvatar imageAvatar);
+
+    @Query("SELECT * FROM image_avatar WHERE account_detail_id=:accountDetailID")
+    List<ImageAvatar> getImageAvatarByAccountDetail(int accountDetailID);
 }

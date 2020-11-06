@@ -14,30 +14,19 @@ public class AccountDetail {
     private String name;
 
     @ColumnInfo
-    private String mobile;
-
-    @ColumnInfo(defaultValue = "0")
-    private boolean gender;
-
-    @ColumnInfo
     private String address;
 
     @ColumnInfo(name = "create_date", defaultValue = "CURRENT_TIMESTAMP")
     private String createDate;
 
-    public AccountDetail(int id, String name, String mobile, boolean gender, String address, String createDate) {
-        this.id = id;
+
+    public AccountDetail(String name, String address) {
         this.name = name;
-        this.mobile = mobile;
-        this.gender = gender;
         this.address = address;
-        this.createDate = createDate;
     }
 
-    public AccountDetail(String name, String mobile, boolean gender, String address, String createDate) {
+    public AccountDetail(String name, String address, String createDate) {
         this.name = name;
-        this.mobile = mobile;
-        this.gender = gender;
         this.address = address;
         this.createDate = createDate;
     }
@@ -61,22 +50,6 @@ public class AccountDetail {
         this.name = name;
     }
 
-    public String getMobile() {
-        return mobile;
-    }
-
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
-    }
-
-    public boolean isGender() {
-        return gender;
-    }
-
-    public void setGender(boolean gender) {
-        this.gender = gender;
-    }
-
     public String getAddress() {
         return address;
     }
@@ -98,8 +71,6 @@ public class AccountDetail {
         return "AccountDetail{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", mobile='" + mobile + '\'' +
-                ", gender=" + gender +
                 ", address='" + address + '\'' +
                 ", createDate='" + createDate + '\'' +
                 '}';

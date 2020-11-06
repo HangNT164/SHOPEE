@@ -64,4 +64,5 @@ dependencies {
     implementation "androidx.room:room-guava:$room_version"
     // optional - Test helpers
     testImplementation "androidx.room:room-testing:$room_version"
+    implementation 'com.google.code.gson:gson:2.8.5'
 }

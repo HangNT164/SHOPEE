@@ -15,7 +15,10 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.SHOPEE">
-        <activity android:name=".ShopeeFeedActivity"></activity>
+        <activity android:name=".ChangePasswordActivity"></activity>
+        <activity android:name=".ChangePhoneActivity" />
+        <activity android:name=".ChangeNamActivity" />
+        <activity android:name=".ShopeeFeedActivity" />
         <activity android:name=".ForgotPasswordActivity" />
         <activity android:name=".ResgiterActivity" />
         <activity

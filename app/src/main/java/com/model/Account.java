@@ -16,11 +16,11 @@ public class Account {
     private int accountDetailID;
 
     @ForeignKey(entity = Role.class, parentColumns = {"id"}, childColumns = {"role_id"}, onDelete = ForeignKey.CASCADE)
-    @ColumnInfo(name = "role_id")
+    @ColumnInfo(name = "role_id", defaultValue = "2")
     private int roleID;
 
     @ColumnInfo
-    private String email;
+    private String mobile;
 
     @ColumnInfo
     private String password;
@@ -28,18 +28,21 @@ public class Account {
     public Account() {
     }
 
-    public Account(int id, int accountDetailID, int roleID, String email, String password) {
-        this.id = id;
+    public Account(int accountDetailID, int roleID, String mobile, String password) {
         this.accountDetailID = accountDetailID;
         this.roleID = roleID;
-        this.email = email;
+        this.mobile = mobile;
         this.password = password;
     }
 
-    public Account(int accountDetailID, int roleID, String email, String password) {
+    public Account(String mobile, String password) {
+        this.mobile = mobile;
+        this.password = password;
+    }
+
+    public Account(int accountDetailID, String mobile, String password) {
         this.accountDetailID = accountDetailID;
-        this.roleID = roleID;
-        this.email = email;
+        this.mobile = mobile;
         this.password = password;
     }
 
@@ -67,12 +70,12 @@ public class Account {
         this.roleID = roleID;
     }
 
-    public String getEmail() {
-        return email;
+    public String getMobile() {
+        return mobile;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
     }
 
     public String getPassword() {
@@ -89,7 +92,7 @@ public class Account {
                 "id=" + id +
                 ", accountDetailID=" + accountDetailID +
                 ", roleID=" + roleID +
-                ", email='" + email + '\'' +
+                ", mobile='" + mobile + '\'' +
                 ", password='" + password + '\'' +
                 '}';
     }

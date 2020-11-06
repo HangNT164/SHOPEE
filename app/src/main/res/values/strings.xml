@@ -51,4 +51,15 @@
     <string name="textLogin">Bạn chưa có tài khoản? Đăng ký</string>
     <string name="register">Đăng kí</string>
     <string name="textRegister">Bạn có tài khoản ? Đăng nhập</string>
+    <string name="name">Tên</string>
+    <string name="phone">Điện thoại</string>
+    <string name="email">Email</string>
+    <string name="address">Địa chỉ</string>
+    <string name="networkAccount">Tài khoản mạng xã hội</string>
+    <string name="networkLienKet">Tài khoản liên kết</string>
+    <string name="password">Mật khẩu</string>
+    <string name="createDate">Ngày tạo</string>
+    <string name="changeName">Sửa Tên</string>
+    <string name="saveData">Lưu</string>
+    <string name="validateName">Chỉ 100 kí tự</string>
 </resources>

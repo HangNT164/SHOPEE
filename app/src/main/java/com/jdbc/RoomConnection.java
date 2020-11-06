@@ -51,7 +51,7 @@ import static com.jdbc.RoomConnection.DATABASE_VERSION;
 public abstract class RoomConnection extends RoomDatabase {
     private static RoomConnection roomConnection;
 
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 2;
     public static final String DATABASE_NAME = "SHOPEE_DATABASE.db";
 
     public abstract AccountDao accountDao();
@@ -90,11 +90,9 @@ public abstract class RoomConnection extends RoomDatabase {
 
     public abstract BrandDao brandDao();
 
-    public static RoomDatabase getInstance(Context context) {
+    public static RoomConnection getInstance(Context context) {
         if (roomConnection == null) {
-            roomConnection = Room.databaseBuilder(context, RoomConnection.class, DATABASE_NAME)
-                    .fallbackToDestructiveMigration()
-                    .build();
+            roomConnection = Room.databaseBuilder(context, RoomConnection.class, DATABASE_NAME).fallbackToDestructiveMigration().allowMainThreadQueries().build();
         }
         return roomConnection;
     }

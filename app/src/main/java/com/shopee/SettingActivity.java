@@ -1,42 +1,96 @@
 package com.shopee;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Bundle;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import com.dao.AccountDao;
+import com.jdbc.RoomConnection;
+import com.model.Account;
+import com.model.AccountDetail;
+
+import static com.jdbc.RoomConnection.getInstance;
+import static com.util.Helper.getSavedObjectFromPreference;
+import static com.util.Helper.saveObjectToSharedPreference;
 
 public class SettingActivity extends AppCompatActivity {
-    private ListView listViewTaiKhoanCuaToi, listViewHoTro, listViewcaiDat;
-    private ArrayAdapter<String> adapterTaiKhoanCuaToi;
-    private ArrayAdapter<String> adapterHoTro;
-    private ArrayAdapter<String> adapterCaiDat;
-    private String[] listStringTaiKhoanCuaToi;
-    private String[] listStringHoTro;
-    private String[] listStringCaiDat;
+    private TextView nameSetting;
+    private TextView phoneSetting;
+    private TextView addressSetting;
+    private TextView changeFacebook;
+    private TextView changePaymentAccount;
+    private TextView changePassword;
+    private RoomConnection roomConnection;
+    private AccountDao accountDao;
+    private TextView createDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
 
-        listStringTaiKhoanCuaToi = new String[]{"Hồ sơ của tôi", "Địa chỉ", "Tài khoản/Thẻ ngân hàng"};
-        listStringHoTro = new String[]{"Huỷ tài khoản", "Điều khoản sử dụng", "Giới thiệu"};
-        listStringCaiDat = new String[]{"Ngôn ngữ"};
+        roomConnection = getInstance(getApplicationContext());
+        accountDao = roomConnection.accountDao();
+        AccountDetail accountDetail = getSavedObjectFromPreference(getApplicationContext(), "mPreference", "account", AccountDetail.class);
 
-        adapterTaiKhoanCuaToi = new ArrayAdapter<>(getApplicationContext(),
-                android.R.layout.simple_list_item_1, listStringTaiKhoanCuaToi);
-        listViewTaiKhoanCuaToi = findViewById(R.id.taiKhoanCuaToi);
-        listViewTaiKhoanCuaToi.setAdapter(adapterTaiKhoanCuaToi);
+        nameSetting = findViewById(R.id.nameSetting);
+        phoneSetting = findViewById(R.id.phoneSetting);
+        addressSetting = findViewById(R.id.addressSetting);
+        changeFacebook = findViewById(R.id.changeNetWorkAccount);
+        changePaymentAccount = findViewById(R.id.changeAccountLienKet);
+        changePassword = findViewById(R.id.changePassword);
+        createDate = findViewById(R.id.dateSetting);
 
-        adapterHoTro = new ArrayAdapter<>(getApplicationContext(),
-                android.R.layout.simple_list_item_1, listStringHoTro);
-        listViewHoTro = findViewById(R.id.hoTro);
-        listViewHoTro.setAdapter(adapterHoTro);
+        // set information
+        nameSetting.setText(accountDetail.getName());
+        Account account = accountDao.getAccountByAccountDetail(accountDetail.getId());
+        saveObjectToSharedPreference(getApplicationContext(), "accountPreference", "accountOfAccountDetail", accountDetail);
+        phoneSetting.setText(account.getMobile());
+        addressSetting.setText(accountDetail.getAddress());
+        createDate.setText(accountDetail.getCreateDate());
 
-        adapterCaiDat = new ArrayAdapter<>(getApplicationContext(),
-                android.R.layout.simple_list_item_1, listStringCaiDat);
-        listViewcaiDat = findViewById(R.id.caiDat);
-        listViewcaiDat.setAdapter(adapterCaiDat);
+        nameSetting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SettingActivity.this,ChangeNamActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        phoneSetting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        addressSetting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        changePaymentAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        changeFacebook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        changePassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 }

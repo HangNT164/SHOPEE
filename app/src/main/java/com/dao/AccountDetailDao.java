@@ -3,6 +3,7 @@ package com.dao;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
@@ -18,8 +19,8 @@ public interface AccountDetailDao {
     @Query("SELECT * FROM account_detail WHERE id = :id")
     AccountDetail getOne(int id);
 
-    @Insert
-    void add(AccountDetail accountDetail);
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    long add(AccountDetail accountDetail);
 
     @Update
     void update(AccountDetail accountDetail);

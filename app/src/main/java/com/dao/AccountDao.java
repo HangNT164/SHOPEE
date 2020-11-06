@@ -26,4 +26,10 @@ public interface AccountDao {
 
     @Delete
     void delete(Account account);
+
+    @Query("SELECT * FROM account WHERE mobile=:mobile and password=:password and role_id = 2")
+    Account login(String mobile, String password);
+
+    @Query("SELECT * FROM account WHERE account_detail_id = :id")
+    Account getAccountByAccountDetail(int id);
 }
