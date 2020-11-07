@@ -15,7 +15,8 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.SHOPEE">
-        <activity android:name=".ConnectFacebookInstagramActivity"></activity>
+        <activity android:name=".ChangeLanguageActivity"></activity>
+        <activity android:name=".ConnectFacebookInstagramActivity" />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
@@ -28,7 +29,8 @@
         <activity
             android:name="com.facebook.CustomTabActivity"
             android:exported="true">
-            <intent-filter><action android:name="android.intent.action.VIEW" />
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
@@ -36,7 +38,6 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-
         <activity android:name=".ChangeAdressActivity" />
         <activity android:name=".ChangePasswordActivity" />
         <activity android:name=".ChangePhoneActivity" />

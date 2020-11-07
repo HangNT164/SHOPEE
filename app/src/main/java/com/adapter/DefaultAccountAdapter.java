@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.shopee.ChangeLanguageActivity;
 import com.shopee.InformationAccountActivity;
 import com.shopee.InformationShopActivity;
 import com.shopee.LoginActivity;
@@ -61,31 +62,41 @@ public class DefaultAccountAdapter extends RecyclerView.Adapter<DefaultAccountAd
             public void onClick(View v) {
                 String titleStr = holder.title.getText().toString();
                 switch (titleStr) {
-                    case "Thiết lập tài khoản": {
+                    case "Thiết lập tài khoản":
+                    case "Setting Account": {
                         Intent intent = new Intent(context, SettingActivity.class);
                         context.startActivity(intent);
                         break;
                     }
-                    case "Trung tâm trợ giúp": {
+                    case "Trung tâm trợ giúp":
+                    case "Support": {
                         Intent intent = new Intent(context, SupportActivity.class);
                         context.startActivity(intent);
                         break;
                     }
-                    case "Giới thiệu": {
+                    case "Giới thiệu":
+                    case "Introduction": {
                         Intent intent = new Intent(context, InformationShopActivity.class);
                         context.startActivity(intent);
                         break;
                     }
-                    case "Đăng xuất": {
+                    case "Đổi ngôn ngữ":
+                    case "Change Language": {
+                        Intent intent = new Intent(context, ChangeLanguageActivity.class);
+                        context.startActivity(intent);
+                        break;
+                    }
+                    case "Đăng xuất":
+                    case "Logout": {
+                        SharedPreferences sharedPreferences = context.getSharedPreferences("mPreference", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.clear();
+                        editor.commit();
                         Intent intent = new Intent(context, LoginActivity.class);
                         context.startActivity(intent);
                         break;
                     }
                     default: {
-                        SharedPreferences sharedPreferences = context.getSharedPreferences("mPreference", Context.MODE_PRIVATE);
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.clear();
-                        editor.commit();
                         Intent intent = new Intent(context, InformationAccountActivity.class);
                         context.startActivity(intent);
                         break;

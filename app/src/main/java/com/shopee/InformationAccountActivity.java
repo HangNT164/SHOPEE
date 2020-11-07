@@ -39,8 +39,7 @@ public class InformationAccountActivity extends AppCompatActivity {
         settingAccount = findViewById(R.id.settingAccount);
 
         imageSetting = new int[]{R.drawable.heart, R.drawable.settings, R.drawable.help, R.drawable.introduce, R.drawable.language, R.drawable.logout};
-        settingAccountString = new String[]{"Đã thích", "Thiết lập tài khoản", "Trung tâm trợ giúp", "Giới thiệu", "Đổi ngôn ngữ", "Đăng xuất"};
-
+        settingAccountString = getResources().getStringArray(R.array.inforInSettingAccount);
         DefaultAccountAdapter settingAccountAdapter = new DefaultAccountAdapter(this, settingAccountString, imageSetting);
         settingAccount.setAdapter(settingAccountAdapter);
         settingAccount.setLayoutManager(new LinearLayoutManager(this));

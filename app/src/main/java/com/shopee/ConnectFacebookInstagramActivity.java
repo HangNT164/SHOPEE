@@ -25,9 +25,6 @@ public class ConnectFacebookInstagramActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
     private CallbackManager callbackManager;
     private LoginButton fbLoginButton;
-    private LoginButton youtubeBtn;
-    private LoginButton twitterBtn;
-    private LoginButton loginInsta;
     private TextView nameFacebook;
 
     @Override
@@ -39,29 +36,11 @@ public class ConnectFacebookInstagramActivity extends AppCompatActivity {
         callbackManager = CallbackManager.Factory.create();
 
         fbLoginButton = findViewById(R.id.login_button);
-        youtubeBtn = findViewById(R.id.loginYoutube);
-        twitterBtn = findViewById(R.id.loginTwitter);
-        loginInsta = findViewById(R.id.loginInsta);
 
         fbLoginButton.setLoginText("LIÊN KẾT");
         fbLoginButton.setLogoutText("HỦY LIÊN KẾT");
         fbLoginButton.setBackgroundColor(Color.WHITE);
         fbLoginButton.setTextColor(Color.RED);
-
-        youtubeBtn.setLoginText("LIÊN KẾT");
-        youtubeBtn.setLogoutText("HỦY LIÊN KẾT");
-        youtubeBtn.setBackgroundColor(Color.WHITE);
-        youtubeBtn.setTextColor(Color.RED);
-
-        twitterBtn.setLoginText("LIÊN KẾT");
-        twitterBtn.setLogoutText("HỦY LIÊN KẾT");
-        twitterBtn.setBackgroundColor(Color.WHITE);
-        twitterBtn.setTextColor(Color.RED);
-
-        loginInsta.setLoginText("LIÊN KẾT");
-        loginInsta.setLogoutText("HỦY LIÊN KẾT");
-        loginInsta.setBackgroundColor(Color.WHITE);
-        loginInsta.setTextColor(Color.RED);
 
         //https://developers.facebook.com/docs/facebook-login/permissions#reference
         fbLoginButton.setReadPermissions("email");
@@ -114,8 +93,6 @@ public class ConnectFacebookInstagramActivity extends AppCompatActivity {
             parameters.putString("fields", "id,name,link");
             request.setParameters(parameters);
             request.executeAsync();
-        } else {
-            nameFacebook.setText("Liên kết tài khoản Facebook");
         }
     }
 }

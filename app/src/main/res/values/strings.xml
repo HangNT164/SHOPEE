@@ -9,6 +9,14 @@
         <item>Đơn hàng 6</item>
         <item>Đơn hàng 7</item>
     </string-array>
+    <string-array name="inforInSettingAccount">
+        <item>Đã thích</item>
+        <item>Thiết lập tài khoản</item>
+        <item>Trung tâm trợ giúp</item>
+        <item>Giới thiệu</item>
+        <item>Đổi ngôn ngữ</item>
+        <item>Đăng xuất</item>
+    </string-array>
     <string-array name="detailNotifications">
         <item>Detail đơn hàng 1</item>
         <item>Detail đơn hàng 2</item>
@@ -29,7 +37,7 @@
     <string name="orders">Đơn mua</string>
     <string name="comfirm">Chờ xác nhận</string>
     <string name="orderGiao">Đang giao</string>
-    <string name="orderSuccess">Giao thành công</string>
+    <string name="orderSuccess">Thành công</string>
     <string name="ourStory">Câu chuyện của chúng tôi</string>
     <string name="header">Shopee là nền tảng thương mại điện tử hàng đầu ở Đông Nam Á và Đài Loan.</string>
     <string name="bodyFirst">Ra mắt năm 2015, nền tảng thương mại Shopee được xây dựng nhằm cung cấp cho người sử dùng những trải nghiệm dễ dàng, an toàn và nhanh chóng khi mua sắm trực tuyến thông qua hệ thống hỗ trợ thanh toán và vận hành vững mạnh.</string>
@@ -42,7 +50,7 @@
     <string name="settingAccoutn">Thiết lập tài khoản</string>
     <string name="shopeeFeed">Shopee Feed</string>
     <string name="shopeeLive">Shopee live</string>
-    <string name="home">"Trang chủ "</string>
+    <string name="home">Trang chủ</string>
     <string name="account">Tài khoản</string>
     <string name="forgotPass">Quên mật khẩu</string>
     <string name="code">Gửi mã</string>
@@ -66,11 +74,15 @@
     <string name="changePassword">Mật khẩu</string>
     <string name="diachi">Địa chỉ</string>
     <string name="capNhap">Cập nhập thành công</string>
-    <string name="facebook_app_id">1059973504444907</string> <string name="fb_login_protocol_scheme">fb1059973504444907</string>
+    <string name="facebook_app_id">1059973504444907</string>
+    <string name="fb_login_protocol_scheme">fb1059973504444907</string>
     <string name="taiKhoanLienKet">Tài Khoản Mạng Xã Hội</string>
     <string name="lienKetFacebook">Liên kết tài khoản Facebook</string>
     <string name="lienKetInsta">Liên kết tài khoản Instagram</string>
     <string name="lienKetGoogle">Liên kết tài khoản Google</string>
     <string name="lienKetYoutube">Liên kết tài khoản youtube</string>
     <string name="lienKetTwitter">Liên kết tài khoản Twitter</string>
+    <string name="language">Ngôn ngữ</string>
+    <string name="vietNam">Việt Nam</string>
+    <string name="english">Tiếng Anh</string>
 </resources>
