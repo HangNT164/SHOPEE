@@ -1,8 +1,9 @@
 package com.shopee;
 
-import android.content.Context;
-import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -24,6 +25,8 @@ public class ChangeNamActivity extends AppCompatActivity {
     private EditText txtInputName;
     private TextView saveData;
     private AccountDetail accountDetail;
+    private String currentName;
+    private String newName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,17 +37,50 @@ public class ChangeNamActivity extends AppCompatActivity {
         saveData = findViewById(R.id.txtSaveData);
 
         txtInputName.setText(accountDetail.getName());
+        txtInputName.setSelection(txtInputName.getText().toString().length());
+        currentName = txtInputName.getText().toString();
         roomConnection = getInstance(this);
         accountDetailDao = roomConnection.accountDetailDao();
+
+        txtInputName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                newName = txtInputName.getText().toString();
+                if (before != start) {
+                    saveData.setTextColor(Color.RED);
+                } else {
+                    saveData.setTextColor(Color.parseColor("#f5b7b5"));
+                }
+                if (newName.length() > 100) {
+                    Toast.makeText(getApplicationContext(), "Only 100 Character!", Toast.LENGTH_SHORT).show();
+                    saveData.setTextColor(Color.parseColor("#f5b7b5"));
+                    txtInputName.setText(currentName);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                newName = txtInputName.getText().toString();
+                saveData.setTextColor(Color.RED);
+            }
+        });
 
         saveData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String newName = txtInputName.getText().toString();
-                accountDetail.setName(newName);
-                accountDetailDao.update(accountDetail);
-                Toast.makeText(getApplicationContext(), "Update name success", Toast.LENGTH_SHORT).show();
-                finish();
+                if (!newName.equalsIgnoreCase(currentName)) {
+                    accountDetail.setName(newName);
+                    saveObjectToSharedPreference(getApplicationContext(), "mPreference", "account", accountDetail);
+                    accountDetailDao.update(accountDetail);
+                    Toast.makeText(getApplicationContext(), "Update name success", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+
             }
         });
     }

@@ -8,9 +8,11 @@ import com.model.Account;
 
 import java.util.List;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class Helper {
     public static void saveObjectToSharedPreference(Context context, String preferenceFileName, String serializedObjectKey, Object object) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences(preferenceFileName, 0);
+        SharedPreferences sharedPreferences = context.getSharedPreferences(preferenceFileName, MODE_PRIVATE);
         SharedPreferences.Editor sharedPreferencesEditor = sharedPreferences.edit();
         final Gson gson = new Gson();
         String serializedObject = gson.toJson(object);
@@ -19,7 +21,7 @@ public class Helper {
     }
 
     public static <GenericClass> GenericClass getSavedObjectFromPreference(Context context, String preferenceFileName, String preferenceKey, Class<GenericClass> classType) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences(preferenceFileName, 0);
+        SharedPreferences sharedPreferences = context.getSharedPreferences(preferenceFileName, MODE_PRIVATE);
         if (sharedPreferences.contains(preferenceKey)) {
             final Gson gson = new Gson();
             return gson.fromJson(sharedPreferences.getString(preferenceKey, ""), classType);

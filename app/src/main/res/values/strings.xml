@@ -62,4 +62,7 @@
     <string name="changeName">Sửa Tên</string>
     <string name="saveData">Lưu</string>
     <string name="validateName">Chỉ 100 kí tự</string>
+    <string name="changePhoneNumber">Điện thoại</string>
+    <string name="changePassword">Mật khẩu</string>
+    <string name="diachi">Địa chỉ</string>
 </resources>

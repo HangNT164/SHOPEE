@@ -34,6 +34,7 @@ public class SettingActivity extends AppCompatActivity {
 
         roomConnection = getInstance(getApplicationContext());
         accountDao = roomConnection.accountDao();
+
         AccountDetail accountDetail = getSavedObjectFromPreference(getApplicationContext(), "mPreference", "account", AccountDetail.class);
 
         nameSetting = findViewById(R.id.nameSetting);
@@ -47,7 +48,7 @@ public class SettingActivity extends AppCompatActivity {
         // set information
         nameSetting.setText(accountDetail.getName());
         Account account = accountDao.getAccountByAccountDetail(accountDetail.getId());
-        saveObjectToSharedPreference(getApplicationContext(), "accountPreference", "accountOfAccountDetail", accountDetail);
+        saveObjectToSharedPreference(getApplicationContext(), "accountPreference", "accountOfAccountDetail", account);
         phoneSetting.setText(account.getMobile());
         addressSetting.setText(accountDetail.getAddress());
         createDate.setText(accountDetail.getCreateDate());
@@ -55,7 +56,7 @@ public class SettingActivity extends AppCompatActivity {
         nameSetting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SettingActivity.this,ChangeNamActivity.class);
+                Intent intent = new Intent(SettingActivity.this, ChangeNamActivity.class);
                 startActivity(intent);
             }
         });
@@ -63,14 +64,16 @@ public class SettingActivity extends AppCompatActivity {
         phoneSetting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(SettingActivity.this, ChangePhoneActivity.class);
+                startActivity(intent);
             }
         });
 
         addressSetting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(SettingActivity.this, ChangeAdressActivity.class);
+                startActivity(intent);
             }
         });
         changePaymentAccount.setOnClickListener(new View.OnClickListener() {
@@ -89,7 +92,8 @@ public class SettingActivity extends AppCompatActivity {
         changePassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(SettingActivity.this, ChangePasswordActivity.class);
+                startActivity(intent);
             }
         });
     }
