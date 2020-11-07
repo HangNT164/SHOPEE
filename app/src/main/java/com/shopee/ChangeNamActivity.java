@@ -18,6 +18,7 @@ import com.toast.CustomToast;
 
 import static com.jdbc.RoomConnection.getInstance;
 import static com.util.Helper.getSavedObjectFromPreference;
+import static com.util.Helper.loadLocale;
 import static com.util.Helper.saveObjectToSharedPreference;
 
 public class ChangeNamActivity extends AppCompatActivity {
@@ -32,6 +33,7 @@ public class ChangeNamActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        loadLocale(getBaseContext(), "Language", "My_Lang");
         setContentView(R.layout.activity_change_nam);
         accountDetail = getSavedObjectFromPreference(getApplicationContext(), "mPreference", "account", AccountDetail.class);
         txtInputName = findViewById(R.id.txtInputName);

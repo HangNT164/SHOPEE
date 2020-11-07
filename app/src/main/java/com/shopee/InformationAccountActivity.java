@@ -19,6 +19,7 @@ import java.util.List;
 
 import static com.jdbc.RoomConnection.getInstance;
 import static com.util.Helper.getSavedObjectFromPreference;
+import static com.util.Helper.loadLocale;
 
 public class InformationAccountActivity extends AppCompatActivity {
     private RecyclerView settingAccount;
@@ -34,6 +35,7 @@ public class InformationAccountActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        loadLocale(getBaseContext(), "Language", "My_Lang");
         setContentView(R.layout.activity_information_account);
         AccountDetail accountDetail = getSavedObjectFromPreference(getApplicationContext(), "mPreference", "account", AccountDetail.class);
         settingAccount = findViewById(R.id.settingAccount);

@@ -8,6 +8,8 @@ import android.os.Bundle;
 
 import com.adapter.NotificationAdapter;
 
+import static com.util.Helper.loadLocale;
+
 public class NotificaionActivity extends AppCompatActivity {
 
     private String listNotification[];
@@ -20,6 +22,7 @@ public class NotificaionActivity extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        loadLocale(getBaseContext(), "Language", "My_Lang");
         setContentView(R.layout.activity_notificaion);
 
         recyclerView = findViewById(R.id.notificationRecyclerView);

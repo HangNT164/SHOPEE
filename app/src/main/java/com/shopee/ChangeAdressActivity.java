@@ -17,6 +17,7 @@ import com.model.AccountDetail;
 
 import static com.jdbc.RoomConnection.getInstance;
 import static com.util.Helper.getSavedObjectFromPreference;
+import static com.util.Helper.loadLocale;
 
 public class ChangeAdressActivity extends AppCompatActivity {
     private RoomConnection roomConnection;
@@ -30,6 +31,7 @@ public class ChangeAdressActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        loadLocale(getBaseContext(), "Language", "My_Lang");
         setContentView(R.layout.activity_change_adress);
         accountDetail = getSavedObjectFromPreference(getApplicationContext(), "mPreference", "account", AccountDetail.class);
         txtInputPhone = findViewById(R.id.txtInputName);

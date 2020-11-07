@@ -12,6 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
 
+import static com.util.Helper.loadLocale;
+
 public class ShoppeLiveActivity extends AppCompatActivity {
     private CarouselView carouselView;
     private int[] lists;
@@ -27,6 +29,7 @@ public class ShoppeLiveActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        loadLocale(getBaseContext(), "Language", "My_Lang");
         setContentView(R.layout.activity_shoppe_live);
         // get data for list
         lists = new int[]{R.drawable.live1, R.drawable.live2, R.drawable.live3, R.drawable.live4, R.drawable.home5};

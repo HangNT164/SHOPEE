@@ -8,6 +8,8 @@ import android.os.Bundle;
 
 import com.adapter.MessageAdapter;
 
+import static com.util.Helper.loadLocale;
+
 public class MessageActivity extends AppCompatActivity {
     private RecyclerView messageRecyclerView;
     private String titleName[];
@@ -17,6 +19,7 @@ public class MessageActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        loadLocale(getBaseContext(), "Language", "My_Lang");
         setContentView(R.layout.activity_message);
 
         messageRecyclerView = findViewById(R.id.messageRecyclerView);

@@ -14,6 +14,7 @@ import com.model.AccountDetail;
 
 import static com.jdbc.RoomConnection.getInstance;
 import static com.util.Helper.getSavedObjectFromPreference;
+import static com.util.Helper.loadLocale;
 import static com.util.Helper.saveObjectToSharedPreference;
 
 public class SettingActivity extends AppCompatActivity {
@@ -30,6 +31,7 @@ public class SettingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        loadLocale(getBaseContext(), "Language", "My_Lang");
         setContentView(R.layout.activity_setting);
 
         roomConnection = getInstance(getApplicationContext());

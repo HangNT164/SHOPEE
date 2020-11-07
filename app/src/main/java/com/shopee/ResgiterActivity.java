@@ -25,6 +25,7 @@ import java.util.Locale;
 
 import static com.jdbc.RoomConnection.getInstance;
 import static com.util.Helper.isCheckUnique;
+import static com.util.Helper.loadLocale;
 import static com.util.ValidateData.isEmpty;
 import static com.util.ValidateData.isValidPassword;
 
@@ -45,6 +46,7 @@ public class ResgiterActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        loadLocale(getBaseContext(), "Language", "My_Lang");
         setContentView(R.layout.activity_resgiter);
         name = findViewById(R.id.editTextName);
         mobile = findViewById(R.id.editTextMobile);

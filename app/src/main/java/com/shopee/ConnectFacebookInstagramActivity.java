@@ -21,6 +21,8 @@ import com.facebook.login.widget.LoginButton;
 
 import org.json.JSONObject;
 
+import static com.util.Helper.loadLocale;
+
 public class ConnectFacebookInstagramActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
     private CallbackManager callbackManager;
@@ -30,6 +32,7 @@ public class ConnectFacebookInstagramActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        loadLocale(getBaseContext(), "Language", "My_Lang");
         setContentView(R.layout.activity_connect_facebook_instagram);
         nameFacebook = findViewById(R.id.facebookName);
         FacebookSdk.sdkInitialize(this.getApplicationContext());
