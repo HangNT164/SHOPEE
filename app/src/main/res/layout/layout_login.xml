@@ -47,6 +47,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
+        android:id="@+id/forgotPass"
         style="@style/parent"
         android:layout_marginTop="@dimen/loginViewsMargin"
         android:text="@string/forgotPass"

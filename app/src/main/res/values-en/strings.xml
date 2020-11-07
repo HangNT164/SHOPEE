@@ -75,8 +75,6 @@
     <string name="changePassword">Password</string>
     <string name="diachi">Address</string>
     <string name="capNhap">Updated successfully</string>
-    <string name="facebook_app_id">1059973504444907</string>
-    <string name="fb_login_protocol_scheme">fb1059973504444907</string>
     <string name="taiKhoanLienKet">Social Network Account</string>
     <string name="lienKetFacebook">Link your Facebook account</string>
     <string name="lienKetInsta">Link your Instagram account</string>
