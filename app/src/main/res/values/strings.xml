@@ -65,4 +65,5 @@
     <string name="changePhoneNumber">Điện thoại</string>
     <string name="changePassword">Mật khẩu</string>
     <string name="diachi">Địa chỉ</string>
+    <string name="capNhap">Cập nhập thành công</string>
 </resources>

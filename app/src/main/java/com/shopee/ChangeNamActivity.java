@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.dao.AccountDetailDao;
 import com.jdbc.RoomConnection;
 import com.model.AccountDetail;
+import com.toast.CustomToast;
 
 import static com.jdbc.RoomConnection.getInstance;
 import static com.util.Helper.getSavedObjectFromPreference;
@@ -77,7 +78,7 @@ public class ChangeNamActivity extends AppCompatActivity {
                     accountDetail.setName(newName);
                     saveObjectToSharedPreference(getApplicationContext(), "mPreference", "account", accountDetail);
                     accountDetailDao.update(accountDetail);
-                    Toast.makeText(getApplicationContext(), "Update name success", Toast.LENGTH_SHORT).show();
+                    CustomToast.makeText(getApplicationContext(), "Update name success", Toast.LENGTH_SHORT).show();
                     finish();
                 }
 

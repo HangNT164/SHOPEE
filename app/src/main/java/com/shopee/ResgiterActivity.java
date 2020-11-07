@@ -2,6 +2,8 @@ package com.shopee;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,6 +26,7 @@ import java.util.Locale;
 import static com.jdbc.RoomConnection.getInstance;
 import static com.util.Helper.isCheckUnique;
 import static com.util.ValidateData.isEmpty;
+import static com.util.ValidateData.isValidPassword;
 
 public class ResgiterActivity extends AppCompatActivity {
     private EditText name;
@@ -36,6 +39,8 @@ public class ResgiterActivity extends AppCompatActivity {
     private RoomConnection roomConnection;
     private AccountDao accountDao;
     private AccountDetailDao accountDetailDao;
+    private String currentDate;
+    private boolean isValidatePassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,8 +55,35 @@ public class ResgiterActivity extends AppCompatActivity {
         roomConnection = getInstance(getApplicationContext());
         accountDao = roomConnection.accountDao();
         accountDetailDao = roomConnection.accountDetailDao();
-        final String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
+        currentDate = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
 
+        isValidatePassword = true;
+
+        password.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (password.getText().toString().length() < 8 && !isValidPassword(password.getText().toString())) {
+                    password.setError("Password too weak");
+                    isValidatePassword = false;
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (password.getText().toString().length() < 8 && !isValidPassword(password.getText().toString())) {
+                    password.setError("Password too weak");
+                    isValidatePassword = false;
+                } else {
+                    password.setError(null);
+                    isValidatePassword = true;
+                }
+            }
+        });
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,29 +92,27 @@ public class ResgiterActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Please fill all input!", Toast.LENGTH_LONG).show();
                 } else {
                     // check password = cf pass
-                    // validate password
-//                    if (isValidatePassword(password) == true) {
                     if (!password.getText().toString().equalsIgnoreCase(cfPassword.getText().toString())) {
                         Toast.makeText(getApplicationContext(), "Password and Confirm Password not match", Toast.LENGTH_LONG).show();
                     } else {
-                        // check phone is unique
-                        List<Account> lists = accountDao.getAll();
-                        if (!isCheckUnique(lists, mobile.getText().toString())) {
-                            Toast.makeText(getApplicationContext(), "Your phone is used!", Toast.LENGTH_LONG).show();
-                        } else {
-                            // add account detail
-                            AccountDetail accountDetail = new AccountDetail(name.getText().toString(), address.getText().toString(), currentDate);
-                            int accountDetailID = (int) accountDetailDao.add(accountDetail);
-                            Account account = new Account(accountDetailID, 2, mobile.getText().toString(), password.getText().toString());
-                            accountDao.add(account);
-                            Toast.makeText(getApplicationContext(), "Register success!", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(ResgiterActivity.this, LoginActivity.class);
-                            startActivity(intent);
+                        if (isValidatePassword == true) {
+                            // check phone is unique
+                            List<Account> lists = accountDao.getAll();
+                            if (!isCheckUnique(lists, mobile.getText().toString())) {
+                                Toast.makeText(getApplicationContext(), "Your phone is used!", Toast.LENGTH_LONG).show();
+                            } else {
+                                // add account detail
+                                AccountDetail accountDetail = new AccountDetail(name.getText().toString(), address.getText().toString(), currentDate);
+                                int accountDetailID = (int) accountDetailDao.add(accountDetail);
+                                Account account = new Account(accountDetailID, 2, mobile.getText().toString(), password.getText().toString());
+                                accountDao.add(account);
+                                Toast.makeText(getApplicationContext(), "Register success!", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(ResgiterActivity.this, LoginActivity.class);
+                                startActivity(intent);
+                            }
                         }
                     }
-//                    } else {
-//                        Toast.makeText(getApplicationContext(), "Register Fail", Toast.LENGTH_SHORT).show();
-//                    }
+
                 }
             }
         });
