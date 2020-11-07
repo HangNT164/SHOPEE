@@ -66,4 +66,11 @@
     <string name="changePassword">Mật khẩu</string>
     <string name="diachi">Địa chỉ</string>
     <string name="capNhap">Cập nhập thành công</string>
+    <string name="facebook_app_id">1059973504444907</string> <string name="fb_login_protocol_scheme">fb1059973504444907</string>
+    <string name="taiKhoanLienKet">Tài Khoản Mạng Xã Hội</string>
+    <string name="lienKetFacebook">Liên kết tài khoản Facebook</string>
+    <string name="lienKetInsta">Liên kết tài khoản Instagram</string>
+    <string name="lienKetGoogle">Liên kết tài khoản Google</string>
+    <string name="lienKetYoutube">Liên kết tài khoản youtube</string>
+    <string name="lienKetTwitter">Liên kết tài khoản Twitter</string>
 </resources>

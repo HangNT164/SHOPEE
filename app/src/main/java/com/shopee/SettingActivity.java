@@ -86,7 +86,8 @@ public class SettingActivity extends AppCompatActivity {
         changeFacebook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(SettingActivity.this, ConnectFacebookInstagramActivity.class);
+                startActivity(intent);
             }
         });
         changePassword.setOnClickListener(new View.OnClickListener() {
