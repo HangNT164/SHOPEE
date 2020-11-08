@@ -18,6 +18,9 @@ public class ImageAvatar {
     @ColumnInfo(name = "image_link")
     private String imageLink;
 
+    @ColumnInfo(defaultValue = "0")
+    private boolean cover;
+
     public ImageAvatar(int id, int accountDetailID, String imageLink) {
         this.id = id;
         this.accountDetailID = accountDetailID;
@@ -27,6 +30,27 @@ public class ImageAvatar {
     public ImageAvatar(int accountDetailID, String imageLink) {
         this.accountDetailID = accountDetailID;
         this.imageLink = imageLink;
+    }
+
+    public boolean isCover() {
+        return cover;
+    }
+
+    public void setCover(boolean cover) {
+        this.cover = cover;
+    }
+
+    public ImageAvatar(int accountDetailID, String imageLink, boolean cover) {
+        this.accountDetailID = accountDetailID;
+        this.imageLink = imageLink;
+        this.cover = cover;
+    }
+
+    public ImageAvatar(int id, int accountDetailID, String imageLink, boolean cover) {
+        this.id = id;
+        this.accountDetailID = accountDetailID;
+        this.imageLink = imageLink;
+        this.cover = cover;
     }
 
     public ImageAvatar() {

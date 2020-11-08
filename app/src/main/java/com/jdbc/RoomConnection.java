@@ -13,7 +13,9 @@ import com.dao.CategoryDao;
 import com.dao.CustomInfoDao;
 import com.dao.EvaluateDao;
 import com.dao.ImageAvatarDao;
+import com.dao.ImageCategoryDao;
 import com.dao.ImageDao;
+import com.dao.ImageSubcateDao;
 import com.dao.OrderDao;
 import com.dao.OrderDetailDao;
 import com.dao.PaymentDao;
@@ -89,6 +91,10 @@ public abstract class RoomConnection extends RoomDatabase {
     public abstract SubCategoryDao subCategoryDao();
 
     public abstract BrandDao brandDao();
+
+    public abstract ImageCategoryDao imageCategoryDao();
+
+    public abstract ImageSubcateDao imageSubcateDao();
 
     public static RoomConnection getInstance(Context context) {
         if (roomConnection == null) {
