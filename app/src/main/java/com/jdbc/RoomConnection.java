@@ -34,6 +34,8 @@ import com.model.CustomInfo;
 import com.model.Evaluate;
 import com.model.Image;
 import com.model.ImageAvatar;
+import com.model.ImageCategory;
+import com.model.ImageSubCate;
 import com.model.Order;
 import com.model.OrderDetail;
 import com.model.Payment;
@@ -47,13 +49,15 @@ import com.model.SubCategory;
 
 import static com.jdbc.RoomConnection.DATABASE_VERSION;
 
-@Database(entities = {Account.class, AccountDetail.class, Category.class, CustomInfo.class, Evaluate.class, Image.class, ImageAvatar.class, Order.class, OrderDetail.class, Payment.class, PaymentDetail.class, Product.class, Role.class, Size.class, Status.class, StatusOrder.class, SubCategory.class, Brand.class},
+@Database(entities = {Account.class, AccountDetail.class, Category.class, CustomInfo.class,
+        Evaluate.class, Image.class, ImageAvatar.class, Order.class, OrderDetail.class, Payment.class,
+        PaymentDetail.class, Product.class, Role.class, Size.class, Status.class, StatusOrder.class, SubCategory.class, Brand.class, ImageCategory.class, ImageSubCate.class},
         version = DATABASE_VERSION)
 
 public abstract class RoomConnection extends RoomDatabase {
     private static RoomConnection roomConnection;
 
-    public static final int DATABASE_VERSION = 2;
+    public static final int DATABASE_VERSION = 3;
     public static final String DATABASE_NAME = "SHOPEE_DATABASE.db";
 
     public abstract AccountDao accountDao();
