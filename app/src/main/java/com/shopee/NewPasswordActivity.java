@@ -54,6 +54,7 @@ public class NewPasswordActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Update password success", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(NewPasswordActivity.this, Login.class);
                 startActivity(intent);
+                finish();
             }
         });
     }
