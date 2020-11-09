@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.dao.AccountDao;
 import com.jdbc.RoomConnection;
 import com.model.Account;
-import com.model.AccountDetail;
+import com.toast.CustomToast;
 
 import static com.jdbc.RoomConnection.getInstance;
 import static com.util.Helper.getSavedObjectFromPreference;
@@ -35,7 +35,7 @@ public class ChangePhoneActivity extends AppCompatActivity {
         txtInputPhone.setText(account.getMobile());
 
         roomConnection = getInstance(this);
-        accountDao  = roomConnection.accountDao();
+        accountDao = roomConnection.accountDao();
 
         saveData.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,11 +43,12 @@ public class ChangePhoneActivity extends AppCompatActivity {
                 String newMobile = txtInputPhone.getText().toString();
                 account.setMobile(newMobile);
                 accountDao.update(account);
-                Toast.makeText(getApplicationContext(), "Update phone success", Toast.LENGTH_SHORT).show();
+                CustomToast.makeText(getApplicationContext(), "Update phone success", Toast.LENGTH_SHORT).show();
                 finish();
             }
         });
     }
+
     @Override
     protected void onResume() {
         super.onResume();

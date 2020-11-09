@@ -89,4 +89,17 @@
     <string name="verifyCode">Mã xác nhận</string>
     <string name="confirm">Xác thực</string>
     <string name="newPassword">Mật khẩu mới</string>
+    <string name="time">Thời gian</string>
+    <string name="review">Đánh giá</string>
+    <string name="idol">Idol</string>
+    <string name="search">Tìm kiếm</string>
+    <string name="sale">Sale</string>
+    <string name="cauhoithuonggap">Câu Hỏi Thường Gặp</string>
+    <string name="buyProductInShopee">Làm sao để mua hàng trên shoppe</string>
+    <string name="hoanTien">Hướng dẫn các bước hoàn tiền</string>
+    <string name="tichXu">Tích lũy xu shoppe như thế nào?</string>
+    <string name="maVanChuyen">Hướng Dẫn Sử Dụng Mã Miễn Phí Vận Chuyển (Mã Freeship)</string>
+    <string name="viAirpay">Các Câu Hỏi Thường Gặp Về Ví AirPay Trên Shopee</string>
+    <string name="shopMail">Shopee Mall là gì?</string>
+    <string name="sanPhanTrenShopMail">Cách tìm kiếm và nhận biết sản phẩm thuộc Shopee Mall trên Shopee.</string>
 </resources>

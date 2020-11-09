@@ -88,4 +88,17 @@
     <string name="verifyCode">Verification Code</string>
     <string name="confirm">Confirm</string>
     <string name="newPassword">New password</string>
+    <string name="time">Time</string>
+    <string name="review">Review</string>
+    <string name="idol">Idol</string>
+    <string name="search">Search</string>
+    <string name="sale">Sale</string>
+    <string name="cauhoithuonggap">Question</string>
+    <string name="buyProductInShopee">How to buy goods on shopee</string>
+    <string name="hoanTien">Refund steps guide</string>
+    <string name="tichXu">How to accumulate shoppe coins?</string>
+    <string name="maVanChuyen">Free Shipping Code User Guide (Freeship Code)</string>
+    <string name="viAirpay">AirPay Wallet FAQs FAQs About Shopee Shopee AirPay Wallet</string>
+    <string name="shopMail">What is Shopee Mall?</string>
+    <string name="sanPhanTrenShopMail">How to find and identify products under Shopee Mall on Shopee.</string>
 </resources>

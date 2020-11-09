@@ -9,6 +9,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.dao.AccountDao;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
@@ -18,40 +19,34 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.jdbc.RoomConnection;
+import com.model.Account;
 
 import java.util.concurrent.TimeUnit;
 
+import static com.jdbc.RoomConnection.getInstance;
+import static com.util.Helper.getSavedObjectFromPreference;
 import static com.util.Helper.loadLocale;
 
-public class ConfirmOTPActivity extends AppCompatActivity {
-    //These are the objects needed
-    //It is the verification id that will be sent to the user
+public class VerifyPhoneActivity extends AppCompatActivity {
     private String mVerificationId;
-
-    //The edittext to input the code
     private EditText editTextCode;
-
-    //firebase auth object
+    private RoomConnection roomConnection;
+    private AccountDao accountDao;
     private FirebaseAuth mAuth;
+    private Account account;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        loadLocale(getBaseContext(), "Language", "My_Lang");
-        setContentView(R.layout.activity_confirm_o_t_p);
-
+        setContentView(R.layout.activity_verify_phone);
         //initializing objects
         mAuth = FirebaseAuth.getInstance();
         editTextCode = findViewById(R.id.txtSendPhone);
-
-
-        //getting mobile number from the previous activity
-        //and sending the verification code to the number
-        Intent intent = getIntent();
-        String mobile = intent.getStringExtra("mobile");
-        sendVerificationCode(mobile);
-
-
+        roomConnection = getInstance(getApplicationContext());
+        accountDao = roomConnection.accountDao();
+        account = getSavedObjectFromPreference(getApplicationContext(), "temp", "tempAccount", Account.class);
+        sendVerificationCode(account.getMobile());
         //if the automatic sms detection did not work, user can also enter the code manually
         //so adding a click listener to the button
         findViewById(R.id.confirmBtn).setOnClickListener(new View.OnClickListener() {
@@ -68,7 +63,6 @@ public class ConfirmOTPActivity extends AppCompatActivity {
                 verifyVerificationCode(code);
             }
         });
-
     }
 
     //the method is sending verification code
@@ -103,7 +97,7 @@ public class ConfirmOTPActivity extends AppCompatActivity {
 
         @Override
         public void onVerificationFailed(FirebaseException e) {
-            Toast.makeText(ConfirmOTPActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+            Toast.makeText(VerifyPhoneActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
         }
 
         @Override
@@ -126,12 +120,14 @@ public class ConfirmOTPActivity extends AppCompatActivity {
 
     private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
         mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(ConfirmOTPActivity.this, new OnCompleteListener<AuthResult>() {
+                .addOnCompleteListener(VerifyPhoneActivity.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             //verification successful we will start the profile activity
-                            Intent intent = new Intent(ConfirmOTPActivity.this, NewPasswordActivity.class);
+                            accountDao.add(account);
+                            Toast.makeText(getApplicationContext(), "Verify success!", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(VerifyPhoneActivity.this, LoginActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);
                             finish();
@@ -157,6 +153,7 @@ public class ConfirmOTPActivity extends AppCompatActivity {
                     }
                 });
     }
+
     @Override
     protected void onResume() {
         super.onResume();

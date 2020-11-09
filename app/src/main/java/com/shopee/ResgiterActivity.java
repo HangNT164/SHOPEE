@@ -26,6 +26,7 @@ import java.util.Locale;
 import static com.jdbc.RoomConnection.getInstance;
 import static com.util.Helper.isCheckUnique;
 import static com.util.Helper.loadLocale;
+import static com.util.Helper.saveObjectToSharedPreference;
 import static com.util.ValidateData.isEmpty;
 import static com.util.ValidateData.isValidPassword;
 
@@ -107,10 +108,11 @@ public class ResgiterActivity extends AppCompatActivity {
                                 AccountDetail accountDetail = new AccountDetail(name.getText().toString(), address.getText().toString(), currentDate);
                                 int accountDetailID = (int) accountDetailDao.add(accountDetail);
                                 Account account = new Account(accountDetailID, 2, mobile.getText().toString(), password.getText().toString());
-                                accountDao.add(account);
-                                Toast.makeText(getApplicationContext(), "Register success!", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(ResgiterActivity.this, LoginActivity.class);
+                                // Verify phone number
+                                saveObjectToSharedPreference(getApplicationContext(),"temp","tempAccount",account);
+                                Intent intent= new Intent(ResgiterActivity.this,VerifyPhoneActivity.class);
                                 startActivity(intent);
+
                             }
                         }
                     }

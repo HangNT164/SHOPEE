@@ -72,14 +72,16 @@ public class ChangePasswordActivity extends AppCompatActivity {
         saveData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String newPass = txtInputPhone.getText().toString();
-                account.setPassword(newPass);
-                accountDao.update(account);
-                Toast.makeText(getApplicationContext(), "Update phone success", Toast.LENGTH_SHORT).show();
-                finish();
+                if (oldPassword != newPassword) {
+                    account.setPassword(newPassword);
+                    accountDao.update(account);
+                    Toast.makeText(getApplicationContext(), "Update password success", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
             }
         });
     }
+
     @Override
     protected void onResume() {
         super.onResume();

@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.dao.AccountDetailDao;
 import com.jdbc.RoomConnection;
 import com.model.AccountDetail;
+import com.toast.CustomToast;
 
 import static com.jdbc.RoomConnection.getInstance;
 import static com.util.Helper.getSavedObjectFromPreference;
@@ -78,14 +79,16 @@ public class ChangeAdressActivity extends AppCompatActivity {
         saveData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String newMobile = txtInputPhone.getText().toString();
-                accountDetail.setAddress(newMobile);
-                accountDetailDao.update(accountDetail);
-                Toast.makeText(getApplicationContext(), "Update address success", Toast.LENGTH_SHORT).show();
-                finish();
+                if (newPhone != currentPhone) {
+                    accountDetail.setAddress(newPhone);
+                    accountDetailDao.update(accountDetail);
+                    CustomToast.makeText(getApplicationContext(), "Update address success", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
             }
         });
     }
+
     @Override
     protected void onResume() {
         super.onResume();

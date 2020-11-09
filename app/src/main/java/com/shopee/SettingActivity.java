@@ -49,8 +49,10 @@ public class SettingActivity extends AppCompatActivity {
 
         // set information
         nameSetting.setText(accountDetail.getName());
+
         Account account = accountDao.getAccountByAccountDetail(accountDetail.getId());
         saveObjectToSharedPreference(getApplicationContext(), "accountPreference", "accountOfAccountDetail", account);
+
         phoneSetting.setText(account.getMobile());
         addressSetting.setText(accountDetail.getAddress());
         createDate.setText(accountDetail.getCreateDate());
