@@ -32,4 +32,9 @@ public class MessageActivity extends AppCompatActivity {
         messageRecyclerView.setAdapter(messageAdapter);
         messageRecyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadLocale(getBaseContext(), "Language", "My_Lang");
+    }
 }

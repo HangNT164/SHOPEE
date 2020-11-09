@@ -14,4 +14,9 @@ public class ShopeeFeedActivity extends AppCompatActivity {
         loadLocale(getBaseContext(), "Language", "My_Lang");
         setContentView(R.layout.activity_shopee_feed);
     }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadLocale(getBaseContext(), "Language", "My_Lang");
+    }
 }

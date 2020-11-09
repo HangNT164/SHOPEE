@@ -14,4 +14,9 @@ public class CategoryProductActivity extends AppCompatActivity {
         loadLocale(getBaseContext(), "Language", "My_Lang");
         setContentView(R.layout.activity_category_product);
     }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadLocale(getBaseContext(), "Language", "My_Lang");
+    }
 }

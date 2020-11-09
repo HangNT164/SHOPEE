@@ -35,4 +35,9 @@ public class NotificaionActivity extends AppCompatActivity {
         recyclerView.setAdapter(notificationAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadLocale(getBaseContext(), "Language", "My_Lang");
+    }
 }

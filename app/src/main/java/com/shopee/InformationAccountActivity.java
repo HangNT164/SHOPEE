@@ -55,4 +55,17 @@ public class InformationAccountActivity extends AppCompatActivity {
         // check cover
 //        String imageLink = listsAvatar.get(0).getImageLink();
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        AccountDetail accountDetail = getSavedObjectFromPreference(getApplicationContext(), "mPreference", "account", AccountDetail.class);
+        username = findViewById(R.id.username);
+        username.setText(accountDetail.getName());
+        imageAvatar = findViewById(R.id.imageAvatar);
+        roomConnection = getInstance(getApplicationContext());
+        imageAvatarDao = roomConnection.imageAvatarDao();
+        listsAvatar = imageAvatarDao.getImageAvatarByAccountDetail(accountDetail.getId());
+        loadLocale(getBaseContext(), "Language", "My_Lang");
+    }
 }

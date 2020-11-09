@@ -53,8 +53,8 @@
     <string name="home">Trang chủ</string>
     <string name="account">Tài khoản</string>
     <string name="forgotPass">Quên mật khẩu</string>
-    <string name="code">Gửi mã</string>
-    <string name="confirmPass">Xác nhận mã</string>
+    <string name="code">Nhập số điện thoại của bạn</string>
+    <string name="confirmPass">Tiếp tục</string>
     <string name="login">Đăng nhập</string>
     <string name="textLogin">Bạn chưa có tài khoản? Đăng ký</string>
     <string name="register">Đăng kí</string>
@@ -74,8 +74,8 @@
     <string name="changePassword">Mật khẩu</string>
     <string name="diachi">Địa chỉ</string>
     <string name="capNhap">Cập nhập thành công</string>
-    <string name="facebook_app_id">1059973504444907</string>
-    <string name="fb_login_protocol_scheme">fb1059973504444907</string>
+    <string name="facebook_app_id" translatable="false">1059973504444907</string>
+    <string name="fb_login_protocol_scheme" translatable="false">fb1059973504444907</string>
     <string name="taiKhoanLienKet">Tài Khoản Mạng Xã Hội</string>
     <string name="lienKetFacebook">Liên kết tài khoản Facebook</string>
     <string name="lienKetInsta">Liên kết tài khoản Instagram</string>
@@ -85,4 +85,6 @@
     <string name="language">Ngôn ngữ</string>
     <string name="vietNam">Việt Nam</string>
     <string name="english">Tiếng Anh</string>
+    <string name="wait">Chờ mã tôi đã gửi cho bạn</string>
+    <string name="verifyCode">Mã xác nhận</string>
 </resources>

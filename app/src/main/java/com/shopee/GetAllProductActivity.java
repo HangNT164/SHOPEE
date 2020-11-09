@@ -14,4 +14,9 @@ public class GetAllProductActivity extends AppCompatActivity {
         loadLocale(getBaseContext(), "Language", "My_Lang");
         setContentView(R.layout.activity_get_all_product);
     }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadLocale(getBaseContext(), "Language", "My_Lang");
+    }
 }

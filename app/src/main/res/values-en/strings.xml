@@ -54,8 +54,8 @@
     <string name="home">Home</string>
     <string name="account">Account</string>
     <string name="forgotPass">Forgot password</string>
-    <string name="code">Send code</string>
-    <string name="confirmPass">Confirm code</string>
+    <string name="code">Enter your mobile number</string>
+    <string name="confirmPass">Continue</string>
     <string name="login">Login</string>
     <string name="textLogin">Dont have an account yet? Register</string>
     <string name="register">Register</string>
@@ -84,4 +84,6 @@
     <string name="language">Language</string>
     <string name="vietNam">Viet Nam</string>
     <string name="english">English</string>
+    <string name="wait">Wait for the code I sent You</string>
+    <string name="verifyCode">Verification Code</string>
 </resources>

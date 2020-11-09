@@ -14,4 +14,9 @@ public class SupportActivity extends AppCompatActivity {
         loadLocale(getBaseContext(), "Language", "My_Lang");
         setContentView(R.layout.activity_support);
     }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadLocale(getBaseContext(), "Language", "My_Lang");
+    }
 }

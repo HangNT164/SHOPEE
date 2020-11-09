@@ -98,4 +98,9 @@ public class ConnectFacebookInstagramActivity extends AppCompatActivity {
             request.executeAsync();
         }
     }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadLocale(getBaseContext(), "Language", "My_Lang");
+    }
 }
