@@ -86,4 +86,6 @@
     <string name="english">English</string>
     <string name="wait">Wait for the code I sent You</string>
     <string name="verifyCode">Verification Code</string>
+    <string name="confirm">Confirm</string>
+    <string name="newPassword">New password</string>
 </resources>

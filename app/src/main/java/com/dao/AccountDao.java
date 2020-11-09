@@ -32,4 +32,7 @@ public interface AccountDao {
 
     @Query("SELECT * FROM account WHERE account_detail_id = :id")
     Account getAccountByAccountDetail(int id);
+
+    @Query("SELECT * FROM account WHERE mobile=:phone")
+    Account getAccountByPhone(String phone);
 }

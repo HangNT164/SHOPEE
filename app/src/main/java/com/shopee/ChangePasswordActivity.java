@@ -41,7 +41,6 @@ public class ChangePasswordActivity extends AppCompatActivity {
         roomConnection = getInstance(this);
         accountDao = roomConnection.accountDao();
 
-
         txtInputPhone.setText(account.getPassword());
         txtInputPhone.setSelection(txtInputPhone.getText().toString().length());
         oldPassword = txtInputPhone.getText().toString();

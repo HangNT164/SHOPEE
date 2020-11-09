@@ -87,4 +87,6 @@
     <string name="english">Tiếng Anh</string>
     <string name="wait">Chờ mã tôi đã gửi cho bạn</string>
     <string name="verifyCode">Mã xác nhận</string>
+    <string name="confirm">Xác thực</string>
+    <string name="newPassword">Mật khẩu mới</string>
 </resources>
