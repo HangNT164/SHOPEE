@@ -66,6 +66,4 @@ public class GetAllProductActivity extends AppCompatActivity {
         super.onResume();
         loadLocale(getBaseContext(), "Language", "My_Lang");
     }
-
-
 }
