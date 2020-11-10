@@ -102,4 +102,10 @@
     <string name="viAirpay">Các Câu Hỏi Thường Gặp Về Ví AirPay Trên Shopee</string>
     <string name="shopMail">Shopee Mall là gì?</string>
     <string name="sanPhanTrenShopMail">Cách tìm kiếm và nhận biết sản phẩm thuộc Shopee Mall trên Shopee.</string>
+    <string name="productName">Tên sản phẩm: </string>
+    <string name="productPriceDetail">Giá sản phẩm: </string>
+    <string name="detailProduct">CHI TIẾT SẢN PHẨM</string>
+    <string name="productColor">Màu sắc</string>
+    <string name="brandProduct">Nhãn hiệu</string>
+    <string name="kho">Số lượng</string>
 </resources>

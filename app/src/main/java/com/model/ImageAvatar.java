@@ -5,8 +5,10 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
+
 @Entity(tableName = "image_avatar")
-public class ImageAvatar {
+public class ImageAvatar  implements Serializable {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo
     private int id;

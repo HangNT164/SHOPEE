@@ -5,8 +5,10 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
+
 @Entity(tableName = "product")
-public class Product {
+public class Product implements Serializable {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo
     private int id;
@@ -46,7 +48,7 @@ public class Product {
     public Product() {
     }
 
-    public Product( int subCateID, int brandID, String productCode, String productName, int quantity, double sellPrice, int originPrice, String color, String description, String createDate) {
+    public Product(int subCateID, int brandID, String productCode, String productName, int quantity, double sellPrice, int originPrice, String color, String description, String createDate) {
         this.subCateID = subCateID;
         this.brandID = brandID;
         this.productCode = productCode;
@@ -59,7 +61,7 @@ public class Product {
         this.createDate = createDate;
     }
 
-    public Product(int id,int subCateID, int brandID, String productCode, String productName, int quantity, double sellPrice, int originPrice, String color, String description, String createDate) {
+    public Product(int id, int subCateID, int brandID, String productCode, String productName, int quantity, double sellPrice, int originPrice, String color, String description, String createDate) {
         this.id = id;
         this.subCateID = subCateID;
         this.brandID = brandID;

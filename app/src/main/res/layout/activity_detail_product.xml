@@ -10,8 +10,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_weight="1"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -33,6 +33,7 @@
                         android:orientation="vertical">
 
                         <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/imageproductDetailMain"
                             android:layout_width="match_parent"
                             android:layout_height="250dp"
                             android:scaleType="fitXY"
@@ -41,24 +42,27 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
+                            android:layout_marginLeft="130dp"
                             android:layout_marginTop="5dp"
                             android:layout_marginBottom="5dp"
-                            android:layout_marginLeft="130dp"
                             android:orientation="horizontal">
 
                             <ImageButton
+                                android:id="@+id/imageProductFirst"
                                 android:layout_width="50dp"
                                 android:layout_height="50dp"
                                 android:scaleType="fitXY"
                                 android:src="@drawable/hang"></ImageButton>
 
                             <ImageButton
+                                android:id="@+id/imageProductSecond"
                                 android:layout_width="50dp"
                                 android:layout_height="50dp"
                                 android:scaleType="fitXY"
                                 android:src="@drawable/hang"></ImageButton>
 
                             <ImageButton
+                                android:id="@+id/imageProductThird"
                                 android:layout_width="50dp"
                                 android:layout_height="50dp"
                                 android:scaleType="fitXY"
@@ -72,20 +76,50 @@
                             android:paddingLeft="18dp"
                             android:paddingTop="5dp"
                             android:paddingBottom="2dp">  <!-- Title, secondary and supporting text -->
-                            <TextView
-                                android:layout_width="wrap_content"
+                            <LinearLayout
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="abcd"
-                                android:textColor="#020303"
-                                android:textSize="15dp" />
+                                android:orientation="horizontal">
 
-                            <TextView
-                                android:layout_width="wrap_content"
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="#000000"
+                                    android:textSize="10dp"
+                                    android:text="@string/productName"></TextView>
+
+                                <TextView
+                                    android:id="@+id/detailProductName"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="abcd"
+                                    android:textColor="#020303"
+                                    android:textSize="10dp" />
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:text="1bcddd"
-                                android:textColor="#020303"
-                                android:textSize="10dp" />
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="5dp"
+                                    android:textColor="#000000"
+                                    android:textSize="10dp"
+                                    android:text="@string/productPriceDetail"></TextView>
+
+                                <TextView
+                                    android:id="@+id/productDetailPrice"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="5dp"
+                                    android:text="1bcddd"
+                                    android:textColor="#020303"
+                                    android:textSize="10dp" />
+                            </LinearLayout>
+
+
                         </LinearLayout>
 
                     </LinearLayout>
@@ -103,7 +137,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="CHI TIẾT SẢN PHẨM"
+                    android:text="@string/detailProduct"
                     android:textColor="#000000"
                     android:textSize="15dp"></com.google.android.material.textview.MaterialTextView>
 
@@ -116,10 +150,11 @@
                     <com.google.android.material.textview.MaterialTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Thương hiệu:"
+                        android:text="@string/productColor"
                         android:textSize="12dp"></com.google.android.material.textview.MaterialTextView>
 
                     <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/colorProduct"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
@@ -137,10 +172,11 @@
                     <com.google.android.material.textview.MaterialTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Thương hiệu:"
+                        android:text="@string/brandProduct"
                         android:textSize="12dp"></com.google.android.material.textview.MaterialTextView>
 
                     <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/brandProduct"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
@@ -158,10 +194,11 @@
                     <com.google.android.material.textview.MaterialTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Thương hiệu:"
+                        android:text="@string/kho"
                         android:textSize="12dp"></com.google.android.material.textview.MaterialTextView>
 
                     <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/quantityProduct"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
@@ -193,18 +230,12 @@
                     android:orientation="vertical">
 
                     <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/productDetailDescription"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="-Xưởng may HẰNG THẮNG với thương hiệu TRBAC đã được đăng ký thương hiệu,nguồn gốc rõ ràng
-"
+                        android:text="-Xưởng may HẰNG THẮNG với thương hiệu TRBAC đã được đăng ký thương hiệu,nguồn gốc rõ ràng"
                         android:textSize="12dp"></com.google.android.material.textview.MaterialTextView>
 
-                    <com.google.android.material.textview.MaterialTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="*Bộ thể thao nam chất thun lanh,co dãn 2 chiều
-"
-                        android:textSize="12dp"></com.google.android.material.textview.MaterialTextView>
                 </LinearLayout>
             </LinearLayout>
             <!--            Danh gia-->

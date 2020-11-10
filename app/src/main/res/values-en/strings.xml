@@ -101,4 +101,10 @@
     <string name="viAirpay">AirPay Wallet FAQs FAQs About Shopee Shopee AirPay Wallet</string>
     <string name="shopMail">What is Shopee Mall?</string>
     <string name="sanPhanTrenShopMail">How to find and identify products under Shopee Mall on Shopee.</string>
+    <string name="productName">Product Name: </string>
+    <string name="productPriceDetail">Product Price: </string>
+    <string name="detailProduct">DETAIL PRODUCT</string>
+    <string name="productColor">Color</string>
+    <string name="brandProduct">Brand</string>
+    <string name="kho">Quatity</string>
 </resources>

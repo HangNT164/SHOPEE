@@ -7,7 +7,9 @@ import android.content.res.Configuration;
 
 import com.google.gson.Gson;
 import com.model.Account;
+import com.model.Product;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -57,5 +59,17 @@ public class Helper {
             }
         }
         return true;
+    }
+
+    public List<Product> getListProductByIndex(List<Product> getAll, int index) {
+        List<Product> lists = new ArrayList<>();
+        for (int i = 0; i < getAll.size(); i++) {
+            if (index == 1 && i % 2 == 0) {
+                lists.add(getAll.get(i));
+            } else if (index == 2 && i % 2 != 0) {
+                lists.add(getAll.get(i));
+            }
+        }
+        return lists;
     }
 }

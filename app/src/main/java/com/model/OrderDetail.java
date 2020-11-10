@@ -6,8 +6,10 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
+
 @Entity(tableName = "order_detail")
-public class OrderDetail {
+public class OrderDetail implements Serializable {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo
     private int id;

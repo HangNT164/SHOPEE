@@ -4,8 +4,10 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
+
 @Entity(tableName = "brand")
-public class Brand {
+public class Brand implements Serializable {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo
     private int id;
