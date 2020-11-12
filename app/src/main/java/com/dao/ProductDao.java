@@ -18,6 +18,21 @@ public interface ProductDao {
     @Query("SELECT * FROM product WHERE id = :id")
     Product getOne(int id);
 
+    @Query("SELECT * FROM product  ORDER BY id DESC  LIMIT 10")
+    List<Product> getNewProduct();
+
+    @Query("SELECT * FROM product  ORDER BY id DESC  LIMIT 2")
+    List<Product> getNewProductMain();
+
+    @Query("SELECT DISTINCT product.* FROM product,order_detail WHERE product.id=order_detail.product_id AND order_detail.quantity>=3")
+    List<Product> getHotProduct();
+
+    @Query("SELECT DISTINCT product.* FROM product,order_detail WHERE product.id=order_detail.product_id AND order_detail.quantity>=3 LIMIT 4")
+    List<Product> getHotProductMain();
+
+    @Query("SELECT * FROM product LIMIT 3")
+    List<Product> getAllMain();
+
     @Insert
     void add(Product product);
 
@@ -27,9 +42,5 @@ public interface ProductDao {
     @Delete
     void delete(Product product);
 
-    @Query("SELECT * FROM product  ORDER BY id DESC  LIMIT 10")
-    List<Product> getNewProduct();
 
-    @Query("SELECT DISTINCT product.* FROM product,order_detail WHERE product.id=order_detail.product_id AND order_detail.quantity>=3")
-    List<Product> getHotProduct();
 }

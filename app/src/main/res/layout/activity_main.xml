@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.circularreveal.CircularRevealLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_alignParentTop="true"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
@@ -42,6 +41,7 @@
                     app:strokeWidth="1dp" />
             </RelativeLayout>
             <!--    San pham moi-->
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -63,162 +63,21 @@
                     android:fillViewport="true">
 
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="220dp"
+                        android:layout_margin="8dp"
                         android:orientation="horizontal">
 
-                        <com.google.android.material.card.MaterialCardView
-                            android:id="@+id/cartNewProductHome"
-                            android:layout_width="200dp"
-                            android:layout_height="220dp"
-                            android:layout_margin="8dp">
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical">
-
-                                <!-- Media -->
-                                <ImageView
-                                    android:id="@+id/detailProduct"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="150dp"
-                                    android:contentDescription="abc"
-                                    android:scaleType="centerCrop"
-                                    app:srcCompat="@drawable/sanphammoi1" />
-
-                                <LinearLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="vertical"
-                                    android:paddingLeft="16dp">
-
-                                    <!-- Title, secondary and supporting text -->
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="abcd"
-                                        android:textAppearance="?attr/textAppearanceHeadline6"
-                                        android:textColor="#020303" />
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="8dp"
-                                        android:text="1bcddd"
-                                        android:textAppearance="?attr/textAppearanceBody2"
-                                        android:textColor="#020303" />
-
-                                </LinearLayout>
-
-
-                            </LinearLayout>
-
-                        </com.google.android.material.card.MaterialCardView>
-
-                        <com.google.android.material.card.MaterialCardView
-                            android:id="@+id/card1666"
-                            android:layout_width="200dp"
-                            android:layout_height="220dp"
-                            android:layout_margin="8dp">
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical">
-
-                                <!-- Media -->
-
-                                <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="150dp"
-                                    android:contentDescription="abc"
-                                    android:scaleType="centerCrop"
-                                    app:srcCompat="@drawable/sanphammoi1" />
-
-                                <LinearLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="vertical"
-                                    android:paddingLeft="16dp">
-
-                                    <!-- Title, secondary and supporting text -->
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="abcd"
-                                        android:textAppearance="?attr/textAppearanceHeadline6"
-                                        android:textColor="#020303" />
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="8dp"
-                                        android:text="1bcddd"
-                                        android:textAppearance="?attr/textAppearanceBody2"
-                                        android:textColor="#020303" />
-
-                                </LinearLayout>
-
-
-                            </LinearLayout>
-
-
-                        </com.google.android.material.card.MaterialCardView>
-
-                        <com.google.android.material.card.MaterialCardView
-                            android:id="@+id/card1188"
-                            android:layout_width="200dp"
-                            android:layout_height="220dp"
-                            android:layout_margin="8dp">
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical">
-
-                                <!-- Media -->
-                                <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="150dp"
-                                    android:contentDescription="abc"
-                                    android:scaleType="centerCrop"
-                                    app:srcCompat="@drawable/sanphammoi1" />
-
-                                <LinearLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="vertical"
-                                    android:paddingLeft="16dp">
-
-                                    <!-- Title, secondary and supporting text -->
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="abcd"
-                                        android:textAppearance="?attr/textAppearanceHeadline6"
-                                        android:textColor="#020303" />
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="8dp"
-                                        android:text="1bcddd"
-                                        android:textAppearance="?attr/textAppearanceBody2"
-                                        android:textColor="#020303" />
-
-                                </LinearLayout>
-
-
-                            </LinearLayout>
-
-                        </com.google.android.material.card.MaterialCardView>
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/listNewProductMain"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scrollbars="none" />
 
                         <com.google.android.material.card.MaterialCardView
                             android:id="@+id/card218"
-                            android:layout_width="200dp"
-                            android:layout_height="220dp"
-                            android:layout_margin="8dp">
+                            android:layout_width="190dp"
+                            android:layout_height="220dp">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -240,15 +99,16 @@
                                     android:layout_gravity="center"
                                     android:gravity="center"
                                     android:paddingTop="8dp"
-                                    android:text="Xem Thêm"
+                                    android:text="@string/more"
                                     android:textColor="#020303"></TextView>
                             </LinearLayout>
 
-
                         </com.google.android.material.card.MaterialCardView>
+
                     </LinearLayout>
                 </HorizontalScrollView>
             </LinearLayout>
+
 
             <!--    San pham ban chay-->
             <LinearLayout
@@ -274,124 +134,11 @@
                         android:layout_height="match_parent"
                         android:orientation="horizontal">
 
-                        <com.google.android.material.card.MaterialCardView
-                            android:id="@+id/card12"
-                            android:layout_width="200dp"
-                            android:layout_height="220dp"
-                            android:layout_margin="8dp">
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical">
-
-                                <!-- Media -->
-                                <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:contentDescription="abc"
-                                    android:scaleType="centerCrop"
-                                    app:srcCompat="@drawable/sanphammoi1" />
-
-                                <LinearLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="vertical">
-
-                                    <!-- Media -->
-                                    <ImageView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="150dp"
-                                        android:contentDescription="abc"
-                                        android:scaleType="fitEnd"
-                                        app:srcCompat="@drawable/sanphammoi1" />
-
-                                    <LinearLayout
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="vertical"
-                                        android:paddingLeft="16dp">
-
-                                        <!-- Title, secondary and supporting text -->
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="abcd"
-                                            android:textAppearance="?attr/textAppearanceHeadline6"
-                                            android:textColor="#020303" />
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginTop="8dp"
-                                            android:text="1bcddd"
-                                            android:textAppearance="?attr/textAppearanceBody2"
-                                            android:textColor="#020303" />
-
-                                    </LinearLayout>
-
-                                </LinearLayout>
-
-
-                            </LinearLayout>
-
-                        </com.google.android.material.card.MaterialCardView>
-
-                        <com.google.android.material.card.MaterialCardView
-                            android:id="@+id/card123"
-                            android:layout_width="200dp"
-                            android:layout_height="220dp"
-                            android:layout_margin="8dp">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:orientation="vertical">
-
-                                <!-- Media -->
-                                <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:contentDescription="abc"
-                                    android:scaleType="centerCrop"
-                                    app:srcCompat="@drawable/sanphammoi1" />
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="vertical"
-                                    android:padding="16dp">
-
-                                    <!-- Title, secondary and supporting text -->
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="abcd"
-                                        android:textAppearance="?attr/textAppearanceHeadline6"
-                                        android:textColor="#020303" />
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="8dp"
-                                        android:text="1bcddd"
-                                        android:textAppearance="?attr/textAppearanceBody2"
-                                        android:textColor="#020303" />
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="16dp"
-                                        android:text="string/supporting_text"
-                                        android:textAppearance="?attr/textAppearanceBody2"
-                                        android:textColor="#020303" />
-
-                                </LinearLayout>
-
-
-                            </LinearLayout>
-
-                        </com.google.android.material.card.MaterialCardView>
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/listHotProductMain"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scrollbars="none" />
 
                         <com.google.android.material.card.MaterialCardView
                             android:id="@+id/card2189"
@@ -454,173 +201,11 @@
                         android:layout_height="match_parent"
                         android:orientation="horizontal">
 
-                        <com.google.android.material.card.MaterialCardView
-                            android:id="@+id/card43"
-                            android:layout_width="200dp"
-                            android:layout_height="220dp"
-                            android:layout_margin="8dp">
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical">
-
-                                <!-- Media -->
-                                <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:contentDescription="abc"
-                                    android:scaleType="centerCrop"
-                                    app:srcCompat="@drawable/sanphammoi1" />
-
-                                <LinearLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="vertical"
-                                    android:padding="16dp">
-
-                                    <!-- Title, secondary and supporting text -->
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="abcd"
-                                        android:textAppearance="?attr/textAppearanceHeadline6"
-                                        android:textColor="#020303" />
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="8dp"
-                                        android:text="1bcddd"
-                                        android:textAppearance="?attr/textAppearanceBody2"
-                                        android:textColor="#020303" />
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="16dp"
-                                        android:text="string/supporting_text"
-                                        android:textAppearance="?attr/textAppearanceBody2"
-                                        android:textColor="#020303" />
-
-                                </LinearLayout>
-
-
-                            </LinearLayout>
-
-                        </com.google.android.material.card.MaterialCardView>
-
-                        <com.google.android.material.card.MaterialCardView
-                            android:id="@+id/card145"
-                            android:layout_width="200dp"
-                            android:layout_height="220dp"
-                            android:layout_margin="8dp">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:orientation="vertical">
-
-                                <!-- Media -->
-                                <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:contentDescription="abc"
-                                    android:scaleType="centerCrop"
-                                    app:srcCompat="@drawable/sanphammoi1" />
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="vertical"
-                                    android:padding="16dp">
-
-                                    <!-- Title, secondary and supporting text -->
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="abcd"
-                                        android:textAppearance="?attr/textAppearanceHeadline6"
-                                        android:textColor="#020303" />
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="8dp"
-                                        android:text="1bcddd"
-                                        android:textAppearance="?attr/textAppearanceBody2"
-                                        android:textColor="#020303" />
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="16dp"
-                                        android:text="string/supporting_text"
-                                        android:textAppearance="?attr/textAppearanceBody2"
-                                        android:textColor="#020303" />
-
-                                </LinearLayout>
-
-
-                            </LinearLayout>
-
-                        </com.google.android.material.card.MaterialCardView>
-
-                        <com.google.android.material.card.MaterialCardView
-                            android:id="@+id/card116"
-                            android:layout_width="200dp"
-                            android:layout_height="220dp"
-                            android:layout_margin="8dp">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:orientation="vertical">
-
-                                <!-- Media -->
-                                <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:contentDescription="abc"
-                                    android:scaleType="centerCrop"
-                                    app:srcCompat="@drawable/sanphammoi1" />
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="vertical"
-                                    android:padding="16dp">
-
-                                    <!-- Title, secondary and supporting text -->
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="abcd"
-                                        android:textAppearance="?attr/textAppearanceHeadline6"
-                                        android:textColor="#020303" />
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="8dp"
-                                        android:text="1bcddd"
-                                        android:textAppearance="?attr/textAppearanceBody2"
-                                        android:textColor="#020303" />
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="16dp"
-                                        android:text="string/supporting_text"
-                                        android:textAppearance="?attr/textAppearanceBody2"
-                                        android:textColor="#020303" />
-
-                                </LinearLayout>
-
-
-                            </LinearLayout>
-
-                        </com.google.android.material.card.MaterialCardView>
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/listsProductMain"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scrollbars="none" />
 
                         <com.google.android.material.card.MaterialCardView
                             android:id="@+id/card2138"
@@ -899,4 +484,4 @@
         android:name="com.fragment.FooterFragement"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"></fragment>
-</LinearLayout>
+</com.google.android.material.circularreveal.CircularRevealLinearLayout>

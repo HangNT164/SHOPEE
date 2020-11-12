@@ -15,6 +15,9 @@ public interface SubCategoryDao {
     @Query("SELECT * FROM sub_category")
     List<SubCategory> getAll();
 
+    @Query("SELECT * FROM sub_category WHERE category_id=:categoryID")
+    List<SubCategory> getAllByCategory(int categoryID);
+
     @Query("SELECT * FROM sub_category WHERE id = :id")
     SubCategory getOne(int id);
 

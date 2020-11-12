@@ -8,6 +8,7 @@ import android.content.res.Configuration;
 import com.google.gson.Gson;
 import com.model.Account;
 import com.model.Product;
+import com.model.SubCategory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,6 +64,18 @@ public class Helper {
 
     public List<Product> getListProductByIndex(List<Product> getAll, int index) {
         List<Product> lists = new ArrayList<>();
+        for (int i = 0; i < getAll.size(); i++) {
+            if (index == 1 && i % 2 == 0) {
+                lists.add(getAll.get(i));
+            } else if (index == 2 && i % 2 != 0) {
+                lists.add(getAll.get(i));
+            }
+        }
+        return lists;
+    }
+
+    public List<SubCategory> getListSubCateByIndex(List<SubCategory> getAll, int index) {
+        List<SubCategory> lists = new ArrayList<>();
         for (int i = 0; i < getAll.size(); i++) {
             if (index == 1 && i % 2 == 0) {
                 lists.add(getAll.get(i));

@@ -108,4 +108,6 @@
     <string name="productColor">Màu sắc</string>
     <string name="brandProduct">Nhãn hiệu</string>
     <string name="kho">Số lượng</string>
+    <string name="lienKet">Liên Kết</string>
+    <string name="more">Xem thêm</string>
 </resources>

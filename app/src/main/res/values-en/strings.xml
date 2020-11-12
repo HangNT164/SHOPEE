@@ -107,4 +107,6 @@
     <string name="productColor">Color</string>
     <string name="brandProduct">Brand</string>
     <string name="kho">Quatity</string>
+    <string name="lienKet">Connect</string>
+    <string name="more">More</string>
 </resources>
