@@ -36,6 +36,9 @@ public interface ProductDao {
     @Query("SELECT * FROM product LIMIT 3")
     List<Product> getAllMain();
 
+    @Query("SELECT * FROM product WHERE product_name like '%' || :productName || '%'")
+    List<Product> searchProductByProductName(String productName);
+
     @Insert
     void add(Product product);
 
@@ -44,6 +47,5 @@ public interface ProductDao {
 
     @Delete
     void delete(Product product);
-
 
 }
