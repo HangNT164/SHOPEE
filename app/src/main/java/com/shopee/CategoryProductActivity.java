@@ -1,7 +1,6 @@
 package com.shopee;
 
 import android.os.Bundle;
-import android.widget.FrameLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
@@ -13,7 +12,6 @@ import com.model.Category;
 import static com.util.Helper.loadLocale;
 
 public class CategoryProductActivity extends AppCompatActivity {
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +35,6 @@ public class CategoryProductActivity extends AppCompatActivity {
         Category category = (Category) getIntent().getSerializableExtra("category");
         if (category != null) {
             bundle.putInt("cateID", category.getId());
-
         } else {
             bundle.putInt("cateID", 1);
         }

@@ -11,11 +11,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.adapter.CategoryMainAdapter;
 import com.adapter.ListProductsAdapter;
+import com.dao.CategoryDao;
 import com.dao.ImageDao;
 import com.dao.ProductDao;
 import com.jdbc.RoomConnection;
+import com.model.Category;
 import com.model.Image;
+import com.model.ImageCategory;
 import com.model.Product;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
@@ -29,23 +33,32 @@ public class MainActivity extends AppCompatActivity {
 
     private CarouselView carouselView;
     private int[] lists;
+
     private ImageView moreInfoNewProduct;
     private ImageView moreInfoHotProduct;
     private ImageView moreInfoAllProduct;
-    private ImageView categoryImage;
+
     private RoomConnection roomConnection;
     private ProductDao productDao;
     private ImageDao imageDao;
+    private CategoryDao categoryDao;
+
     private List<Product> listProductHot;
     private List<Product> listProductNew;
     private List<Product> listProduct;
+    private List<Category> listCate;
+    private List<Image> listImage;
+    private List<ImageCategory> listImageCate;
+
     private RecyclerView recyclerView;
     private RecyclerView recyclerViewHot;
     private RecyclerView recyclerViewList;
-    private List<Image> listImage;
+    private RecyclerView recyclerViewCate;
+
     private LinearLayoutManager layoutManager;
     private LinearLayoutManager layoutManagerHot;
     private LinearLayoutManager layoutManagerNew;
+    private LinearLayoutManager layoutManagerCate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
         layoutManagerHot = new org.solovyev.android.views.llm.LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         layoutManagerNew = new org.solovyev.android.views.llm.LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         layoutManager = new org.solovyev.android.views.llm.LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        layoutManagerCate = new org.solovyev.android.views.llm.LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
 
         // get data for list
         lists = new int[]{R.drawable.home1, R.drawable.home2, R.drawable.home3, R.drawable.home4, R.drawable.home5};
@@ -99,18 +113,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        categoryImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, CategoryProductActivity.class);
-                startActivity(intent);
-            }
-        });
-
         roomConnection = getInstance(getApplicationContext());
         productDao = roomConnection.productDao();
         imageDao = roomConnection.imageDao();
         listImage = imageDao.getAll();
+        categoryDao = roomConnection.categoryDao();
 
         // New product
         listProductNew = productDao.getNewProductMain();
@@ -124,6 +131,12 @@ public class MainActivity extends AppCompatActivity {
         listProduct = productDao.getAllMain();
         loadDataForRecyclerView(recyclerViewList, listProduct, layoutManager, listImage);
 
+        listCate = categoryDao.getAll();
+        if (listCate.size() > 0) {
+            CategoryMainAdapter listProductAllAdapter = new CategoryMainAdapter(this, listCate, listImageCate);
+            recyclerViewCate.setAdapter(listProductAllAdapter);
+            recyclerViewCate.setLayoutManager(layoutManagerCate);
+        }
     }
 
     @Override
@@ -143,14 +156,14 @@ public class MainActivity extends AppCompatActivity {
         moreInfoAllProduct = findViewById(R.id.moreInfoAllProduct);
         moreInfoHotProduct = findViewById(R.id.moreInfoHotProduct);
         moreInfoNewProduct = findViewById(R.id.moreInfoNewProduct);
-        categoryImage = findViewById(R.id.category);
+        recyclerViewCate = findViewById(R.id.listCategoryMain);
     }
 
     /**
      * Load data for recycler view
      *
      * @param recyclerView:  recycler view want to show
-     * @param listProduct:         list product want to list
+     * @param listProduct:   list product want to list
      * @param layoutManager: layout
      * @param listImages:    list image want to list
      */
