@@ -1,6 +1,7 @@
 package com.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.model.Category;
 import com.model.ImageCategory;
+import com.shopee.CategoryProductActivity;
 import com.shopee.R;
 
 import java.util.List;
@@ -58,7 +60,10 @@ public class ListCateAdapter extends RecyclerView.Adapter<ListCateAdapter.MyView
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "Click", Toast.LENGTH_LONG).show();
+                Category category = listCate.get(position);
+                Intent intent = new Intent(context, CategoryProductActivity.class);
+                intent.putExtra("category", category);
+                context.startActivity(intent);
             }
         });
     }

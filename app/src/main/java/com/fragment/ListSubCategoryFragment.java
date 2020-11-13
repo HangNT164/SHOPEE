@@ -47,7 +47,15 @@ public class ListSubCategoryFragment extends Fragment {
         imageSubCate = roomConnection.imageSubcateDao();
         imageSubCate = roomConnection.imageSubcateDao();
 
-        listSub = subCategoryDao.getAllByCategory(1);
+        // get cateID
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+            cateID = bundle.getInt("cateID");
+        } else {
+            cateID = 1;
+        }
+
+        listSub = subCategoryDao.getAllByCategory(cateID);
         listSubEven = new Helper().getListSubCateByIndex(listSub, 1);
         listSubOdd = new Helper().getListSubCateByIndex(listSub, 2);
 
@@ -66,6 +74,7 @@ public class ListSubCategoryFragment extends Fragment {
             listSubFirst.setNestedScrollingEnabled(false);
             listSubSecond.setNestedScrollingEnabled(false);
         }
+
         return view;
     }
 

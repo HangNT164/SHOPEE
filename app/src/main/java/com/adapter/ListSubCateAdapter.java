@@ -57,7 +57,7 @@ public class ListSubCateAdapter extends RecyclerView.Adapter<ListSubCateAdapter.
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "abc", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "Subcate", Toast.LENGTH_LONG).show();
             }
         });
     }
