@@ -15,6 +15,9 @@ public interface ProductDao {
     @Query("SELECT * FROM product")
     List<Product> getAll();
 
+    @Query("SELECT * FROM product WHERE sub_cate_id=:subcateID")
+    List<Product> getProductBySubCate(int subcateID);
+
     @Query("SELECT * FROM product WHERE id = :id")
     Product getOne(int id);
 

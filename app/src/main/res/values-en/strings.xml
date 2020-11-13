@@ -109,4 +109,5 @@
     <string name="kho">Quatity</string>
     <string name="lienKet">Connect</string>
     <string name="more">More</string>
+    <string name="listProductBySubCate">Product</string>
 </resources>

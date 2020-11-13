@@ -110,4 +110,5 @@
     <string name="kho">Số lượng</string>
     <string name="lienKet">Liên Kết</string>
     <string name="more">Xem thêm</string>
+    <string name="listProductBySubCate">Sản phẩm</string>
 </resources>
