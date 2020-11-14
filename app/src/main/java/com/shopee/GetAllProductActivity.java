@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.adapter.ListProductsAdapter;
+import com.adapter.ListProductTwoColumAdapter;
 import com.dao.ImageDao;
 import com.dao.ProductDao;
 import com.jdbc.RoomConnection;
@@ -25,7 +25,6 @@ public class GetAllProductActivity extends AppCompatActivity {
     private ImageDao imageDao;
     private List<Product> listProduct;
     private RecyclerView recyclerView;
-    private RecyclerView recyclerViewSecond;
     private List<Image> listImage;
     private List<Product> listEven;
     private List<Product> listOdd;
@@ -36,7 +35,6 @@ public class GetAllProductActivity extends AppCompatActivity {
         loadLocale(getBaseContext(), "Language", "My_Lang");
         setContentView(R.layout.activity_get_all_product);
         recyclerView = findViewById(R.id.listProduct);
-        recyclerViewSecond = findViewById(R.id.listProductSecond);
 
         roomConnection = getInstance(getApplicationContext());
         productDao = roomConnection.productDao();
@@ -45,20 +43,13 @@ public class GetAllProductActivity extends AppCompatActivity {
         imageDao = roomConnection.imageDao();
         listImage = imageDao.getAll();
 
-        listEven = new Helper().getListProductByIndex(listProduct, 1);
-        listOdd = new Helper().getListProductByIndex(listProduct, 2);
+        listEven = new Helper().getListProductByIndex(listProduct, 2);
+        listOdd = new Helper().getListProductByIndex(listProduct, 1);
 
-        ListProductsAdapter listProductsAdapter = new ListProductsAdapter(this, listOdd, listImage);
+        ListProductTwoColumAdapter listProductsAdapter = new ListProductTwoColumAdapter(this, listOdd, listEven, listImage, listImage);
         recyclerView.setAdapter(listProductsAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        ListProductsAdapter listProductsAdapterSecond = new ListProductsAdapter(this, listEven, listImage);
-        recyclerViewSecond.setAdapter(listProductsAdapterSecond);
-        recyclerViewSecond.setLayoutManager(new LinearLayoutManager(this));
-
-        // Close scoll of recyclerview
-        recyclerView.setNestedScrollingEnabled(false);
-        recyclerViewSecond.setNestedScrollingEnabled(false);
     }
 
     @Override

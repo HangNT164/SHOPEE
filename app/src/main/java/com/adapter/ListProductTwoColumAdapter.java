@@ -21,16 +21,20 @@ import java.util.List;
 
 import static com.util.Helper.formatNumber;
 
-public class ListProductsAdapter extends RecyclerView.Adapter<ListProductsAdapter.MyViewHolder> {
+public class ListProductTwoColumAdapter extends RecyclerView.Adapter<ListProductTwoColumAdapter.MyViewHolder> {
     private Context context;
     private List<Product> listProduct;
+    private List<Product> listProductSecond;
     private List<Image> listImage;
+    private List<Image> listImageSecond;
 
 
-    public ListProductsAdapter(Context context, List<Product> listProduct, List<Image> listImage) {
+    public ListProductTwoColumAdapter(Context context, List<Product> listProduct, List<Product> listProductSecond, List<Image> listImage, List<Image> listImageSecond) {
         this.context = context;
         this.listProduct = listProduct;
+        this.listProductSecond = listProductSecond;
         this.listImage = listImage;
+        this.listImageSecond = listImageSecond;
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -38,6 +42,10 @@ public class ListProductsAdapter extends RecyclerView.Adapter<ListProductsAdapte
         TextView productPrice;
         ImageView imageView;
         MaterialCardView materialCardView;
+        TextView productNameSecond;
+        TextView productPriceSecond;
+        ImageView imageViewSecond;
+        MaterialCardView materialCardViewSecond;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -45,20 +53,25 @@ public class ListProductsAdapter extends RecyclerView.Adapter<ListProductsAdapte
             productPrice = itemView.findViewById(R.id.productPrice);
             imageView = itemView.findViewById(R.id.imageViewProduct);
             materialCardView = itemView.findViewById(R.id.itemProductLayout);
+
+            productNameSecond = itemView.findViewById(R.id.productNameSecond);
+            productPriceSecond = itemView.findViewById(R.id.productPriceSecond);
+            imageViewSecond = itemView.findViewById(R.id.imageViewProductSecond);
+            materialCardViewSecond = itemView.findViewById(R.id.itemProductLayoutSecond);
         }
     }
 
     @NonNull
     @Override
-    public ListProductsAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ListProductTwoColumAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.get_all_product_layout, parent, false);
-        return new ListProductsAdapter.MyViewHolder(view);
+        View view = inflater.inflate(R.layout.list_product_custom_two_row_layout, parent, false);
+        return new ListProductTwoColumAdapter.MyViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ListProductsAdapter.MyViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull ListProductTwoColumAdapter.MyViewHolder holder, final int position) {
         holder.productName.setText(listProduct.get(position).getProductName());
         int price = (int) listProduct.get(position).getSellPrice();
         holder.productPrice.setText(formatNumber(price));
@@ -71,17 +84,28 @@ public class ListProductsAdapter extends RecyclerView.Adapter<ListProductsAdapte
                 Product product = listProduct.get(position);
                 intent.putExtra("product", product);
                 context.startActivity(intent);
+
+            }
+        });
+        holder.productNameSecond.setText(listProductSecond.get(position).getProductName());
+        int priceSe = (int) listProductSecond.get(position).getSellPrice();
+        holder.productPriceSecond.setText(formatNumber(priceSe));
+        //  holder.imageView.setImageResource(listImage.get(position).getImageLink());
+        holder.materialCardViewSecond.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, DetailProductActivity.class);
+                // intent.putExtra("image_url", listProduct.get(position).getProductName());
+                Product product = listProductSecond.get(position);
+                intent.putExtra("product", product);
+                context.startActivity(intent);
             }
         });
     }
 
     @Override
     public int getItemCount() {
-//        if (listProduct.size() > 0) {
-//            return listProduct.size();
-//        }
-//        return 0;
-        return listProduct.size();
+        return listProductSecond.size();
     }
 
 }

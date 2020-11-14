@@ -32,10 +32,11 @@ public class InformationAccountActivity extends AppCompatActivity {
     private ImageAvatarDao imageAvatarDao;
     private List<ImageAvatar> listsAvatar;
 
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        loadLocale(getBaseContext(), "Language", "My_Lang");
+        loadLocale(getApplicationContext(), "Language", "My_Lang");
         setContentView(R.layout.activity_information_account);
         AccountDetail accountDetail = getSavedObjectFromPreference(getApplicationContext(), "mPreference", "account", AccountDetail.class);
         settingAccount = findViewById(R.id.settingAccount);
@@ -59,6 +60,7 @@ public class InformationAccountActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        loadLocale(getApplicationContext(), "Language", "My_Lang");
         AccountDetail accountDetail = getSavedObjectFromPreference(getApplicationContext(), "mPreference", "account", AccountDetail.class);
         username = findViewById(R.id.username);
         username.setText(accountDetail.getName());
@@ -66,6 +68,5 @@ public class InformationAccountActivity extends AppCompatActivity {
         roomConnection = getInstance(getApplicationContext());
         imageAvatarDao = roomConnection.imageAvatarDao();
         listsAvatar = imageAvatarDao.getImageAvatarByAccountDetail(accountDetail.getId());
-        loadLocale(getBaseContext(), "Language", "My_Lang");
     }
 }

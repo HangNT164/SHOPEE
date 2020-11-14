@@ -107,4 +107,14 @@
     <string name="productColor">Color</string>
     <string name="brandProduct">Brand</string>
     <string name="kho">Quatity</string>
+    <string name="lienKet">Connect</string>
+    <string name="more">More ></string>
+    <string name="listProductBySubCate">Product</string>
+    <string name="searchName">Search Name</string>
+    <string name="imageProduct">Image</string>
+    <string name="nameProduct">Product Name</string>
+    <string name="quantity">Quantity</string>
+    <string name="delete">Delete</string>
+    <string name="price">Price</string>
+    <string name="danhgia">ĐÁNH GIÁ SẢN PHẨM</string>
 </resources>

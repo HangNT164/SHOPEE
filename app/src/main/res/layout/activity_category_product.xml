@@ -1,61 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".CategoryProductActivity">
     <!--    Header-->
-    <LinearLayout
+    <fragment
+        android:id="@+id/fragmentHeader"
+        android:name="com.fragment.HeaderFragement"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"></fragment>
+
+
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="7dp"
-        android:orientation="horizontal">
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:text="@string/category"
+        android:textColor="#000000"
+        android:textSize="20dp"></TextView>
 
-        <TextView
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:gravity="center"
-            android:text="Tất cả danh mục"
-            android:textColor="#000000"
-            android:textSize="20dp"></TextView>
-
-        <ImageView
-            android:id="@+id/homeCart"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/cart" />
-
-        <ImageView
-            android:id="@+id/homeChatHeader"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/chat" />
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:orientation="horizontal">
 
-        <fragment
-            android:id="@+id/fragment_1"
-            android:name="com.fragment.CategoryFragement"
-            android:layout_width="179dp"
+        <FrameLayout
+            android:id="@+id/layoutCategory"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginBottom="5dp"
-            android:layout_weight="1" />
+            android:layout_weight="1"></FrameLayout>
 
-        <fragment
-            android:id="@+id/fragment_2"
-            android:name="com.fragment.ListSubCategoryFragment"
-            android:layout_width="match_parent"
+        <FrameLayout
+            android:id="@+id/layoutSubCategory"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="2" />
+            android:layout_weight="2"></FrameLayout>
+
+
     </LinearLayout>
 
     <fragment

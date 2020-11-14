@@ -108,4 +108,14 @@
     <string name="productColor">Màu sắc</string>
     <string name="brandProduct">Nhãn hiệu</string>
     <string name="kho">Số lượng</string>
+    <string name="lienKet">Liên Kết</string>
+    <string name="more">Xem thêm ></string>
+    <string name="listProductBySubCate">Sản phẩm</string>
+    <string name="searchName">Tìm kiếm </string>
+    <string name="imageProduct">Ảnh</string>
+    <string name="nameProduct">Tên sản phẩm</string>
+    <string name="quantity">Số lượng</string>
+    <string name="delete">Xóa</string>
+    <string name="price">Giá</string>
+    <string name="danhgia">ĐÁNH GIÁ SẢN PHẨM</string>
 </resources>

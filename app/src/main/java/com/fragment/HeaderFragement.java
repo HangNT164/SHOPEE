@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.SearchView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -15,6 +16,7 @@ import com.shopee.CartActivity;
 import com.shopee.LoginActivity;
 import com.shopee.MessageActivity;
 import com.shopee.R;
+import com.shopee.SearchProduct;
 
 import static com.util.Helper.getSavedObjectFromPreference;
 
@@ -24,6 +26,7 @@ public class HeaderFragement extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.header, container, false);
         // event of image
+        SearchView searchView = view.findViewById(R.id.homeSearchView);
         ImageView imageCart = view.findViewById(R.id.homeCart);
         ImageView imageMessage = view.findViewById(R.id.homeChatHeader);
 
@@ -51,6 +54,20 @@ public class HeaderFragement extends Fragment {
                     intent = new Intent(getContext(), LoginActivity.class);
                 }
                 startActivity(intent);
+            }
+        });
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                Intent intent = new Intent(getContext(), SearchProduct.class);
+                intent.putExtra("productName", query);
+                startActivity(intent);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
             }
         });
         return view;
