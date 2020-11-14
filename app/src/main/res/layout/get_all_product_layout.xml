@@ -7,7 +7,7 @@
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/itemProductLayout"
-        android:layout_width="190dp"
+        android:layout_width="200dp"
         android:layout_height="220dp"
         android:layout_centerInParent="true"
         android:layout_margin="3dp">
@@ -29,13 +29,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
                 android:layout_below="@+id/imageViewProduct"
-                android:layout_centerHorizontal="true"
                 android:layout_marginTop="5dp"
+                android:paddingLeft="5dp"
                 android:layout_marginBottom="5dp"
                 android:autoSizeMaxTextSize="15sp"
                 android:autoSizeMinTextSize="8sp"
                 android:autoSizeTextType="uniform"
-                android:gravity="center"
                 android:text="Canada"
                 android:textColor="#000" />
 
@@ -44,7 +43,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
                 android:layout_below="@+id/productName"
-                android:layout_centerHorizontal="true"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:autoSizeMaxTextSize="15sp"

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -34,9 +35,10 @@ public class MainActivity extends AppCompatActivity {
     private CarouselView carouselView;
     private int[] lists;
 
-    private ImageView moreInfoNewProduct;
-    private ImageView moreInfoHotProduct;
-    private ImageView moreInfoAllProduct;
+    private TextView moreInfoNewProduct;
+    private TextView moreInfoHotProduct;
+    private TextView moreInfoAllProduct;
+    private TextView moreCategory;
 
     private RoomConnection roomConnection;
     private ProductDao productDao;
@@ -113,6 +115,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // More cate
+        moreCategory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, CategoryProductActivity.class);
+                startActivity(intent);
+            }
+        });
         roomConnection = getInstance(getApplicationContext());
         productDao = roomConnection.productDao();
         imageDao = roomConnection.imageDao();
@@ -153,9 +163,10 @@ public class MainActivity extends AppCompatActivity {
         recyclerViewHot = findViewById(R.id.listHotProductMain);
         recyclerViewList = findViewById(R.id.listsProductMain);
         carouselView = findViewById(R.id.carouselView);
-        moreInfoAllProduct = findViewById(R.id.moreInfoAllProduct);
-        moreInfoHotProduct = findViewById(R.id.moreInfoHotProduct);
-        moreInfoNewProduct = findViewById(R.id.moreInfoNewProduct);
+        moreInfoAllProduct = findViewById(R.id.card2138);
+        moreInfoHotProduct = findViewById(R.id.moreInfoAllProduct);
+        moreCategory = findViewById(R.id.moreCategory);
+        moreInfoNewProduct = findViewById(R.id.moreNewProduct);
         recyclerViewCate = findViewById(R.id.listCategoryMain);
     }
 
@@ -172,6 +183,7 @@ public class MainActivity extends AppCompatActivity {
             ListProductsAdapter listProductAllAdapter = new ListProductsAdapter(this, listProduct, listImages);
             recyclerView.setAdapter(listProductAllAdapter);
             recyclerView.setLayoutManager(layoutManager);
+            //recyclerView.setNestedScrollingEnabled(false);
         }
     }
 }
