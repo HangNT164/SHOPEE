@@ -111,4 +111,9 @@
     <string name="more">More</string>
     <string name="listProductBySubCate">Product</string>
     <string name="searchName">Search Name</string>
+    <string name="imageProduct">Image</string>
+    <string name="nameProduct">Product Name</string>
+    <string name="quantity">Quantity</string>
+    <string name="delete">Delete</string>
+    <string name="price">Price</string>
 </resources>

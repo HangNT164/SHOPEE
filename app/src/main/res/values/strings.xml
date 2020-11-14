@@ -112,4 +112,9 @@
     <string name="more">Xem thêm</string>
     <string name="listProductBySubCate">Sản phẩm</string>
     <string name="searchName">Tìm kiếm </string>
+    <string name="imageProduct">Ảnh</string>
+    <string name="nameProduct">Tên sản phẩm</string>
+    <string name="quantity">Số lượng</string>
+    <string name="delete">Xóa</string>
+    <string name="price">Giá</string>
 </resources>
