@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -26,6 +27,7 @@ import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
 
 import java.util.List;
+import java.util.Locale;
 
 import static com.jdbc.RoomConnection.getInstance;
 import static com.util.Helper.loadLocale;
@@ -183,7 +185,6 @@ public class MainActivity extends AppCompatActivity {
             ListProductsAdapter listProductAllAdapter = new ListProductsAdapter(this, listProduct, listImages);
             recyclerView.setAdapter(listProductAllAdapter);
             recyclerView.setLayoutManager(layoutManager);
-            //recyclerView.setNestedScrollingEnabled(false);
         }
     }
 }

@@ -19,6 +19,8 @@ import com.shopee.R;
 
 import java.util.List;
 
+import static com.util.Helper.formatNumber;
+
 public class ListProductTwoColumAdapter extends RecyclerView.Adapter<ListProductTwoColumAdapter.MyViewHolder> {
     private Context context;
     private List<Product> listProduct;
@@ -71,7 +73,8 @@ public class ListProductTwoColumAdapter extends RecyclerView.Adapter<ListProduct
     @Override
     public void onBindViewHolder(@NonNull ListProductTwoColumAdapter.MyViewHolder holder, final int position) {
         holder.productName.setText(listProduct.get(position).getProductName());
-        holder.productPrice.setText(listProduct.get(position).getSellPrice() + "");
+        int price = (int) listProduct.get(position).getSellPrice();
+        holder.productPrice.setText(formatNumber(price));
         //  holder.imageView.setImageResource(listImage.get(position).getImageLink());
         holder.materialCardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,7 +88,8 @@ public class ListProductTwoColumAdapter extends RecyclerView.Adapter<ListProduct
             }
         });
         holder.productNameSecond.setText(listProductSecond.get(position).getProductName());
-        holder.productPriceSecond.setText(listProductSecond.get(position).getSellPrice() + "");
+        int priceSe = (int) listProductSecond.get(position).getSellPrice();
+        holder.productPriceSecond.setText(formatNumber(priceSe));
         //  holder.imageView.setImageResource(listImage.get(position).getImageLink());
         holder.materialCardViewSecond.setOnClickListener(new View.OnClickListener() {
             @Override

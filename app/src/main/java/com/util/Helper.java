@@ -10,6 +10,7 @@ import com.model.Account;
 import com.model.Product;
 import com.model.SubCategory;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -84,5 +85,14 @@ public class Helper {
             }
         }
         return lists;
+    }
+
+    public static String formatNumber(int number) {
+        if (Locale.getDefault().toString().equalsIgnoreCase("vi")) {
+            return NumberFormat.getNumberInstance(Locale.getDefault()).format(number) + " Đ";
+        } else if (Locale.getDefault().toString().equalsIgnoreCase("en")) {
+            return "$ " + NumberFormat.getNumberInstance(Locale.getDefault()).format(number / 23);
+        }
+        return "";
     }
 }

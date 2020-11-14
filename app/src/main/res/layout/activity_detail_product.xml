@@ -84,18 +84,20 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:text="@string/productName"
                                     android:textColor="#000000"
-                                    android:textSize="10dp"
-                                    android:text="@string/productName"></TextView>
+                                    android:textSize="15dp"></TextView>
 
                                 <TextView
                                     android:id="@+id/detailProductName"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:paddingLeft="5dp"
                                     android:text="abcd"
                                     android:textColor="#020303"
-                                    android:textSize="10dp" />
+                                    android:textSize="15dp" />
                             </LinearLayout>
+
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -105,18 +107,19 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="5dp"
+                                    android:text="@string/productPriceDetail"
                                     android:textColor="#000000"
-                                    android:textSize="10dp"
-                                    android:text="@string/productPriceDetail"></TextView>
+                                    android:textSize="15dp"></TextView>
 
                                 <TextView
                                     android:id="@+id/productDetailPrice"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="5dp"
+                                    android:paddingLeft="5dp"
                                     android:text="1bcddd"
                                     android:textColor="#020303"
-                                    android:textSize="10dp" />
+                                    android:textSize="15dp" />
                             </LinearLayout>
 
 
@@ -139,29 +142,7 @@
                     android:layout_margin="10dp"
                     android:text="@string/detailProduct"
                     android:textColor="#000000"
-                    android:textSize="15dp"></com.google.android.material.textview.MaterialTextView>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:orientation="horizontal">
-
-                    <com.google.android.material.textview.MaterialTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/productColor"
-                        android:textSize="12dp"></com.google.android.material.textview.MaterialTextView>
-
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/colorProduct"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:text="Hằng Nguyễn"
-                        android:textColor="#000000"
-                        android:textSize="10dp"></com.google.android.material.textview.MaterialTextView>
-                </LinearLayout>
+                    android:textSize="20dp"></com.google.android.material.textview.MaterialTextView>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -173,7 +154,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/brandProduct"
-                        android:textSize="12dp"></com.google.android.material.textview.MaterialTextView>
+                        android:textSize="15dp"></com.google.android.material.textview.MaterialTextView>
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/brandProduct"
@@ -182,7 +163,7 @@
                         android:layout_marginLeft="15dp"
                         android:text="Hằng Nguyễn"
                         android:textColor="#000000"
-                        android:textSize="10dp"></com.google.android.material.textview.MaterialTextView>
+                        android:textSize="15dp"></com.google.android.material.textview.MaterialTextView>
                 </LinearLayout>
 
                 <LinearLayout
@@ -195,7 +176,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/kho"
-                        android:textSize="12dp"></com.google.android.material.textview.MaterialTextView>
+                        android:textSize="15dp"></com.google.android.material.textview.MaterialTextView>
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/quantityProduct"
@@ -204,7 +185,30 @@
                         android:layout_marginLeft="15dp"
                         android:text="Hằng Nguyễn"
                         android:textColor="#000000"
-                        android:textSize="10dp"></com.google.android.material.textview.MaterialTextView>
+                        android:textSize="15dp"></com.google.android.material.textview.MaterialTextView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/mauTemplate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/productColor"
+                        android:textSize="15dp"></com.google.android.material.textview.MaterialTextView>
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/colorProduct"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:text="Hằng Nguyễn"
+                        android:textColor="#000000"
+                        android:textSize="15dp"></com.google.android.material.textview.MaterialTextView>
                 </LinearLayout>
 
             </LinearLayout>
@@ -237,6 +241,7 @@
                         android:textSize="12dp"></com.google.android.material.textview.MaterialTextView>
 
                 </LinearLayout>
+
             </LinearLayout>
             <!--            Danh gia-->
             <LinearLayout
@@ -249,7 +254,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="ĐÁNH GIÁ SẢN PHẨM"
+                    android:text="@string/danhgia"
                     android:textColor="#000000"
                     android:textSize="15dp"></com.google.android.material.textview.MaterialTextView>
 

@@ -19,6 +19,8 @@ import com.shopee.R;
 
 import java.util.List;
 
+import static com.util.Helper.formatNumber;
+
 public class ListProductsAdapter extends RecyclerView.Adapter<ListProductsAdapter.MyViewHolder> {
     private Context context;
     private List<Product> listProduct;
@@ -58,7 +60,8 @@ public class ListProductsAdapter extends RecyclerView.Adapter<ListProductsAdapte
     @Override
     public void onBindViewHolder(@NonNull ListProductsAdapter.MyViewHolder holder, final int position) {
         holder.productName.setText(listProduct.get(position).getProductName());
-        holder.productPrice.setText(listProduct.get(position).getSellPrice() + "");
+        int price = (int) listProduct.get(position).getSellPrice();
+        holder.productPrice.setText(formatNumber(price));
         //  holder.imageView.setImageResource(listImage.get(position).getImageLink());
         holder.materialCardView.setOnClickListener(new View.OnClickListener() {
             @Override

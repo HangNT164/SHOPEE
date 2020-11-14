@@ -116,4 +116,5 @@
     <string name="quantity">Quantity</string>
     <string name="delete">Delete</string>
     <string name="price">Price</string>
+    <string name="danhgia">ĐÁNH GIÁ SẢN PHẨM</string>
 </resources>

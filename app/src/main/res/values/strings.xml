@@ -117,4 +117,5 @@
     <string name="quantity">Số lượng</string>
     <string name="delete">Xóa</string>
     <string name="price">Giá</string>
+    <string name="danhgia">ĐÁNH GIÁ SẢN PHẨM</string>
 </resources>
