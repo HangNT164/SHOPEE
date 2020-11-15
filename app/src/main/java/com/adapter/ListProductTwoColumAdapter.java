@@ -2,6 +2,8 @@ package com.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.AssetManager;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,11 +14,12 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.card.MaterialCardView;
-import com.model.Image;
 import com.model.Product;
 import com.shopee.DetailProductActivity;
 import com.shopee.R;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 import static com.util.Helper.formatNumber;
@@ -25,11 +28,10 @@ public class ListProductTwoColumAdapter extends RecyclerView.Adapter<ListProduct
     private Context context;
     private List<Product> listProduct;
     private List<Product> listProductSecond;
-    private List<Image> listImage;
-    private List<Image> listImageSecond;
+    private List<String> listImage;
+    private List<String> listImageSecond;
 
-
-    public ListProductTwoColumAdapter(Context context, List<Product> listProduct, List<Product> listProductSecond, List<Image> listImage, List<Image> listImageSecond) {
+    public ListProductTwoColumAdapter(Context context, List<Product> listProduct, List<Product> listProductSecond, List<String> listImage, List<String> listImageSecond) {
         this.context = context;
         this.listProduct = listProduct;
         this.listProductSecond = listProductSecond;
@@ -75,12 +77,19 @@ public class ListProductTwoColumAdapter extends RecyclerView.Adapter<ListProduct
         holder.productName.setText(listProduct.get(position).getProductName());
         int price = (int) listProduct.get(position).getSellPrice();
         holder.productPrice.setText(formatNumber(price));
-        //  holder.imageView.setImageResource(listImage.get(position).getImageLink());
+        try {
+            AssetManager assetManager = context.getAssets();
+            InputStream ims = assetManager.open(listImage.get(position));
+            Drawable d = Drawable.createFromStream(ims, null);
+            holder.imageView.setImageDrawable(d);
+        } catch (IOException ex) {
+            return;
+        }
+
         holder.materialCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, DetailProductActivity.class);
-                // intent.putExtra("image_url", listProduct.get(position).getProductName());
                 Product product = listProduct.get(position);
                 intent.putExtra("product", product);
                 context.startActivity(intent);
@@ -90,12 +99,18 @@ public class ListProductTwoColumAdapter extends RecyclerView.Adapter<ListProduct
         holder.productNameSecond.setText(listProductSecond.get(position).getProductName());
         int priceSe = (int) listProductSecond.get(position).getSellPrice();
         holder.productPriceSecond.setText(formatNumber(priceSe));
-        //  holder.imageView.setImageResource(listImage.get(position).getImageLink());
+        try {
+            AssetManager assetManager = context.getAssets();
+            InputStream ims = assetManager.open(listImageSecond.get(position));
+            Drawable d = Drawable.createFromStream(ims, null);
+            holder.imageViewSecond.setImageDrawable(d);
+        } catch (IOException ex) {
+            return;
+        }
         holder.materialCardViewSecond.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, DetailProductActivity.class);
-                // intent.putExtra("image_url", listProduct.get(position).getProductName());
                 Product product = listProductSecond.get(position);
                 intent.putExtra("product", product);
                 context.startActivity(intent);

@@ -2,30 +2,32 @@ package com.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.AssetManager;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.model.Category;
-import com.model.ImageCategory;
 import com.shopee.CategoryProductActivity;
 import com.shopee.R;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 public class ListCateAdapter extends RecyclerView.Adapter<ListCateAdapter.MyViewHolder> {
     private Context context;
     private List<Category> listCate;
-    private List<ImageCategory> listImage;
+    private List<String> listImage;
 
-    public ListCateAdapter(Context context, List<Category> listCate, List<ImageCategory> listImage) {
+    public ListCateAdapter(Context context, List<Category> listCate, List<String> listImage) {
         this.context = context;
         this.listCate = listCate;
         this.listImage = listImage;
@@ -56,7 +58,14 @@ public class ListCateAdapter extends RecyclerView.Adapter<ListCateAdapter.MyView
     @Override
     public void onBindViewHolder(@NonNull ListCateAdapter.MyViewHolder holder, final int position) {
         holder.categoryName.setText(listCate.get(position).getCategoryName());
-        //  holder.imageView.setImageResource(listImage.get(position).getImageLink());
+        try {
+            AssetManager assetManager = context.getAssets();
+            InputStream ims = assetManager.open(listImage.get(position));
+            Drawable d = Drawable.createFromStream(ims, listImage.get(listImage.size() - 1));
+            holder.imageView.setImageDrawable(d);
+        } catch (IOException ex) {
+            return;
+        }
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -14,7 +14,6 @@ import com.adapter.ListSubCateAdapter;
 import com.dao.ImageSubcateDao;
 import com.dao.SubCategoryDao;
 import com.jdbc.RoomConnection;
-import com.model.ImageSubCate;
 import com.model.SubCategory;
 import com.shopee.R;
 import com.util.Helper;
@@ -31,10 +30,12 @@ public class ListSubCategoryFragment extends Fragment {
     private List<SubCategory> listSubEven;
     private List<SubCategory> listSub;
     private List<SubCategory> listSubOdd;
-    private List<ImageSubCate> listImageSubCates;
     private RecyclerView listSubFirst;
     private RecyclerView listSubSecond;
     private int cateID;
+    private List<String> listImageSubCate;
+    private List<String> listImageSubCateEven;
+    private List<String> listImageSubCateOdd;
 
     @Nullable
     @Override
@@ -44,7 +45,6 @@ public class ListSubCategoryFragment extends Fragment {
         roomConnection = getInstance(getApplicationContext());
 
         subCategoryDao = roomConnection.subCategoryDao();
-        imageSubCate = roomConnection.imageSubcateDao();
         imageSubCate = roomConnection.imageSubcateDao();
 
         // get cateID
@@ -56,18 +56,21 @@ public class ListSubCategoryFragment extends Fragment {
         }
 
         listSub = subCategoryDao.getAllByCategory(cateID);
+        listImageSubCate = imageSubCate.getImageByProductCoverTrue(cateID);
         listSubEven = new Helper().getListSubCateByIndex(listSub, 1);
         listSubOdd = new Helper().getListSubCateByIndex(listSub, 2);
+        listImageSubCateEven = new Helper().getImageSubCateByIndex(listImageSubCate, 1);
+        listImageSubCateOdd = new Helper().getImageSubCateByIndex(listImageSubCate, 2);
 
         listSubFirst = view.findViewById(R.id.listSubFirst);
         listSubSecond = view.findViewById(R.id.listSubSecond);
 
         if (listSubEven.size() > 0 && listSubOdd.size() > 0) {
-            ListSubCateAdapter listCateAdapter = new ListSubCateAdapter(getContext(), listSubEven, listImageSubCates);
+            ListSubCateAdapter listCateAdapter = new ListSubCateAdapter(getContext(), listSubEven, listImageSubCateEven);
             listSubFirst.setAdapter(listCateAdapter);
             listSubFirst.setLayoutManager(new LinearLayoutManager(getContext()));
 
-            ListSubCateAdapter listCateAdapterSecond = new ListSubCateAdapter(getContext(), listSubOdd, listImageSubCates);
+            ListSubCateAdapter listCateAdapterSecond = new ListSubCateAdapter(getContext(), listSubOdd, listImageSubCateOdd);
             listSubSecond.setAdapter(listCateAdapterSecond);
             listSubSecond.setLayoutManager(new LinearLayoutManager(getContext()));
 

@@ -51,6 +51,7 @@
                                 android:id="@+id/imageProductFirst"
                                 android:layout_width="50dp"
                                 android:layout_height="50dp"
+                                android:onClick="selectFirst"
                                 android:scaleType="fitXY"
                                 android:src="@drawable/hang"></ImageButton>
 
@@ -58,6 +59,7 @@
                                 android:id="@+id/imageProductSecond"
                                 android:layout_width="50dp"
                                 android:layout_height="50dp"
+                                android:onClick="selectSecond"
                                 android:scaleType="fitXY"
                                 android:src="@drawable/hang"></ImageButton>
 
@@ -65,6 +67,7 @@
                                 android:id="@+id/imageProductThird"
                                 android:layout_width="50dp"
                                 android:layout_height="50dp"
+                                android:onClick="selectThird"
                                 android:scaleType="fitXY"
                                 android:src="@drawable/hang"></ImageButton>
                         </LinearLayout>

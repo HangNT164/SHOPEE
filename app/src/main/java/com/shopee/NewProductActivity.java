@@ -10,10 +10,10 @@ import com.adapter.ListProductTwoColumAdapter;
 import com.dao.ImageDao;
 import com.dao.ProductDao;
 import com.jdbc.RoomConnection;
-import com.model.Image;
 import com.model.Product;
 import com.util.Helper;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.jdbc.RoomConnection.getInstance;
@@ -25,9 +25,10 @@ public class NewProductActivity extends AppCompatActivity {
     private ImageDao imageDao;
     private List<Product> listProduct;
     private RecyclerView recyclerView;
-    private List<Image> listImage;
     private List<Product> listEven;
     private List<Product> listOdd;
+    private List<String> listImage;
+    private List<String> listImageSecond;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,12 +42,21 @@ public class NewProductActivity extends AppCompatActivity {
 
         listProduct = productDao.getNewProduct();
         imageDao = roomConnection.imageDao();
-        listImage = imageDao.getAll();
+
 
         listEven = new Helper().getListProductByIndex(listProduct, 1);
-        listOdd = new Helper().getListProductByIndex(listProduct, 2);
+        listImage = new ArrayList<>();
+        for (Product p : listEven) {
+            listImage.add(imageDao.getImageByProductCoverTrue(p.getId()));
+        }
 
-        ListProductTwoColumAdapter listProductsAdapter = new ListProductTwoColumAdapter(this, listEven, listOdd, listImage, listImage);
+        listOdd = new Helper().getListProductByIndex(listProduct, 2);
+        listImageSecond = new ArrayList<>();
+        for (Product p : listOdd) {
+            listImageSecond.add(imageDao.getImageByProductCoverTrue(p.getId()));
+        }
+
+        ListProductTwoColumAdapter listProductsAdapter = new ListProductTwoColumAdapter(this, listEven, listOdd, listImage, listImageSecond);
         recyclerView.setAdapter(listProductsAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
