@@ -55,13 +55,15 @@
                     android:orientation="horizontal">
 
                     <androidx.cardview.widget.CardView
-                        android:layout_width="wrap_content"
+                        android:layout_width="200dp"
                         android:layout_height="match_parent"
+                        android:layout_gravity="center"
                         app:cardElevation="0dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:layout_gravity="center"
                             android:layout_margin="20dp"
                             android:orientation="horizontal">
 
@@ -71,6 +73,7 @@
                                 android:src="@drawable/ic_baseline_image_24"></ImageView>
 
                             <TextView
+                                android:id="@+id/sizeProduct"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:paddingLeft="10dp"
@@ -82,13 +85,15 @@
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_gravity="center"
                         app:cardElevation="0dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:layout_gravity="center"
                             android:layout_margin="20dp"
                             android:orientation="horizontal">
 
@@ -98,6 +103,7 @@
                                 android:src="@drawable/ic_baseline_image_24"></ImageView>
 
                             <TextView
+                                android:id="@+id/sizeCategory"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:paddingLeft="10dp"
@@ -117,14 +123,17 @@
                     android:orientation="horizontal">
 
                     <androidx.cardview.widget.CardView
-                        android:layout_width="wrap_content"
+                        android:layout_width="200dp"
                         android:layout_height="match_parent"
+                        android:layout_gravity="center"
                         app:cardElevation="0dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:layout_gravity="center"
                             android:layout_margin="20dp"
+
                             android:orientation="horizontal">
 
                             <ImageView
@@ -133,6 +142,7 @@
                                 android:src="@drawable/ic_baseline_image_24"></ImageView>
 
                             <TextView
+                                android:id="@+id/sizeOrder"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:paddingLeft="10dp"
@@ -143,13 +153,15 @@
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_gravity="center"
                         app:cardElevation="0dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:layout_gravity="center"
                             android:layout_margin="20dp"
                             android:orientation="horizontal">
 
@@ -159,6 +171,7 @@
                                 android:src="@drawable/ic_baseline_image_24"></ImageView>
 
                             <TextView
+                                android:id="@+id/sizeAccount"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:paddingLeft="10dp"

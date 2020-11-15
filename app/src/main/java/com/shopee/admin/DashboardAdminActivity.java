@@ -1,6 +1,8 @@
 package com.shopee.admin;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -13,6 +15,9 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.dao.AccountDao;
+import com.dao.CategoryDao;
+import com.dao.OrderDao;
+import com.dao.ProductDao;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.charts.RadarChart;
@@ -32,6 +37,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.jdbc.RoomConnection;
 import com.model.Account;
 import com.model.AccountDetail;
+import com.shopee.LoginActivity;
 import com.shopee.R;
 
 import java.util.ArrayList;
@@ -51,9 +57,15 @@ public class DashboardAdminActivity extends AppCompatActivity implements Navigat
     private NavigationView navigationView;
     private DrawerLayout drawerLayout;
     private ImageView menuView;
-    private TextView nameAdmin;
     private RoomConnection roomConnection;
     private AccountDao accountDao;
+    private ProductDao productDao;
+    private OrderDao orderDao;
+    private CategoryDao categoryDao;
+    private TextView sizeProduct;
+    private TextView sizeCategory;
+    private TextView sizeOrder;
+    private TextView sizeUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,11 +75,21 @@ public class DashboardAdminActivity extends AppCompatActivity implements Navigat
 
         roomConnection = getInstance(this);
         accountDao = roomConnection.accountDao();
+        productDao = roomConnection.productDao();
+        orderDao = roomConnection.orderDao();
+        categoryDao = roomConnection.categoryDao();
+
         Account account = accountDao.getAccountByAccountDetail(accountDetail.getId());
         saveObjectToSharedPreference(getApplicationContext(), "accountAdmin", "infoAccountAdmin", account);
+        sizeProduct = findViewById(R.id.sizeProduct);
+        sizeOrder = findViewById(R.id.sizeOrder);
+        sizeCategory = findViewById(R.id.sizeCategory);
+        sizeUser = findViewById(R.id.sizeAccount);
 
-        nameAdmin = findViewById(R.id.nav_view_fullname);
-        nameAdmin.setText(accountDetail.getName());
+        sizeUser.setText(accountDao.getAll().size() + " account(s)");
+        sizeProduct.setText(productDao.getAll().size() + " product(s)");
+        sizeCategory.setText(categoryDao.getAll().size() + " category(s)");
+        sizeOrder.setText(orderDao.getAll().size() + " order(s)");
 
         navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -175,6 +197,15 @@ public class DashboardAdminActivity extends AppCompatActivity implements Navigat
             startActivity(intent);
         } else if (id == R.id.nav_order) {
             Intent intent = new Intent(this, OrderAdminActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_logout) {
+            // remove shared references
+            SharedPreferences sharedPreferences = getSharedPreferences("mPreferenceAdmin", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.clear();
+            editor.commit();
+
+            Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
         }
 

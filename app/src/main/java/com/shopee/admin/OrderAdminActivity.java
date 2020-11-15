@@ -4,13 +4,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.google.android.material.navigation.NavigationView;
+import com.shopee.LoginActivity;
 import com.shopee.R;
 
 import java.util.ArrayList;
@@ -71,8 +74,6 @@ public class OrderAdminActivity extends AppCompatActivity implements NavigationV
             }
         });
     }
-
-
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
@@ -100,6 +101,15 @@ public class OrderAdminActivity extends AppCompatActivity implements NavigationV
             startActivity(intent);
         } else if (id == R.id.nav_order) {
             Intent intent = new Intent(this, OrderAdminActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_logout) {
+            // remove shared references
+            SharedPreferences sharedPreferences = getSharedPreferences("mPreferenceAdmin", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.clear();
+            editor.commit();
+
+            Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
         }
 

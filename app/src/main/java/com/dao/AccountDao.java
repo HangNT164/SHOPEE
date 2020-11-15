@@ -12,7 +12,7 @@ import java.util.List;
 
 @Dao
 public interface AccountDao {
-    @Query("SELECT * FROM account")
+    @Query("SELECT * FROM account WHERE role_id=2")
     List<Account> getAll();
 
     @Query("SELECT * FROM account WHERE id = :id")
