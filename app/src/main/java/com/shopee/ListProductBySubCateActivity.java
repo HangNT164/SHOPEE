@@ -15,6 +15,7 @@ import com.model.Product;
 import com.model.SubCategory;
 import com.util.Helper;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.jdbc.RoomConnection.getInstance;
@@ -28,6 +29,7 @@ public class ListProductBySubCateActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView recyclerViewSecond;
     private List<String> listImage;
+    private List<String> listImageOdd;
     private List<Product> listEven;
     private List<Product> listOdd;
     private int subCateID;
@@ -50,16 +52,24 @@ public class ListProductBySubCateActivity extends AppCompatActivity {
 
         listProduct = productDao.getProductBySubCate(subCateID);
         imageDao = roomConnection.imageDao();
-//        listImage = imageDao.getAll();
 
         listEven = new Helper().getListProductByIndex(listProduct, 1);
+        listImage = new ArrayList<>();
+        for (Product p : listEven) {
+            listImage.add(imageDao.getImageByProductCoverTrue(p.getId()));
+        }
+
         listOdd = new Helper().getListProductByIndex(listProduct, 2);
+        listImageOdd = new ArrayList<>();
+        for (Product p : listOdd) {
+            listImageOdd.add(imageDao.getImageByProductCoverTrue(p.getId()));
+        }
 
         ListProductsAdapter listProductsAdapter = new ListProductsAdapter(this, listEven, listImage);
         recyclerView.setAdapter(listProductsAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        ListProductsAdapter listProductsAdapterSecond = new ListProductsAdapter(this, listOdd, listImage);
+        ListProductsAdapter listProductsAdapterSecond = new ListProductsAdapter(this, listOdd, listImageOdd);
         recyclerViewSecond.setAdapter(listProductsAdapterSecond);
         recyclerViewSecond.setLayoutManager(new LinearLayoutManager(this));
 

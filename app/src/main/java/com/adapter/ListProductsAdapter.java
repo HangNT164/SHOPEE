@@ -67,9 +67,8 @@ public class ListProductsAdapter extends RecyclerView.Adapter<ListProductsAdapte
         holder.productPrice.setText(formatNumber(price));
         try {
             AssetManager assetManager = context.getAssets();
-            //  System.out.println("sdfd" + assetManager.open(listImage.get(2)));
             InputStream ims = assetManager.open(listImage.get(position));
-            Drawable d = Drawable.createFromStream(ims, listImage.get(listImage.size() - 1));
+            Drawable d = Drawable.createFromStream(ims, null);
             holder.imageView.setImageDrawable(d);
         } catch (IOException ex) {
             return;
@@ -79,7 +78,6 @@ public class ListProductsAdapter extends RecyclerView.Adapter<ListProductsAdapte
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, DetailProductActivity.class);
-                // intent.putExtra("image_url", listProduct.get(position).getProductName());
                 Product product = listProduct.get(position);
                 intent.putExtra("product", product);
                 context.startActivity(intent);

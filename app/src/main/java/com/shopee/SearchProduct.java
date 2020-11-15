@@ -11,10 +11,10 @@ import com.adapter.ListProductsAdapter;
 import com.dao.ImageDao;
 import com.dao.ProductDao;
 import com.jdbc.RoomConnection;
-import com.model.Image;
 import com.model.Product;
 import com.util.Helper;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.jdbc.RoomConnection.getInstance;
@@ -26,7 +26,8 @@ public class SearchProduct extends AppCompatActivity {
     private List<Product> listProduct;
     private RecyclerView recyclerView;
     private RecyclerView recyclerViewSecond;
-    private List<String> listImage;
+    private List<String> listImageEven;
+    private List<String> listImageOdd;
     private List<Product> listEven;
     private List<Product> listOdd;
     private TextView notFound;
@@ -50,16 +51,22 @@ public class SearchProduct extends AppCompatActivity {
         // Check list have product Name
         if (listProduct.size() > 0) {
             imageDao = roomConnection.imageDao();
-//            listImage = imageDao.getAll();
-
-            listEven = new Helper().getListProductByIndex(listProduct, 1);
-            listOdd = new Helper().getListProductByIndex(listProduct, 2);
-
-            ListProductsAdapter listProductsAdapter = new ListProductsAdapter(this, listOdd, listImage);
-            recyclerView.setAdapter(listProductsAdapter);
-            recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-            ListProductsAdapter listProductsAdapterSecond = new ListProductsAdapter(this, listEven, listImage);
+            listEven = new Helper().getListProductByIndex(listProduct, 2);
+            listImageEven = new ArrayList<>();
+            for (Product p : listEven) {
+                listImageEven.add(imageDao.getImageByProductCoverTrue(p.getId()));
+            }
+            listOdd = new Helper().getListProductByIndex(listProduct, 1);
+            if (listOdd.size() > 0) {
+                listImageOdd = new ArrayList<>();
+                for (Product p : listOdd) {
+                    listImageOdd.add(imageDao.getImageByProductCoverTrue(p.getId()));
+                }
+                ListProductsAdapter listProductsAdapter = new ListProductsAdapter(this, listOdd, listImageEven);
+                recyclerView.setAdapter(listProductsAdapter);
+                recyclerView.setLayoutManager(new LinearLayoutManager(this));
+            }
+            ListProductsAdapter listProductsAdapterSecond = new ListProductsAdapter(this, listEven, listImageOdd);
             recyclerViewSecond.setAdapter(listProductsAdapterSecond);
             recyclerViewSecond.setLayoutManager(new LinearLayoutManager(this));
 
@@ -74,13 +81,21 @@ public class SearchProduct extends AppCompatActivity {
 //            listImage = imageDao.getAll();
 
             listEven = new Helper().getListProductByIndex(listProduct, 1);
+            listImageEven = new ArrayList<>();
+            for (Product p : listEven) {
+                listImageEven.add(imageDao.getImageByProductCoverTrue(p.getId()));
+            }
             listOdd = new Helper().getListProductByIndex(listProduct, 2);
+            listImageOdd = new ArrayList<>();
+            for (Product p : listOdd) {
+                listImageOdd.add(imageDao.getImageByProductCoverTrue(p.getId()));
+            }
 
-            ListProductsAdapter listProductsAdapter = new ListProductsAdapter(this, listOdd, listImage);
+            ListProductsAdapter listProductsAdapter = new ListProductsAdapter(this, listOdd, listImageOdd);
             recyclerView.setAdapter(listProductsAdapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-            ListProductsAdapter listProductsAdapterSecond = new ListProductsAdapter(this, listEven, listImage);
+            ListProductsAdapter listProductsAdapterSecond = new ListProductsAdapter(this, listEven, listImageEven);
             recyclerViewSecond.setAdapter(listProductsAdapterSecond);
             recyclerViewSecond.setLayoutManager(new LinearLayoutManager(this));
 
