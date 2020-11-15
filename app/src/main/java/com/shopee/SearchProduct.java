@@ -62,15 +62,14 @@ public class SearchProduct extends AppCompatActivity {
             recyclerViewSecond.setLayoutManager(new LinearLayoutManager(this));
 
             listOdd = new Helper().getListProductByIndex(listProduct, 1);
-            if (listOdd.size() > 0) {
-                listImageOdd = new ArrayList<>();
-                for (Product p : listOdd) {
-                    listImageOdd.add(imageDao.getImageByProductCoverTrue(p.getId()));
-                }
-                ListProductsAdapter listProductsAdapter = new ListProductsAdapter(this, listOdd, listImageOdd);
-                recyclerView.setAdapter(listProductsAdapter);
-                recyclerView.setLayoutManager(new LinearLayoutManager(this));
+            listImageOdd = new ArrayList<>();
+            for (Product p : listOdd) {
+                listImageOdd.add(imageDao.getImageByProductCoverTrue(p.getId()));
             }
+            ListProductsAdapter listProductsAdapter = new ListProductsAdapter(this, listOdd, listImageOdd);
+            recyclerView.setAdapter(listProductsAdapter);
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
 
             // Close scoll of recyclerview
             recyclerView.setNestedScrollingEnabled(false);
