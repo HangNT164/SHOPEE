@@ -66,9 +66,9 @@ public class Helper {
     public List<Product> getListProductByIndex(List<Product> getAll, int index) {
         List<Product> lists = new ArrayList<>();
         for (int i = 0; i < getAll.size(); i++) {
-            if (index == 1 && i % 2 == 0) {
+            if (index == 1 && i % 2 == 0) { // case even
                 lists.add(getAll.get(i));
-            } else if (index == 2 && i % 2 != 0) {
+            } else if (index == 2 && i % 2 != 0) { // case odd
                 lists.add(getAll.get(i));
             }
         }

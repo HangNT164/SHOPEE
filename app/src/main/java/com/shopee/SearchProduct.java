@@ -51,24 +51,26 @@ public class SearchProduct extends AppCompatActivity {
         // Check list have product Name
         if (listProduct.size() > 0) {
             imageDao = roomConnection.imageDao();
+
             listEven = new Helper().getListProductByIndex(listProduct, 2);
             listImageEven = new ArrayList<>();
             for (Product p : listEven) {
                 listImageEven.add(imageDao.getImageByProductCoverTrue(p.getId()));
             }
+            ListProductsAdapter listProductsAdapterSecond = new ListProductsAdapter(this, listEven, listImageEven);
+            recyclerViewSecond.setAdapter(listProductsAdapterSecond);
+            recyclerViewSecond.setLayoutManager(new LinearLayoutManager(this));
+
             listOdd = new Helper().getListProductByIndex(listProduct, 1);
             if (listOdd.size() > 0) {
                 listImageOdd = new ArrayList<>();
                 for (Product p : listOdd) {
                     listImageOdd.add(imageDao.getImageByProductCoverTrue(p.getId()));
                 }
-                ListProductsAdapter listProductsAdapter = new ListProductsAdapter(this, listOdd, listImageEven);
+                ListProductsAdapter listProductsAdapter = new ListProductsAdapter(this, listOdd, listImageOdd);
                 recyclerView.setAdapter(listProductsAdapter);
                 recyclerView.setLayoutManager(new LinearLayoutManager(this));
             }
-            ListProductsAdapter listProductsAdapterSecond = new ListProductsAdapter(this, listEven, listImageOdd);
-            recyclerViewSecond.setAdapter(listProductsAdapterSecond);
-            recyclerViewSecond.setLayoutManager(new LinearLayoutManager(this));
 
             // Close scoll of recyclerview
             recyclerView.setNestedScrollingEnabled(false);
@@ -78,7 +80,6 @@ public class SearchProduct extends AppCompatActivity {
             productOther.setText("Product other");
             listProduct = productDao.getAll();
             imageDao = roomConnection.imageDao();
-//            listImage = imageDao.getAll();
 
             listEven = new Helper().getListProductByIndex(listProduct, 1);
             listImageEven = new ArrayList<>();
