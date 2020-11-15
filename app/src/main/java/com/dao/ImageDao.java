@@ -12,8 +12,17 @@ import java.util.List;
 
 @Dao
 public interface ImageDao {
+
     @Query("SELECT * FROM image")
     List<Image> getAll();
+
+    @Query("select image_link from image,product where image.product_id= product.id and product.id=:productID and cover=1")
+    String getImageByProductCoverTrue(int productID);
+
+    @Query("select image.* from image,product\n" +
+            "where image.product_id= product.id\n" +
+            "and product.id=:productID and cover=0")
+    List<Image> getImageByProductCoverFalse(int productID);
 
     @Query("SELECT * FROM image WHERE id = :id")
     Image getOne(int id);

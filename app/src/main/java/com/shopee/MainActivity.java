@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -16,18 +15,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.adapter.CategoryMainAdapter;
 import com.adapter.ListProductsAdapter;
 import com.dao.CategoryDao;
+import com.dao.ImageCategoryDao;
 import com.dao.ImageDao;
 import com.dao.ProductDao;
 import com.jdbc.RoomConnection;
 import com.model.Category;
-import com.model.Image;
-import com.model.ImageCategory;
 import com.model.Product;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import static com.jdbc.RoomConnection.getInstance;
 import static com.util.Helper.loadLocale;
@@ -46,13 +44,16 @@ public class MainActivity extends AppCompatActivity {
     private ProductDao productDao;
     private ImageDao imageDao;
     private CategoryDao categoryDao;
+    private ImageCategoryDao imageCategoryDao;
 
     private List<Product> listProductHot;
     private List<Product> listProductNew;
     private List<Product> listProduct;
     private List<Category> listCate;
-    private List<Image> listImage;
-    private List<ImageCategory> listImageCate;
+    private List<String> listImageCate;
+    private List<String> images;
+    private List<String> imagesHot;
+    private List<String> imagesNew;
 
     private RecyclerView recyclerView;
     private RecyclerView recyclerViewHot;
@@ -128,22 +129,38 @@ public class MainActivity extends AppCompatActivity {
         roomConnection = getInstance(getApplicationContext());
         productDao = roomConnection.productDao();
         imageDao = roomConnection.imageDao();
-        listImage = imageDao.getAll();
         categoryDao = roomConnection.categoryDao();
+        imageCategoryDao = roomConnection.imageCategoryDao();
 
         // New product
         listProductNew = productDao.getNewProductMain();
-        loadDataForRecyclerView(recyclerView, listProductNew, layoutManagerNew, listImage);
+        imagesNew = new ArrayList<>();
+        for (Product p : listProductNew) {
+            imagesNew.add(imageDao.getImageByProductCoverTrue(p.getId()));
+        }
+        loadDataForRecyclerView(recyclerView, listProductNew, layoutManagerNew, imagesNew);
 
         // Hot product
         listProductHot = productDao.getHotProductMain();
-        loadDataForRecyclerView(recyclerViewHot, listProductHot, layoutManagerHot, listImage);
+        imagesHot = new ArrayList<>();
+        for (Product p : listProductHot) {
+            imagesHot.add(imageDao.getImageByProductCoverTrue(p.getId()));
+        }
+        loadDataForRecyclerView(recyclerViewHot, listProductHot, layoutManagerHot, imagesHot);
 
         // All Product
         listProduct = productDao.getAllMain();
-        loadDataForRecyclerView(recyclerViewList, listProduct, layoutManager, listImage);
+        images = new ArrayList<>();
+        for (Product p : listProduct) {
+            images.add(imageDao.getImageByProductCoverTrue(p.getId()));
+        }
+        loadDataForRecyclerView(recyclerViewList, listProduct, layoutManager, images);
 
         listCate = categoryDao.getAll();
+        listImageCate = new ArrayList<>();
+        for (Category p : listCate) {
+            listImageCate.add(imageCategoryDao.getImageByProductCoverTrue(p.getId()));
+        }
         if (listCate.size() > 0) {
             CategoryMainAdapter listProductAllAdapter = new CategoryMainAdapter(this, listCate, listImageCate);
             recyclerViewCate.setAdapter(listProductAllAdapter);
@@ -180,7 +197,7 @@ public class MainActivity extends AppCompatActivity {
      * @param layoutManager: layout
      * @param listImages:    list image want to list
      */
-    private void loadDataForRecyclerView(RecyclerView recyclerView, List<Product> listProduct, LinearLayoutManager layoutManager, List<Image> listImages) {
+    private void loadDataForRecyclerView(RecyclerView recyclerView, List<Product> listProduct, LinearLayoutManager layoutManager, List<String> listImages) {
         if (listProduct.size() > 0) {
             ListProductsAdapter listProductAllAdapter = new ListProductsAdapter(this, listProduct, listImages);
             recyclerView.setAdapter(listProductAllAdapter);

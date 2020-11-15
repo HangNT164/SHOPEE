@@ -2,6 +2,8 @@ package com.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.AssetManager;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,19 +14,20 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.model.ImageSubCate;
 import com.model.SubCategory;
 import com.shopee.ListProductBySubCateActivity;
 import com.shopee.R;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 public class ListSubCateAdapter extends RecyclerView.Adapter<ListSubCateAdapter.MyViewHolder> {
     private Context context;
     private List<SubCategory> listCate;
-    private List<ImageSubCate> listImage;
+    private List<String> listImage;
 
-    public ListSubCateAdapter(Context context, List<SubCategory> listCate, List<ImageSubCate> listImage) {
+    public ListSubCateAdapter(Context context, List<SubCategory> listCate, List<String> listImage) {
         this.context = context;
         this.listCate = listCate;
         this.listImage = listImage;
@@ -54,7 +57,14 @@ public class ListSubCateAdapter extends RecyclerView.Adapter<ListSubCateAdapter.
     @Override
     public void onBindViewHolder(@NonNull ListSubCateAdapter.MyViewHolder holder, final int position) {
         holder.categoryName.setText(listCate.get(position).getSubCategoryName());
-        //  holder.imageView.setImageResource(listImage.get(position).getImageLink());
+        try {
+            AssetManager assetManager = context.getAssets();
+            InputStream ims = assetManager.open(listImage.get(position));
+            Drawable d = Drawable.createFromStream(ims, listImage.get(listImage.size() - 1));
+            holder.imageView.setImageDrawable(d);
+        } catch (IOException ex) {
+            return;
+        }
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

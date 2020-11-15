@@ -27,7 +27,7 @@ public class ListProductBySubCateActivity extends AppCompatActivity {
     private List<Product> listProduct;
     private RecyclerView recyclerView;
     private RecyclerView recyclerViewSecond;
-    private List<Image> listImage;
+    private List<String> listImage;
     private List<Product> listEven;
     private List<Product> listOdd;
     private int subCateID;
@@ -50,7 +50,7 @@ public class ListProductBySubCateActivity extends AppCompatActivity {
 
         listProduct = productDao.getProductBySubCate(subCateID);
         imageDao = roomConnection.imageDao();
-        listImage = imageDao.getAll();
+//        listImage = imageDao.getAll();
 
         listEven = new Helper().getListProductByIndex(listProduct, 1);
         listOdd = new Helper().getListProductByIndex(listProduct, 2);

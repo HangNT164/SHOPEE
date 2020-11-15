@@ -15,9 +15,9 @@ import com.dao.CategoryDao;
 import com.dao.ImageCategoryDao;
 import com.jdbc.RoomConnection;
 import com.model.Category;
-import com.model.ImageCategory;
 import com.shopee.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.facebook.FacebookSdk.getApplicationContext;
@@ -28,7 +28,7 @@ public class CategoryFragement extends Fragment {
     private CategoryDao categoryDao;
     private ImageCategoryDao imageCategoryDao;
     private List<Category> listCate;
-    private List<ImageCategory> listImageCate;
+    private List<String> listImageCate;
     private RecyclerView recyclerView;
 
     public CategoryFragement() {
@@ -47,6 +47,10 @@ public class CategoryFragement extends Fragment {
         recyclerView = view.findViewById(R.id.listCategory);
 
         if (listCate.size() > 0) {
+            listImageCate = new ArrayList<>();
+            for (Category p : listCate) {
+                listImageCate.add(imageCategoryDao.getImageByProductCoverTrue(p.getId()));
+            }
             ListCateAdapter listCateAdapter = new ListCateAdapter(getContext(), listCate, listImageCate);
             recyclerView.setAdapter(listCateAdapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

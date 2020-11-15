@@ -26,7 +26,7 @@ public class SearchProduct extends AppCompatActivity {
     private List<Product> listProduct;
     private RecyclerView recyclerView;
     private RecyclerView recyclerViewSecond;
-    private List<Image> listImage;
+    private List<String> listImage;
     private List<Product> listEven;
     private List<Product> listOdd;
     private TextView notFound;
@@ -50,7 +50,7 @@ public class SearchProduct extends AppCompatActivity {
         // Check list have product Name
         if (listProduct.size() > 0) {
             imageDao = roomConnection.imageDao();
-            listImage = imageDao.getAll();
+//            listImage = imageDao.getAll();
 
             listEven = new Helper().getListProductByIndex(listProduct, 1);
             listOdd = new Helper().getListProductByIndex(listProduct, 2);
@@ -71,7 +71,7 @@ public class SearchProduct extends AppCompatActivity {
             productOther.setText("Product other");
             listProduct = productDao.getAll();
             imageDao = roomConnection.imageDao();
-            listImage = imageDao.getAll();
+//            listImage = imageDao.getAll();
 
             listEven = new Helper().getListProductByIndex(listProduct, 1);
             listOdd = new Helper().getListProductByIndex(listProduct, 2);
