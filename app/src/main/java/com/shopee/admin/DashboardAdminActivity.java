@@ -6,11 +6,13 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.dao.AccountDao;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.charts.RadarChart;
@@ -27,10 +29,17 @@ import com.github.mikephil.charting.data.RadarEntry;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.android.material.navigation.NavigationView;
+import com.jdbc.RoomConnection;
+import com.model.Account;
+import com.model.AccountDetail;
 import com.shopee.R;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.jdbc.RoomConnection.getInstance;
+import static com.util.Helper.getSavedObjectFromPreference;
+import static com.util.Helper.saveObjectToSharedPreference;
 
 public class DashboardAdminActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private BarChart barChart;
@@ -42,11 +51,23 @@ public class DashboardAdminActivity extends AppCompatActivity implements Navigat
     private NavigationView navigationView;
     private DrawerLayout drawerLayout;
     private ImageView menuView;
+    private TextView nameAdmin;
+    private RoomConnection roomConnection;
+    private AccountDao accountDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard_admin);
+        AccountDetail accountDetail = getSavedObjectFromPreference(getApplicationContext(), "mPreferenceAdmin", "accountAdmin", AccountDetail.class);
+
+        roomConnection = getInstance(this);
+        accountDao = roomConnection.accountDao();
+        Account account = accountDao.getAccountByAccountDetail(accountDetail.getId());
+        saveObjectToSharedPreference(getApplicationContext(), "accountAdmin", "infoAccountAdmin", account);
+
+        nameAdmin = findViewById(R.id.nav_view_fullname);
+        nameAdmin.setText(accountDetail.getName());
 
         navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -124,6 +145,7 @@ public class DashboardAdminActivity extends AppCompatActivity implements Navigat
                 drawerLayout.openDrawer(GravityCompat.START);
             }
         });
+
     }
 
     @Override

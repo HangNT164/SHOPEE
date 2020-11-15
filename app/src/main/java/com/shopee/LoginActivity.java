@@ -17,7 +17,6 @@ import com.jdbc.RoomConnection;
 import com.model.Account;
 import com.model.AccountDetail;
 import com.model.ImageAvatar;
-import com.shopee.admin.AccountAdminActivity;
 import com.shopee.admin.DashboardAdminActivity;
 
 import static com.jdbc.RoomConnection.getInstance;
@@ -73,6 +72,15 @@ public class LoginActivity extends AppCompatActivity {
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             startActivity(intent);
                         } else { // admin
+                            saveObjectToSharedPreference(getApplicationContext(), "mPreferenceAdmin", "accountAdmin", accountDetail);
+
+//                            // get image
+//                            ImageAvatar imageAvatar = imageAvatarDao.getOneByAccountDetail(accountDetail.getId());
+//                            ImageAvatar imageBia = imageAvatarDao.getOneByAccountDetailCoverFalse(accountDetail.getId());
+
+                            // save image
+//                            saveObjectToSharedPreference(getApplicationContext(), "imageAvatarAdmin", "avatarAdmin", imageAvatar);
+//                            saveObjectToSharedPreference(getApplicationContext(), "imageBiaAdmin", "biaAdmin", imageBia);
                             Intent intent = new Intent(LoginActivity.this, DashboardAdminActivity.class);
                             startActivity(intent);
                         }
