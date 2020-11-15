@@ -17,14 +17,17 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.SHOPEE">
-        <activity android:name=".admin.SettingAdminActivity"></activity>
+        <activity android:name=".admin.ChangePasswordAdminActivity"></activity>
+        <activity android:name=".admin.ChangeAdressAdminActivity" />
+        <activity android:name=".admin.ChangePhoneAdminActivity" />
+        <activity android:name=".admin.ChangeNamAdminActivity" />
+        <activity android:name=".admin.SettingAdminActivity" />
         <activity android:name=".admin.ProductAdminActivity" />
         <activity android:name=".admin.OrderAdminActivity" />
         <activity android:name=".admin.MessageAdminActivity" />
         <activity android:name=".admin.DashboardAdminActivity" />
         <activity android:name=".admin.CategoryAdminActivity" />
         <activity android:name=".admin.AccountAdminActivity" />
-
         <activity android:name=".SearchProduct" />
         <activity android:name=".ListProductBySubCateActivity" />
         <activity android:name=".VerifyPhoneActivity" />
