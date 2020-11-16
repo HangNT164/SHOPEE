@@ -3,71 +3,63 @@ package com.shopee.admin;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.dao.ImageDao;
+import com.dao.ProductDao;
+import com.dao.StatusDao;
 import com.google.android.material.navigation.NavigationView;
+import com.jdbc.RoomConnection;
+import com.model.Product;
+import com.model.Status;
 import com.shopee.LoginActivity;
 import com.shopee.R;
 
-import java.util.ArrayList;
-import java.util.Random;
+import java.util.List;
 
-import ir.androidexception.datatable.DataTable;
-import ir.androidexception.datatable.model.DataTableHeader;
-import ir.androidexception.datatable.model.DataTableRow;
+import static com.jdbc.RoomConnection.getInstance;
 
 public class ProductAdminActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    private DataTable dataTable;
-    private DataTableRow row;
     private NavigationView navigationView;
     private DrawerLayout drawerLayout;
     private ImageView menuView;
+    private RoomConnection roomConnection;
+    private ImageDao imageDao;
+    private ProductDao productDao;
+    private StatusDao statusDao;
+    private List<Product> listProducts;
+    private TableLayout tableLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_admin);
-        dataTable = findViewById(R.id.data_table);
-
-        DataTableHeader header = new DataTableHeader.Builder()
-                .item("field name 1", 3)
-                .item("field name 2", 4)
-                .item("field name 3", 5)
-                .item("field name 4", 6)
-                .build();
-
-        ArrayList<DataTableRow> rows = new ArrayList<>();
-
-        // define 200 fake rows for table
-        for (int i = 0; i < 10; i++) {
-            Random r = new Random();
-            int random = r.nextInt(i + 1);
-            int randomDiscount = r.nextInt(20);
-            row = new DataTableRow.Builder()
-                    .value("Product #" + i)
-                    .value(String.valueOf(random))
-                    .value(String.valueOf(random * 1000).concat("$"))
-                    .value(String.valueOf(randomDiscount).concat("%"))
-                    .build();
-            rows.add(row);
-        }
-
-        dataTable.setHeader(header);
-        dataTable.setRows(rows);
-        dataTable.inflate(getApplicationContext());
-
+        tableLayout = findViewById(R.id.tableLayoutCate);
         navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         drawerLayout = findViewById(R.id.drawer_layout);
         menuView = findViewById(R.id.iconMenu);
 
+        roomConnection = getInstance(this);
+        productDao = roomConnection.productDao();
+        imageDao = roomConnection.imageDao();
+        statusDao = roomConnection.statusDao();
+        listProducts = productDao.getAll();
+
+        createColumns();
+        fillData();
         menuView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,6 +67,7 @@ public class ProductAdminActivity extends AppCompatActivity implements Navigatio
             }
         });
     }
+
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
@@ -117,5 +110,131 @@ public class ProductAdminActivity extends AppCompatActivity implements Navigatio
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void createColumns() {
+        TableRow tableRow = new TableRow(this);
+        tableRow.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
+
+        // id column
+        TextView textViewID = new TextView(this);
+        textViewID.setText("No");
+        textViewID.setTextColor(Color.BLACK);
+        textViewID.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
+        textViewID.setPadding(5, 5, 5, 0);
+        tableRow.addView(textViewID);
+
+        // Name column
+        TextView textViewName = new TextView(this);
+        textViewName.setText("Product Name");
+        textViewName.setTextColor(Color.BLACK);
+        textViewName.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
+        textViewName.setPadding(5, 5, 5, 0);
+        tableRow.addView(textViewName);
+
+        // Address column
+        TextView textViewAddress = new TextView(this);
+        textViewAddress.setText("Quantity");
+        textViewAddress.setTextColor(Color.BLACK);
+        textViewAddress.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
+        textViewAddress.setPadding(5, 5, 5, 0);
+        tableRow.addView(textViewAddress);
+
+        // Address column
+        TextView status = new TextView(this);
+        status.setText("Status");
+        status.setTextColor(Color.BLACK);
+        status.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
+        status.setPadding(5, 5, 5, 0);
+        tableRow.addView(status);
+        tableLayout.addView(tableRow, new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
+
+        // Add divider
+        tableRow = new TableRow(this);
+        tableRow.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
+
+        // id column
+        textViewID = new TextView(this);
+        textViewID.setText("------");
+        textViewID.setTextColor(Color.BLACK);
+        textViewID.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
+        textViewID.setPadding(5, 5, 5, 0);
+        tableRow.addView(textViewID);
+
+        // Name column
+        textViewName = new TextView(this);
+        textViewName.setText("-------------------");
+        textViewName.setTextColor(Color.BLACK);
+        textViewName.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
+        textViewName.setPadding(5, 5, 5, 0);
+        tableRow.addView(textViewName);
+
+        // Address column
+        textViewAddress = new TextView(this);
+        textViewAddress.setText("------------------");
+        textViewAddress.setTextColor(Color.BLACK);
+        textViewAddress.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
+        textViewAddress.setPadding(5, 5, 5, 0);
+        tableRow.addView(textViewAddress);
+
+        // Address column
+        status = new TextView(this);
+        status.setText("------------------");
+        status.setTextColor(Color.BLACK);
+        status.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
+        status.setPadding(5, 5, 5, 0);
+        tableRow.addView(status);
+        tableLayout.addView(tableRow, new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
+    }
+
+    private void fillData() {
+        for (int i = 0; i < listProducts.size(); i++) {
+            Status status = statusDao.getOne(listProducts.get(i).getId());
+            TableRow tableRow = new TableRow(this);
+            tableRow.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
+            tableRow.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    TableRow currentRow = (TableRow) v;
+                    TextView textViewID = (TextView) currentRow.getChildAt(0);
+                    Product product = (Product) listProducts.get(Integer.valueOf(textViewID.getText().toString()));
+                    Intent intent = new Intent(ProductAdminActivity.this, DetailProductAdminActivity.class);
+                    intent.putExtra("product", product);
+                    intent.putExtra("status", status);
+                    startActivity(intent);
+                }
+            });
+            // id column
+            TextView textViewID = new TextView(this);
+            textViewID.setText(String.valueOf(i + 1));
+            textViewID.setTextColor(Color.BLACK);
+            textViewID.setTypeface(Typeface.DEFAULT, Typeface.NORMAL);
+            textViewID.setPadding(5, 5, 5, 0);
+            tableRow.addView(textViewID);
+
+            // Name column
+            TextView textViewName = new TextView(this);
+            textViewName.setText(listProducts.get(i).getProductName());
+            textViewName.setTextColor(Color.BLACK);
+            textViewName.setTypeface(Typeface.DEFAULT, Typeface.NORMAL);
+            textViewName.setPadding(5, 5, 5, 0);
+            tableRow.addView(textViewName);
+
+            // Address column
+            TextView textViewAddress = new TextView(this);
+            textViewAddress.setText(listProducts.get(i).getQuantity());
+            textViewAddress.setTextColor(Color.BLACK);
+            textViewAddress.setTypeface(Typeface.DEFAULT, Typeface.NORMAL);
+            textViewAddress.setPadding(5, 5, 5, 0);
+            tableRow.addView(textViewAddress);
+            // Address column
+            TextView statusTxt = new TextView(this);
+            statusTxt.setText(status.getStatusName());
+            statusTxt.setTextColor(Color.BLACK);
+            statusTxt.setTypeface(Typeface.DEFAULT, Typeface.NORMAL);
+            statusTxt.setPadding(5, 5, 5, 0);
+            tableRow.addView(statusTxt);
+            tableLayout.addView(tableRow, new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
+        }
     }
 }
