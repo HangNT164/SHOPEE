@@ -134,4 +134,11 @@
     <string name="addSubCate">Add SubCate</string>
     <string name="addCategory">Add Category</string>
     <string name="menu_order">Order</string>
+    <string name="detailAccountAdmin">DetailAccount</string>
+    <string name="accountName">Account Name</string>
+    <string name="deleteAccount">Delete Account</string>
+    <string name="updateAccount">Change Role</string>
+    <string name="addressAccount">Address</string>
+    <string name="roleAccount">Role</string>
+    <string name="phoneNumber">Phone</string>
 </resources>

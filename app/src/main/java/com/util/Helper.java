@@ -93,8 +93,9 @@ public class Helper {
         } else if (Locale.getDefault().toString().equalsIgnoreCase("en")) {
             return "$ " + NumberFormat.getNumberInstance(Locale.getDefault()).format(number / 23);
         }
-        return "";
+        return "$ " + NumberFormat.getNumberInstance(Locale.getDefault()).format(number / 23);
     }
+
     public List<String> getImageSubCateByIndex(List<String> getAll, int index) {
         List<String> lists = new ArrayList<>();
         for (int i = 0; i < getAll.size(); i++) {

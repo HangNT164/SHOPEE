@@ -3,12 +3,15 @@ package com.shopee.admin;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TableLayout;
 import android.widget.TableRow;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
@@ -19,23 +22,17 @@ import com.dao.AccountDetailDao;
 import com.dao.RoleDao;
 import com.google.android.material.navigation.NavigationView;
 import com.jdbc.RoomConnection;
+import com.model.Account;
 import com.model.AccountDetail;
 import com.model.Role;
 import com.shopee.LoginActivity;
 import com.shopee.R;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import ir.androidexception.datatable.DataTable;
-import ir.androidexception.datatable.model.DataTableHeader;
-import ir.androidexception.datatable.model.DataTableRow;
 
 import static com.jdbc.RoomConnection.getInstance;
 
 public class AccountAdminActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    private DataTable dataTable;
-    private DataTableRow row;
     private NavigationView navigationView;
     private DrawerLayout drawerLayout;
     private ImageView menuView;
@@ -44,54 +41,26 @@ public class AccountAdminActivity extends AppCompatActivity implements Navigatio
     private AccountDao accountDao;
     private List<AccountDetail> listAccountDetail;
     private RoleDao roleDao;
+    private TableLayout tableLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_admin);
-        dataTable = findViewById(R.id.data_table_account);
+        tableLayout = findViewById(R.id.tableLayoutAccount);
+        navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+        drawerLayout = findViewById(R.id.drawer_layout);
+        menuView = findViewById(R.id.iconMenu);
 
         roomConnection = getInstance(this);
         accountDetailDao = roomConnection.accountDetailDao();
         listAccountDetail = accountDetailDao.getAll();
         accountDao = roomConnection.accountDao();
         roleDao = roomConnection.roleDao();
-        DataTableHeader header = new DataTableHeader.Builder()
-                .item("No", 1)
-                .item("Name", 3)
-                .item("Address", 5)
-                .item("Role", 3)
-                .build();
 
-        ArrayList<DataTableRow> rows = new ArrayList<>();
-
-        for (int i = 0; i < listAccountDetail.size(); i++) {
-            Role role = roleDao.getRoleByAccountDetial(listAccountDetail.get(i).getId());
-            row = new DataTableRow.Builder()
-                    .value(String.valueOf(i + 1))
-                    .value(listAccountDetail.get(i).getName())
-                    .value(listAccountDetail.get(i).getAddress())
-                    .value(role.getRoleName())
-                    .build();
-            rows.add(row);
-            TableRow row = (TableRow) dataTable.getChildAt(i);
-            if (row != null) {
-                row.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Toast.makeText(AccountAdminActivity.this, role.getRoleName(), Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }
-        }
-        dataTable.setHeader(header);
-        dataTable.setRows(rows);
-        dataTable.inflate(getApplicationContext());
-
-        navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-        drawerLayout = findViewById(R.id.drawer_layout);
-        menuView = findViewById(R.id.iconMenu);
+        createColumns();
+        fillData();
 
         menuView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,7 +68,6 @@ public class AccountAdminActivity extends AppCompatActivity implements Navigatio
                 drawerLayout.openDrawer(GravityCompat.START);
             }
         });
-
 
     }
 
@@ -145,5 +113,144 @@ public class AccountAdminActivity extends AppCompatActivity implements Navigatio
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void createColumns() {
+        TableRow tableRow = new TableRow(this);
+        tableRow.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
+
+        // id column
+        TextView textViewID = new TextView(this);
+        textViewID.setText("No");
+        textViewID.setTextColor(Color.BLACK);
+        textViewID.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
+        textViewID.setPadding(5, 5, 5, 0);
+        tableRow.addView(textViewID);
+
+        // Name column
+        TextView textViewName = new TextView(this);
+        textViewName.setText("Name");
+        textViewName.setTextColor(Color.BLACK);
+        textViewName.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
+        textViewName.setPadding(5, 5, 5, 0);
+        tableRow.addView(textViewName);
+
+        // Address column
+        TextView textViewAddress = new TextView(this);
+        textViewAddress.setText("Address");
+        textViewAddress.setTextColor(Color.BLACK);
+        textViewAddress.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
+        textViewAddress.setPadding(5, 5, 5, 0);
+        tableRow.addView(textViewAddress);
+
+        // Delete column
+        TextView textViewDelete = new TextView(this);
+        textViewDelete.setText("Role");
+        textViewDelete.setTextColor(Color.BLACK);
+        textViewDelete.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
+        textViewDelete.setPadding(5, 5, 5, 0);
+        tableRow.addView(textViewDelete);
+
+        tableLayout.addView(tableRow, new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
+
+        // Add divider
+        tableRow = new TableRow(this);
+        tableRow.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
+
+        // id column
+        textViewID = new TextView(this);
+        textViewID.setText("------");
+        textViewID.setTextColor(Color.BLACK);
+        textViewID.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
+        textViewID.setPadding(5, 5, 5, 0);
+        tableRow.addView(textViewID);
+
+        // Name column
+        textViewName = new TextView(this);
+        textViewName.setText("-------------------");
+        textViewName.setTextColor(Color.BLACK);
+        textViewName.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
+        textViewName.setPadding(5, 5, 5, 0);
+        tableRow.addView(textViewName);
+
+        // Address column
+        textViewAddress = new TextView(this);
+        textViewAddress.setText("------------------");
+        textViewAddress.setTextColor(Color.BLACK);
+        textViewAddress.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
+        textViewAddress.setPadding(5, 5, 5, 0);
+        tableRow.addView(textViewAddress);
+
+        // Role column
+        textViewDelete = new TextView(this);
+        textViewDelete.setText("-----------");
+        textViewDelete.setTextColor(Color.BLACK);
+        textViewDelete.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
+        textViewDelete.setPadding(5, 5, 5, 0);
+        tableRow.addView(textViewDelete);
+
+        tableLayout.addView(tableRow, new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
+    }
+
+    private void fillData() {
+        for (int i = 0; i < listAccountDetail.size(); i++) {
+            Role role = roleDao.getRoleByAccountDetial(listAccountDetail.get(i).getId());
+            TableRow tableRow = new TableRow(this);
+            tableRow.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
+            tableRow.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    TableRow currentRow = (TableRow) v;
+                    TextView textViewID = (TextView) currentRow.getChildAt(0);
+                    AccountDetail accountDetail = (AccountDetail) listAccountDetail.get(Integer.valueOf(textViewID.getText().toString()));
+                    Account account = accountDao.getAccountByAccountDetail(accountDetail.getId());
+                    Intent intent = new Intent(AccountAdminActivity.this, DetailAccountAdminActivity.class);
+                    intent.putExtra("accountDetail", accountDetail);
+                    intent.putExtra("account", account);
+                    intent.putExtra("role", role);
+                    startActivity(intent);
+                }
+            });
+            // id column
+            TextView textViewID = new TextView(this);
+            textViewID.setText(String.valueOf(i + 1));
+            textViewID.setTextColor(Color.BLACK);
+            textViewID.setTypeface(Typeface.DEFAULT, Typeface.NORMAL);
+            textViewID.setPadding(5, 5, 5, 0);
+            tableRow.addView(textViewID);
+
+            // Name column
+            TextView textViewName = new TextView(this);
+            textViewName.setText(listAccountDetail.get(i).getName());
+            textViewName.setTextColor(Color.BLACK);
+            textViewName.setTypeface(Typeface.DEFAULT, Typeface.NORMAL);
+            textViewName.setPadding(5, 5, 5, 0);
+            tableRow.addView(textViewName);
+
+            // Address column
+            TextView textViewAddress = new TextView(this);
+            textViewAddress.setText(listAccountDetail.get(i).getAddress());
+            textViewAddress.setTextColor(Color.BLACK);
+            textViewAddress.setTypeface(Typeface.DEFAULT, Typeface.NORMAL);
+            textViewAddress.setPadding(5, 5, 5, 0);
+            tableRow.addView(textViewAddress);
+
+            // Role column
+            TextView textViewRole = new TextView(this);
+            textViewRole.setText(role.getRoleName());
+            textViewRole.setTextColor(Color.BLACK);
+            textViewRole.setTypeface(Typeface.DEFAULT, Typeface.NORMAL);
+            textViewRole.setPadding(5, 5, 5, 0);
+            tableRow.addView(textViewRole);
+
+            tableLayout.addView(tableRow, new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // load data again
+
     }
 }
