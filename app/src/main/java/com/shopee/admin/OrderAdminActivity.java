@@ -1,71 +1,72 @@
 package com.shopee.admin;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+
+import com.dao.AccountDetailDao;
+import com.dao.CustomInfoDao;
+import com.dao.OrderDao;
+import com.dao.StatusOrderDao;
 import com.google.android.material.navigation.NavigationView;
+import com.jdbc.RoomConnection;
+import com.model.CustomInfo;
+import com.model.Order;
+import com.model.StatusOrder;
 import com.shopee.LoginActivity;
 import com.shopee.R;
 
-import java.util.ArrayList;
-import java.util.Random;
+import java.text.NumberFormat;
+import java.util.List;
+import java.util.Locale;
 
-import ir.androidexception.datatable.DataTable;
-import ir.androidexception.datatable.model.DataTableHeader;
-import ir.androidexception.datatable.model.DataTableRow;
+import static com.jdbc.RoomConnection.getInstance;
 
 public class OrderAdminActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    private DataTable dataTable;
-    private DataTableRow row;
     private NavigationView navigationView;
     private DrawerLayout drawerLayout;
     private ImageView menuView;
+    private TableLayout tableLayout;
+    private RoomConnection roomConnection;
+    private CustomInfoDao customInfoDao;
+    private AccountDetailDao accountDetailDao;
+    private StatusOrderDao statusOrderDao;
+    private OrderDao orderDao;
+    private List<Order> listOrder;
 
     @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_admin);
-        dataTable = findViewById(R.id.data_table_order);
 
-        DataTableHeader header = new DataTableHeader.Builder()
-                .item("field name 1", 3)
-                .item("field name 2", 4)
-                .item("field name 3", 5)
-                .item("field name 4", 6)
-                .build();
-
-        ArrayList<DataTableRow> rows = new ArrayList<>();
-
-        // define 200 fake rows for table
-        for (int i = 0; i < 10; i++) {
-            Random r = new Random();
-            int random = r.nextInt(i + 1);
-            int randomDiscount = r.nextInt(20);
-            row = new DataTableRow.Builder()
-                    .value("Product #" + i)
-                    .value(String.valueOf(random))
-                    .value(String.valueOf(random * 1000).concat("$"))
-                    .value(String.valueOf(randomDiscount).concat("%"))
-                    .build();
-            rows.add(row);
-        }
-
-        dataTable.setHeader(header);
-        dataTable.setRows(rows);
-        dataTable.inflate(getApplicationContext());
+        tableLayout = findViewById(R.id.tableLayoutOrder);
         navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         drawerLayout = findViewById(R.id.drawer_layout);
         menuView = findViewById(R.id.iconMenu);
+        roomConnection = getInstance(this);
+        accountDetailDao = roomConnection.accountDetailDao();
+        customInfoDao = roomConnection.customInfoDao();
+        statusOrderDao = roomConnection.statusOrderDao();
+        orderDao = roomConnection.orderDao();
+        listOrder = orderDao.getAll();
+
+        createColumns();
+        fillData();
 
         menuView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,6 +75,7 @@ public class OrderAdminActivity extends AppCompatActivity implements NavigationV
             }
         });
     }
+
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
@@ -117,4 +119,163 @@ public class OrderAdminActivity extends AppCompatActivity implements NavigationV
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    private void createColumns() {
+        TableRow tableRow = new TableRow(this);
+        tableRow.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
+
+        // id column
+        TextView textViewID = new TextView(this);
+        textViewID.setText("No");
+        textViewID.setTextColor(Color.BLACK);
+        textViewID.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
+        textViewID.setPadding(5, 5, 5, 0);
+        tableRow.addView(textViewID);
+
+        // Name column
+        TextView textViewName = new TextView(this);
+        textViewName.setText("Customer Name");
+        textViewName.setTextColor(Color.BLACK);
+        textViewName.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
+        textViewName.setPadding(5, 5, 5, 0);
+        tableRow.addView(textViewName);
+
+        // Address column
+        TextView textViewAddress = new TextView(this);
+        textViewAddress.setText("Address");
+        textViewAddress.setTextColor(Color.BLACK);
+        textViewAddress.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
+        textViewAddress.setPadding(5, 5, 5, 0);
+        tableRow.addView(textViewAddress);
+
+        // Delete column
+        TextView textViewDelete = new TextView(this);
+        textViewDelete.setText("Total Price");
+        textViewDelete.setTextColor(Color.BLACK);
+        textViewDelete.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
+        textViewDelete.setPadding(5, 5, 5, 0);
+        tableRow.addView(textViewDelete);
+
+        // Delete column
+        TextView textViewStatus = new TextView(this);
+        textViewStatus.setText("Status");
+        textViewStatus.setTextColor(Color.BLACK);
+        textViewStatus.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
+        textViewStatus.setPadding(5, 5, 5, 0);
+        tableRow.addView(textViewStatus);
+
+        tableLayout.addView(tableRow, new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
+
+        // Add divider
+        tableRow = new TableRow(this);
+        tableRow.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
+
+        // id column
+        textViewID = new TextView(this);
+        textViewID.setText("------");
+        textViewID.setTextColor(Color.BLACK);
+        textViewID.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
+        textViewID.setPadding(5, 5, 5, 0);
+        tableRow.addView(textViewID);
+
+        // Name column
+        textViewName = new TextView(this);
+        textViewName.setText("-------------------");
+        textViewName.setTextColor(Color.BLACK);
+        textViewName.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
+        textViewName.setPadding(5, 5, 5, 0);
+        tableRow.addView(textViewName);
+
+        // Address column
+        textViewAddress = new TextView(this);
+        textViewAddress.setText("------------------");
+        textViewAddress.setTextColor(Color.BLACK);
+        textViewAddress.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
+        textViewAddress.setPadding(5, 5, 5, 0);
+        tableRow.addView(textViewAddress);
+
+        // Role column
+        textViewDelete = new TextView(this);
+        textViewDelete.setText("-----------");
+        textViewDelete.setTextColor(Color.BLACK);
+        textViewDelete.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
+        textViewDelete.setPadding(5, 5, 5, 0);
+        tableRow.addView(textViewDelete);
+
+        // Role column
+        textViewStatus = new TextView(this);
+        textViewStatus.setText("-----------");
+        textViewStatus.setTextColor(Color.BLACK);
+        textViewStatus.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
+        textViewStatus.setPadding(5, 5, 5, 0);
+        tableRow.addView(textViewStatus);
+
+        tableLayout.addView(tableRow, new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
+    }
+
+    private void fillData() {
+        for (int i = 0; i < listOrder.size(); i++) {
+            CustomInfo customInfo = customInfoDao.getOneByOrderID(listOrder.get(i).getId());
+            StatusOrder statusOrder = statusOrderDao.getOneByOrder(listOrder.get(i).getId());
+            TableRow tableRow = new TableRow(this);
+            tableRow.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
+            tableRow.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    TableRow currentRow = (TableRow) v;
+                    TextView textViewID = (TextView) currentRow.getChildAt(0);
+                    Order order = (Order) listOrder.get(Integer.valueOf(textViewID.getText().toString()));
+                    Intent intent = new Intent(OrderAdminActivity.this, DetailOrderAdminActivity.class);
+                    intent.putExtra("customInfo", customInfo);
+                    intent.putExtra("order", order);
+                    intent.putExtra("statusOrder", statusOrder);
+                    startActivity(intent);
+
+
+                }
+            });
+            // id column
+            TextView textViewID = new TextView(this);
+            textViewID.setText(String.valueOf(i + 1));
+            textViewID.setTextColor(Color.BLACK);
+            textViewID.setTypeface(Typeface.DEFAULT, Typeface.NORMAL);
+            textViewID.setPadding(5, 5, 5, 0);
+            tableRow.addView(textViewID);
+
+            // Name column
+            TextView textViewName = new TextView(this);
+            textViewName.setText(customInfo.getCustomerName());
+            textViewName.setTextColor(Color.BLACK);
+            textViewName.setTypeface(Typeface.DEFAULT, Typeface.NORMAL);
+            textViewName.setPadding(5, 5, 5, 0);
+            tableRow.addView(textViewName);
+
+            // Address column
+            TextView textViewAddress = new TextView(this);
+            textViewAddress.setText(customInfo.getAddress());
+            textViewAddress.setTextColor(Color.BLACK);
+            textViewAddress.setTypeface(Typeface.DEFAULT, Typeface.NORMAL);
+            textViewAddress.setPadding(5, 5, 5, 0);
+            tableRow.addView(textViewAddress);
+
+            // Role column
+            TextView textViewRole = new TextView(this);
+            textViewRole.setText(NumberFormat.getNumberInstance(Locale.getDefault()).format(listOrder.get(i).getTotalPrice()) + " Đ");
+            textViewRole.setTextColor(Color.BLACK);
+            textViewRole.setTypeface(Typeface.DEFAULT, Typeface.NORMAL);
+            textViewRole.setPadding(5, 5, 5, 0);
+            tableRow.addView(textViewRole);
+
+            // Role column
+            TextView statusTxt = new TextView(this);
+            statusTxt.setText(statusOrder.getStatusOrderName());
+            statusTxt.setTextColor(Color.BLACK);
+            statusTxt.setTypeface(Typeface.DEFAULT, Typeface.NORMAL);
+            statusTxt.setPadding(5, 5, 5, 0);
+            tableRow.addView(statusTxt);
+
+            tableLayout.addView(tableRow, new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
+        }
+    }
+
 }
