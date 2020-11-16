@@ -18,6 +18,9 @@ public interface RoleDao {
     @Query("SELECT * FROM role WHERE id = :id")
     Role getOne(int id);
 
+    @Query("SELECT role.* FROM role,account WHERE role.id=account.role_id  and account.account_detail_id=:id")
+    Role getRoleByAccountDetial(int id);
+
     @Insert
     void add(Role role);
 

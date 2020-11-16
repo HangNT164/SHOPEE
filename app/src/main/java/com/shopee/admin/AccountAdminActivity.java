@@ -7,21 +7,31 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TableRow;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.dao.AccountDao;
+import com.dao.AccountDetailDao;
+import com.dao.RoleDao;
 import com.google.android.material.navigation.NavigationView;
+import com.jdbc.RoomConnection;
+import com.model.AccountDetail;
+import com.model.Role;
 import com.shopee.LoginActivity;
 import com.shopee.R;
 
 import java.util.ArrayList;
-import java.util.Random;
+import java.util.List;
 
 import ir.androidexception.datatable.DataTable;
 import ir.androidexception.datatable.model.DataTableHeader;
 import ir.androidexception.datatable.model.DataTableRow;
+
+import static com.jdbc.RoomConnection.getInstance;
 
 public class AccountAdminActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private DataTable dataTable;
@@ -29,6 +39,11 @@ public class AccountAdminActivity extends AppCompatActivity implements Navigatio
     private NavigationView navigationView;
     private DrawerLayout drawerLayout;
     private ImageView menuView;
+    private RoomConnection roomConnection;
+    private AccountDetailDao accountDetailDao;
+    private AccountDao accountDao;
+    private List<AccountDetail> listAccountDetail;
+    private RoleDao roleDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,29 +51,39 @@ public class AccountAdminActivity extends AppCompatActivity implements Navigatio
         setContentView(R.layout.activity_account_admin);
         dataTable = findViewById(R.id.data_table_account);
 
+        roomConnection = getInstance(this);
+        accountDetailDao = roomConnection.accountDetailDao();
+        listAccountDetail = accountDetailDao.getAll();
+        accountDao = roomConnection.accountDao();
+        roleDao = roomConnection.roleDao();
         DataTableHeader header = new DataTableHeader.Builder()
-                .item("field name 1", 3)
-                .item("field name 2", 4)
-                .item("field name 3", 5)
-                .item("field name 4", 6)
+                .item("No", 1)
+                .item("Name", 3)
+                .item("Address", 5)
+                .item("Role", 3)
                 .build();
 
         ArrayList<DataTableRow> rows = new ArrayList<>();
 
-        // define 200 fake rows for table
-        for (int i = 0; i < 10; i++) {
-            Random r = new Random();
-            int random = r.nextInt(i + 1);
-            int randomDiscount = r.nextInt(20);
+        for (int i = 0; i < listAccountDetail.size(); i++) {
+            Role role = roleDao.getRoleByAccountDetial(listAccountDetail.get(i).getId());
             row = new DataTableRow.Builder()
-                    .value("Product #" + i)
-                    .value(String.valueOf(random))
-                    .value(String.valueOf(random * 1000).concat("$"))
-                    .value(String.valueOf(randomDiscount).concat("%"))
+                    .value(String.valueOf(i + 1))
+                    .value(listAccountDetail.get(i).getName())
+                    .value(listAccountDetail.get(i).getAddress())
+                    .value(role.getRoleName())
                     .build();
             rows.add(row);
+            TableRow row = (TableRow) dataTable.getChildAt(i);
+            if (row != null) {
+                row.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(AccountAdminActivity.this, role.getRoleName(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
         }
-
         dataTable.setHeader(header);
         dataTable.setRows(rows);
         dataTable.inflate(getApplicationContext());
@@ -74,7 +99,10 @@ public class AccountAdminActivity extends AppCompatActivity implements Navigatio
                 drawerLayout.openDrawer(GravityCompat.START);
             }
         });
+
+
     }
+
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
