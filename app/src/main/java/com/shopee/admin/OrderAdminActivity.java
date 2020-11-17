@@ -188,7 +188,7 @@ public class OrderAdminActivity extends AppCompatActivity implements NavigationV
 
         // Address column
         textViewAddress = new TextView(this);
-        textViewAddress.setText("------------------");
+        textViewAddress.setText("-----------");
         textViewAddress.setTextColor(Color.BLACK);
         textViewAddress.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
         textViewAddress.setPadding(5, 5, 5, 0);
@@ -224,7 +224,7 @@ public class OrderAdminActivity extends AppCompatActivity implements NavigationV
                 public void onClick(View v) {
                     TableRow currentRow = (TableRow) v;
                     TextView textViewID = (TextView) currentRow.getChildAt(0);
-                    Order order = (Order) listOrder.get(Integer.valueOf(textViewID.getText().toString()));
+                    Order order = listOrder.get(Integer.valueOf(textViewID.getText().toString()) - 1);
                     Intent intent = new Intent(OrderAdminActivity.this, DetailOrderAdminActivity.class);
                     intent.putExtra("customInfo", customInfo);
                     intent.putExtra("order", order);

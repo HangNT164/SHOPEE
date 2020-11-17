@@ -33,7 +33,8 @@
             android:id="@+id/txtAccountName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center" />
+            android:textColor="#1B1A1A"
+            android:gravity="right" />
     </LinearLayout>
 
     <LinearLayout
@@ -53,7 +54,7 @@
             android:id="@+id/txtPhone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:gravity="right"
             android:textColor="#1B1A1A" />
     </LinearLayout>
 
@@ -74,7 +75,7 @@
             android:id="@+id/txtRole"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:gravity="right"
             android:textColor="#1B1A1A" />
     </LinearLayout>
 
@@ -95,7 +96,7 @@
             android:id="@+id/txtAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:gravity="right"
             android:textColor="#1B1A1A" />
     </LinearLayout>
 
@@ -109,6 +110,7 @@
 
         <Button
             android:id="@+id/btnUpdate"
+            android:enabled="true"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="center"

@@ -46,7 +46,7 @@ public class ProductAdminActivity extends AppCompatActivity implements Navigatio
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_admin);
-        tableLayout = findViewById(R.id.tableLayoutCate);
+        tableLayout = findViewById(R.id.tableLayoutProduct);
         navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         drawerLayout = findViewById(R.id.drawer_layout);
@@ -163,7 +163,7 @@ public class ProductAdminActivity extends AppCompatActivity implements Navigatio
 
         // Name column
         textViewName = new TextView(this);
-        textViewName.setText("-------------------");
+        textViewName.setText("-------------------------------------");
         textViewName.setTextColor(Color.BLACK);
         textViewName.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
         textViewName.setPadding(5, 5, 5, 0);
@@ -221,12 +221,14 @@ public class ProductAdminActivity extends AppCompatActivity implements Navigatio
             tableRow.addView(textViewName);
 
             // Address column
+            listProducts.get(i).getQuantity();
             TextView textViewAddress = new TextView(this);
-            textViewAddress.setText(listProducts.get(i).getQuantity());
+            textViewAddress.setText(String.valueOf(listProducts.get(i).getQuantity()));
             textViewAddress.setTextColor(Color.BLACK);
             textViewAddress.setTypeface(Typeface.DEFAULT, Typeface.NORMAL);
             textViewAddress.setPadding(5, 5, 5, 0);
             tableRow.addView(textViewAddress);
+
             // Address column
             TextView statusTxt = new TextView(this);
             statusTxt.setText(status.getStatusName());

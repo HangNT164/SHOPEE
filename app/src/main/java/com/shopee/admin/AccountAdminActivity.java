@@ -202,7 +202,7 @@ public class AccountAdminActivity extends AppCompatActivity implements Navigatio
                 public void onClick(View v) {
                     TableRow currentRow = (TableRow) v;
                     TextView textViewID = (TextView) currentRow.getChildAt(0);
-                    AccountDetail accountDetail = (AccountDetail) listAccountDetail.get(Integer.valueOf(textViewID.getText().toString()));
+                    AccountDetail accountDetail = listAccountDetail.get(Integer.valueOf(textViewID.getText().toString()) - 1);
                     Account account = accountDao.getAccountByAccountDetail(accountDetail.getId());
                     Intent intent = new Intent(AccountAdminActivity.this, DetailAccountAdminActivity.class);
                     intent.putExtra("accountDetail", accountDetail);
@@ -251,6 +251,7 @@ public class AccountAdminActivity extends AppCompatActivity implements Navigatio
     protected void onResume() {
         super.onResume();
         // load data again
-
+        tableLayout.invalidate();
+        tableLayout.refreshDrawableState();
     }
 }

@@ -29,8 +29,8 @@ public class DetailAccountAdminActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_account_admin);
         name = findViewById(R.id.txtAccountName);
-        address = findViewById(R.id.txtAccountName);
-        phone = findViewById(R.id.txtAccountName);
+        address = findViewById(R.id.txtAddress);
+        phone = findViewById(R.id.txtPhone);
         btnUpdate = findViewById(R.id.btnUpdate);
         roleTxt = findViewById(R.id.txtRole);
 
@@ -46,20 +46,18 @@ public class DetailAccountAdminActivity extends AppCompatActivity {
         address.setText(accountDetail.getAddress());
         phone.setText(account.getMobile());
         roleTxt.setText(role.getRoleName());
-        if (account.getRoleID() == 1) {
-            btnUpdate.setEnabled(true);
-        } else {
+
+        if (role.getId() == 1) {
             btnUpdate.setEnabled(false);
         }
+
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (account.getRoleID() == 2) {
-                    // update account, accountDetail
-                    account.setRoleID(1);
-                    accountDao.update(account);
-                    finish();
-                }
+                // update role
+                account.setRoleID(1);
+                accountDao.update(account);
+                finish();
             }
         });
     }
