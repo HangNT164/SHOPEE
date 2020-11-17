@@ -3,6 +3,7 @@ package com.dao;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
@@ -18,12 +19,14 @@ public interface CategoryDao {
     @Query("SELECT * FROM category WHERE id = :id")
     Category getOne(int id);
 
-    @Insert
-    void add(Category category);
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    long add(Category accountDetail);
 
     @Update
     void update(Category category);
 
     @Delete
-    void delete(Category category);;
+    void delete(Category category);
+
+    ;
 }

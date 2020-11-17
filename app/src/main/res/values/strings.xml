@@ -163,4 +163,6 @@
     <string name="subCate">Subcate Name</string>
     <string name="statusProduct">Status Product</string>
     <string name="description">Description</string>
+    <string name="subCateCode">SubCate Code</string>
+    <string name="subCateName">Subcate Name</string>
 </resources>
