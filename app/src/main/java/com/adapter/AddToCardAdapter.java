@@ -43,7 +43,7 @@ public class AddToCardAdapter extends RecyclerView.Adapter<AddToCardAdapter.View
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Card cart = cards.get(position);
         int quantity = cart.getQuantity();
         try {
@@ -61,30 +61,38 @@ public class AddToCardAdapter extends RecyclerView.Adapter<AddToCardAdapter.View
             @Override
             public void onClick(View v) {
                 // add
-//                holder.quantity.setText(String.valueOf(Integer.valueOf(holder.quantity.getText().toString()) + 1));
-//                saveCart(cards);
-                Toast.makeText(context, "add", Toast.LENGTH_LONG).show();
+                holder.quantity.setText(String.valueOf(quantity + 1));
+                saveCart(cards);
+                Intent intent = new Intent(context, CartActivity.class);
+                context.startActivity(intent);
             }
         });
         holder.imgButtonSub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // sub
-//                if (cart.getQuantity() > 0) {
-//                    holder.quantity.setText(String.valueOf(Integer.valueOf(holder.quantity.getText().toString()) - 1));
-                Toast.makeText(context, "sub", Toast.LENGTH_LONG).show();
-//                } else {
-//                    // remove
-//                    cards.remove(position);
-//                    Toast.makeText(context, "remove", Toast.LENGTH_LONG).show();
-//                }
+                if (quantity > 0) {
+                    holder.quantity.setText(String.valueOf(quantity - 1));
+                } else {
+                    // remove
+                    cards.remove(position);
+                }
                 saveCart(cards);
+                Intent intent = new Intent(context, CartActivity.class);
+                context.startActivity(intent);
             }
         });
         holder.imgButtonRemoveCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cards.remove(position);
+                if (quantity > 0) {
+                    holder.quantity.setText(String.valueOf(quantity - 1));
+                    Toast.makeText(context, "sub", Toast.LENGTH_LONG).show();
+                } else {
+                    // remove
+                    cards.remove(position);
+                    Toast.makeText(context, "remove", Toast.LENGTH_LONG).show();
+                }
                 saveCart(cards);
                 Intent intent = new Intent(context, CartActivity.class);
                 context.startActivity(intent);
