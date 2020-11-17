@@ -25,7 +25,6 @@ import com.model.Brand;
 import com.model.Card;
 import com.model.Image;
 import com.model.Product;
-import com.util.ObjectSerializer;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -36,7 +35,6 @@ import java.util.List;
 import static com.jdbc.RoomConnection.getInstance;
 import static com.util.Helper.formatNumber;
 import static com.util.Helper.loadLocale;
-import static com.util.Helper.saveObjectToSharedPreference;
 
 public class DetailProductActivity extends AppCompatActivity {
 
@@ -93,9 +91,9 @@ public class DetailProductActivity extends AppCompatActivity {
         btnAddToCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                carts = addCart(carts,product);
-                if(!carts.isEmpty()){
-                    Toast.makeText(getApplicationContext(),"Add to cart success!",Toast.LENGTH_SHORT).show();
+                carts = addCart(carts, product);
+                if (!carts.isEmpty()) {
+                    Toast.makeText(getApplicationContext(), "Add to cart success!", Toast.LENGTH_SHORT).show();
                 }
                 saveCart(carts);
 
@@ -106,58 +104,59 @@ public class DetailProductActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // intent to cart
                 Intent intent = new Intent(DetailProductActivity.this, CartActivity.class);
-                carts = addCart(carts,product);
+                carts = addCart(carts, product);
                 saveCart(carts);
                 startActivity(intent);
             }
         });
     }
 
-    private void saveCart(List<Card> cardList){
-        SharedPreferences preferences = getSharedPreferences("Carts",Context.MODE_PRIVATE);
+    private void saveCart(List<Card> cardList) {
+        SharedPreferences preferences = getSharedPreferences("Carts", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         Gson gson = new Gson();
         String json = gson.toJson(cardList);
-        editor.putString("listCart",json);
+        editor.putString("listCart", json);
         editor.commit();
     }
 
-    private List<Card> loadCart(){
-        SharedPreferences preferences = getSharedPreferences("Carts",Context.MODE_PRIVATE);
+    private List<Card> loadCart() {
+        SharedPreferences preferences = getSharedPreferences("Carts", Context.MODE_PRIVATE);
         Gson gson = new Gson();
-        String json = preferences.getString("listCart",null);
-        Type type = new TypeToken<ArrayList<Card>>(){}.getType();
-        return gson.fromJson(json,type);
+        String json = preferences.getString("listCart", null);
+        Type type = new TypeToken<ArrayList<Card>>() {
+        }.getType();
+        return gson.fromJson(json, type);
     }
 
-    private List<Card> addCart(List<Card> cards,Product p){
+    private List<Card> addCart(List<Card> cards, Product p) {
         boolean exist = false;
-        if(!cards.isEmpty()){
-            for(int i = 0;i < cards.size();i++){
+        if (cards != null) {
+            for (int i = 0; i < cards.size(); i++) {
                 Card c = cards.get(i);
-                if(c.getProductId() == p.getId()){
+                if (c.getProductId() == p.getId()) {
                     int quantity = c.getQuantity();
                     int productQuantity = c.getProductQuantity();
-                    if(quantity < productQuantity){
+                    if (quantity < productQuantity) {
                         cards.get(i).setQuantity(c.getQuantity() + 1);
-                    }else{
+                    } else {
                         Toast.makeText(getApplicationContext(), "Sản phẩm đã hết hàng",
                                 Toast.LENGTH_SHORT).show();
                     }
                     exist = true;
                 }
             }
-            if(!exist){
-                Card cart = new Card(p.getId(),p.getProductName(),imageMain,p.getSellPrice(),
-                        p.getOriginPrice(),p.getColor(),p.getQuantity(),
-                        1,1*p.getSellPrice());
+            if (!exist) {
+                Card cart = new Card(p.getId(), p.getProductName(), imageMain, p.getSellPrice(),
+                        p.getOriginPrice(), p.getColor(), p.getQuantity(),
+                        1, 1 * p.getSellPrice());
                 cards.add(cart);
             }
-        }else{
+        } else {
             cards = new ArrayList<>();
-            Card cart = new Card(p.getId(),p.getProductName(),imageMain,p.getSellPrice(),
-                    p.getOriginPrice(),p.getColor(),p.getQuantity(),
-                    1,1*p.getSellPrice());
+            Card cart = new Card(p.getId(), p.getProductName(), imageMain, p.getSellPrice(),
+                    p.getOriginPrice(), p.getColor(), p.getQuantity(),
+                    1, 1 * p.getSellPrice());
             cards.add(cart);
         }
         return cards;

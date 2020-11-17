@@ -1,19 +1,20 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.fragment.ListCardFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="20dp"
         android:orientation="vertical">
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:layout_gravity="center"
             android:padding="8dp"
             android:textColor="#000000"
             android:textSize="20dp"
@@ -21,16 +22,17 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="350dp"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_margin="25dp"
+            android:layout_marginLeft="30dp"
             android:orientation="vertical">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/listCardProduct"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:orientation="vertical"></androidx.recyclerview.widget.RecyclerView>
+
         </LinearLayout>
 
         <LinearLayout
@@ -72,7 +74,9 @@
                     android:text="@string/muahang" />
 
             </LinearLayout>
+
         </LinearLayout>
+
     </LinearLayout>
 
-</FrameLayout>
+</LinearLayout>

@@ -1,6 +1,7 @@
 package com.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.graphics.drawable.Drawable;
@@ -10,14 +11,15 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.gson.Gson;
 import com.model.Card;
+import com.shopee.CartActivity;
 import com.shopee.R;
-import com.util.Helper;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -41,13 +43,9 @@ public class AddToCardAdapter extends RecyclerView.Adapter<AddToCardAdapter.View
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder,final int position) {
-        final Card cart = cards.get(position);
-//        double totalPrice = 0;
-//        for (Card c: cards) {
-//            totalPrice += c.getTotalPrice();
-//        }
-//        // set for main
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
+        Card cart = cards.get(position);
+        int quantity = cart.getQuantity();
         try {
             AssetManager assetManager = context.getAssets();
             InputStream ims = assetManager.open(cart.getImageLink());
@@ -58,47 +56,48 @@ public class AddToCardAdapter extends RecyclerView.Adapter<AddToCardAdapter.View
         }
         holder.name.setText(cart.getProductName());
         holder.price.setText(String.valueOf(cart.getSellPrice()));
-        holder.quantity.setText(Integer.toString(cart.getQuantity()));
-//        holder.totalPrice.setText(String.valueOf(totalPrice));
-//        holder.imgButtonSub.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (cart.getQuantity() > 1) {
-//                    cart.setQuantity(cart.getQuantity() - 1);
-//                    cart.setTotalPrice(cart.getQuantity() * cart.getSellPrice());
-//                    saveCart((List<Card>) cart);
-//
+        holder.quantity.setText(String.valueOf(cart.getQuantity()));
+        holder.imgButtonAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // add
+//                holder.quantity.setText(String.valueOf(Integer.valueOf(holder.quantity.getText().toString()) + 1));
+//                saveCart(cards);
+                Toast.makeText(context, "add", Toast.LENGTH_LONG).show();
+            }
+        });
+        holder.imgButtonSub.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // sub
+//                if (cart.getQuantity() > 0) {
+//                    holder.quantity.setText(String.valueOf(Integer.valueOf(holder.quantity.getText().toString()) - 1));
+                Toast.makeText(context, "sub", Toast.LENGTH_LONG).show();
+//                } else {
+//                    // remove
+//                    cards.remove(position);
+//                    Toast.makeText(context, "remove", Toast.LENGTH_LONG).show();
 //                }
-//            }
-//        });
-//
-//        holder.imgButtonAdd.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (cart.getQuantity() < cart.getProductQuantity()) {
-//                    cart.setQuantity(cart.getQuantity() + 1);
-//                    cart.setTotalPrice(cart.getQuantity() * cart.getSellPrice());
-//                    saveCart((List<Card>) cart);
-//                }
-//            }
-//        });
-
-//        holder.imgButtonRemoveCard.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                cards.remove(position);
-//                notifyItemRemoved(position);
-//                notifyItemRangeChanged(position, cards.size());
-//            }
-//        });
+                saveCart(cards);
+            }
+        });
+        holder.imgButtonRemoveCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cards.remove(position);
+                saveCart(cards);
+                Intent intent = new Intent(context, CartActivity.class);
+                context.startActivity(intent);
+            }
+        });
     }
 
-    private void saveCart(List<Card> cardList){
-        SharedPreferences preferences = context.getSharedPreferences("Carts",Context.MODE_PRIVATE);
+    private void saveCart(List<Card> cardList) {
+        SharedPreferences preferences = context.getSharedPreferences("Carts", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         Gson gson = new Gson();
         String json = gson.toJson(cardList);
-        editor.putString("listCart",json);
+        editor.putString("listCart", json);
         editor.commit();
     }
 
@@ -113,7 +112,7 @@ public class AddToCardAdapter extends RecyclerView.Adapter<AddToCardAdapter.View
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView name, price, quantity,totalPrice;
+        public TextView name, price, quantity;
         public ImageView imgView;
         public ImageButton imgButtonSub, imgButtonAdd, imgButtonRemoveCard;
 
@@ -123,8 +122,7 @@ public class AddToCardAdapter extends RecyclerView.Adapter<AddToCardAdapter.View
             price = itemView.findViewById(R.id.productPriceCard);
             quantity = itemView.findViewById(R.id.numberProductCard);
             imgView = itemView.findViewById(R.id.imageProductCard);
-            totalPrice = itemView.findViewById(R.id.txtTotalPriceCart);
-            imgButtonSub = itemView.findViewById(R.id.removeNumberProduct);
+            imgButtonSub = itemView.findViewById(R.id.subNumberProduct);
             imgButtonAdd = itemView.findViewById(R.id.addNumberProduct);
             imgButtonRemoveCard = itemView.findViewById(R.id.removeProduct);
         }
