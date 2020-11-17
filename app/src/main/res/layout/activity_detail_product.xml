@@ -280,6 +280,7 @@
 
             <!-- Media -->
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnAddToCart"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="@string/addCart"></com.google.android.material.button.MaterialButton>
@@ -297,6 +298,7 @@
 
             <!-- Media -->
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnBuyNow"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="@string/buy"></com.google.android.material.button.MaterialButton>

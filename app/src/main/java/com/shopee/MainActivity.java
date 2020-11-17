@@ -19,6 +19,7 @@ import com.dao.ImageCategoryDao;
 import com.dao.ImageDao;
 import com.dao.ProductDao;
 import com.jdbc.RoomConnection;
+import com.model.Card;
 import com.model.Category;
 import com.model.Product;
 import com.synnapps.carouselview.CarouselView;
@@ -54,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
     private List<String> images;
     private List<String> imagesHot;
     private List<String> imagesNew;
+    public static ArrayList<Card> cards;
 
     private RecyclerView recyclerView;
     private RecyclerView recyclerViewHot;
@@ -165,6 +167,11 @@ public class MainActivity extends AppCompatActivity {
             CategoryMainAdapter listProductAllAdapter = new CategoryMainAdapter(this, listCate, listImageCate);
             recyclerViewCate.setAdapter(listProductAllAdapter);
             recyclerViewCate.setLayoutManager(layoutManagerCate);
+        }
+        if(cards != null){
+
+        }else{
+            cards = new ArrayList<>();
         }
     }
 

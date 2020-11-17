@@ -4,18 +4,19 @@ import java.io.Serializable;
 
 public class Card implements Serializable {
     private int id;
+    private int productId;
     private String productName;
     private String imageLink;
-    private int sellPrice;
-    private int originPrice;
+    private double sellPrice;
+    private double originPrice;
     private String color;
     private int productQuantity;
     private int quantity;
-    private int totalPrice;
+    private double totalPrice;
     private String createDate;
 
-    public Card(int id, String productName, String imageLink, int sellPrice, int originPrice, String color, int productQuantity, int quantity, int totalPrice, String createDate) {
-        this.id = id;
+    public Card(int productId, String productName, String imageLink, double sellPrice, double originPrice, String color, int productQuantity, int quantity, double totalPrice) {
+        this.productId = productId;
         this.productName = productName;
         this.imageLink = imageLink;
         this.sellPrice = sellPrice;
@@ -24,7 +25,6 @@ public class Card implements Serializable {
         this.productQuantity = productQuantity;
         this.quantity = quantity;
         this.totalPrice = totalPrice;
-        this.createDate = createDate;
     }
 
     public int getId() {
@@ -33,6 +33,14 @@ public class Card implements Serializable {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getProductId() {
+        return productId;
+    }
+
+    public void setProductId(int productId) {
+        this.productId = productId;
     }
 
     public String getProductName() {
@@ -51,19 +59,19 @@ public class Card implements Serializable {
         this.imageLink = imageLink;
     }
 
-    public int getSellPrice() {
+    public double getSellPrice() {
         return sellPrice;
     }
 
-    public void setSellPrice(int sellPrice) {
+    public void setSellPrice(double sellPrice) {
         this.sellPrice = sellPrice;
     }
 
-    public int getOriginPrice() {
+    public double getOriginPrice() {
         return originPrice;
     }
 
-    public void setOriginPrice(int originPrice) {
+    public void setOriginPrice(double originPrice) {
         this.originPrice = originPrice;
     }
 
@@ -91,11 +99,11 @@ public class Card implements Serializable {
         this.quantity = quantity;
     }
 
-    public int getTotalPrice() {
+    public double getTotalPrice() {
         return totalPrice;
     }
 
-    public void setTotalPrice(int totalPrice) {
+    public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
     }
 
@@ -111,6 +119,7 @@ public class Card implements Serializable {
     public String toString() {
         return "Card{" +
                 "id=" + id +
+                ", productId=" + productId +
                 ", productName='" + productName + '\'' +
                 ", imageLink='" + imageLink + '\'' +
                 ", sellPrice=" + sellPrice +

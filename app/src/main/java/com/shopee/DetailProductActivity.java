@@ -1,5 +1,6 @@
 package com.shopee;
 
+import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -12,9 +13,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.dao.BrandDao;
 import com.dao.ImageDao;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textview.MaterialTextView;
 import com.jdbc.RoomConnection;
 import com.model.Brand;
+import com.model.Card;
 import com.model.Image;
 import com.model.Product;
 
@@ -25,6 +28,7 @@ import java.util.List;
 import static com.jdbc.RoomConnection.getInstance;
 import static com.util.Helper.formatNumber;
 import static com.util.Helper.loadLocale;
+import static com.util.Helper.saveObjectToSharedPreference;
 
 public class DetailProductActivity extends AppCompatActivity {
 
@@ -41,6 +45,8 @@ public class DetailProductActivity extends AppCompatActivity {
     private MaterialTextView brandProduct;
     private MaterialTextView quantityProduct;
     private MaterialTextView mauTemplate;
+    private MaterialButton btnAddToCart;
+    private MaterialButton btnBoyNow;
 
     private RoomConnection roomConnection;
     private Brand brand;
@@ -48,6 +54,7 @@ public class DetailProductActivity extends AppCompatActivity {
     private ImageDao imageDao;
     private List<Image> listImage;
     private String imageMain;
+    private Product product;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,13 +66,64 @@ public class DetailProductActivity extends AppCompatActivity {
         brandDao = roomConnection.brandDao();
         imageDao = roomConnection.imageDao();
         getIncomingIntent();
+        EventAddToCart();
     }
 
     private void getIncomingIntent() {
-        Product product = (Product) getIntent().getSerializableExtra("product");
+        product = (Product) getIntent().getSerializableExtra("product");
         if (product != null) {
             setProduct(product);
         }
+    }
+
+    private void EventAddToCart() {
+        btnAddToCart = findViewById(R.id.btnAddToCart);
+        btnBoyNow = findViewById(R.id.btnBuyNow);
+//        btnAddToCart.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if(MainActivity.cards.size() > 0){
+//                    boolean exist = false;
+//                    for(int i=0;i<MainActivity.cards.size();i++){
+//                        if(MainActivity.cards.get(i).getId() == product.getId()){
+//                            int quantity = MainActivity.cards.get(i).getQuantity();
+//                            int productQuantity = MainActivity.cards.get(i).
+//                                    getProductQuantity();
+//                            if(quantity <= productQuantity){
+//                                MainActivity.cards.get(i).setQuantity(quantity + 1);
+//                                MainActivity.cards.get(i).setTotalPrice(quantity * MainActivity.cards.get(i).getSellPrice());
+//                            }
+//                            exist = true;
+//                        }
+//                    }
+//                    if(!exist){
+//                        int quantity = 1;
+//                        MainActivity.cards.add(new Card(product.getId(),productName.toString(),imageMainProduct.toString()
+//                                ,(int)product.getSellPrice(),product.getOriginPrice(),product.getColor(),product.getQuantity(),quantity,
+//                                (int)(quantity*product.getSellPrice())));
+//                    }
+//                }else{
+//                    int quantity = 1;
+//                    MainActivity.cards.add(new Card(product.getId(),productName.toString(),imageMainProduct.toString()
+//                            ,(int)product.getSellPrice(),product.getOriginPrice(),product.getColor(),product.getQuantity(),quantity,
+//                            (int)(quantity*product.getSellPrice())));
+//                }
+//                Intent intent = new Intent(getApplicationContext(),CartActivity.class);
+////                intent.putParcelableArrayListExtra("cards", (ArrayList<? extends Parcelable>) MainActivity.cards);
+//                startActivity(intent);
+//            }
+//        });
+        btnBoyNow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // intent to cart
+                Intent intent = new Intent(DetailProductActivity.this, CartActivity.class);
+                intent.putExtra("product", product);
+                intent.putExtra("brand", brand);
+                intent.putExtra("imageMain", imageMain);
+                startActivity(intent);
+            }
+        });
     }
 
 
