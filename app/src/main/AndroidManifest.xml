@@ -17,7 +17,10 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.SHOPEE">
-        <activity android:name=".admin.DetailProductAdminActivity"></activity>
+        <activity android:name=".admin.AddProductAdminActivity"></activity>
+        <activity android:name=".admin.AddSubCategoryAdminActivity" />
+        <activity android:name=".admin.AddCategoryAdminActivity" />
+        <activity android:name=".admin.DetailProductAdminActivity" />
         <activity android:name=".admin.DetailCateAdminActivity" />
         <activity android:name=".admin.DetailOrderAdminActivity" />
         <activity android:name=".admin.DetailAccountAdminActivity" />
