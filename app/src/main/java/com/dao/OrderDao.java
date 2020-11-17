@@ -3,6 +3,7 @@ package com.dao;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
@@ -18,8 +19,8 @@ public interface OrderDao {
     @Query("SELECT * FROM `order` WHERE id = :id")
     Order getOne(int id);
 
-    @Insert
-    void add(Order order);
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    long add(Order accountDetail);
 
     @Update
     void update(Order order);

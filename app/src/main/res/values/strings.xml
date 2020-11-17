@@ -121,4 +121,10 @@
     <string name="timkiem">Tìm kiếm</string>
     <string name="totalPrice">Total Price</string>
     <string name="muahang">Mua Hàng</string>
+    <string name="xacNhanThongTin">Xác nhận thông tin</string>
+    <string name="nameCustomer">Tên người nhận</string>
+    <string name="phoneCustomer">Số điện thoại</string>
+    <string name="addressCustomer">Địa chỉ</string>
+    <string name="xacNhan">Xác nhận thanh toán</string>
+    <string name="noteCustomer">Chú ý</string>
 </resources>

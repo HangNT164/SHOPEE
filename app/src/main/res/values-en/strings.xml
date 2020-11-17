@@ -119,4 +119,10 @@
     <string name="danhgia">PRODUCT ASSESSMENT</string>
     <string name="timkiem">Search</string>
     <string name="totalPrice">Total Price</string>
+    <string name="xacNhanThongTin">Confirm Information</string>
+    <string name="nameCustomer">Customer Name</string>
+    <string name="phoneCustomer">Customer Phone</string>
+    <string name="addressCustomer">Customer Address</string>
+    <string name="xacNhan">Payment confirmation</string>
+    <string name="noteCustomer">Note</string>
 </resources>
