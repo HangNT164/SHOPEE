@@ -21,6 +21,9 @@ public interface SubCategoryDao {
     @Query("SELECT * FROM sub_category WHERE id = :id")
     SubCategory getOne(int id);
 
+    @Query("SELECT sub_category.* FROM sub_category,product WHERE sub_category.id=product.sub_cate_id and product.id= :id")
+    SubCategory getOneByProduct(int id);
+
     @Insert
     void add(SubCategory subCategory);
 

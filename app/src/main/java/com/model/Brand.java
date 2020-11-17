@@ -45,9 +45,6 @@ public class Brand implements Serializable {
 
     @Override
     public String toString() {
-        return "Brand{" +
-                "id=" + id +
-                ", brandName='" + brandName + '\'' +
-                '}';
+        return brandName;
     }
 }

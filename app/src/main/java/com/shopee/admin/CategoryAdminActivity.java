@@ -178,7 +178,7 @@ public class CategoryAdminActivity extends AppCompatActivity implements Navigati
                 public void onClick(View v) {
                     TableRow currentRow = (TableRow) v;
                     TextView textViewID = (TextView) currentRow.getChildAt(0);
-                    Category category = (Category) listCate.get(Integer.valueOf(textViewID.getText().toString()));
+                    Category category = listCate.get(Integer.valueOf(textViewID.getText().toString()) - 1);
                     Intent intent = new Intent(CategoryAdminActivity.this, DetailCateAdminActivity.class);
                     intent.putExtra("category", category);
                     startActivity(intent);

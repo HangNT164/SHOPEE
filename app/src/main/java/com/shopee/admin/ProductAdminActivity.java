@@ -17,13 +17,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.dao.BrandDao;
 import com.dao.ImageDao;
 import com.dao.ProductDao;
 import com.dao.StatusDao;
+import com.dao.SubCategoryDao;
 import com.google.android.material.navigation.NavigationView;
 import com.jdbc.RoomConnection;
+import com.model.Brand;
 import com.model.Product;
 import com.model.Status;
+import com.model.SubCategory;
 import com.shopee.LoginActivity;
 import com.shopee.R;
 
@@ -41,6 +45,8 @@ public class ProductAdminActivity extends AppCompatActivity implements Navigatio
     private StatusDao statusDao;
     private List<Product> listProducts;
     private TableLayout tableLayout;
+    private SubCategoryDao subCategoryDao;
+    private BrandDao brandDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +62,8 @@ public class ProductAdminActivity extends AppCompatActivity implements Navigatio
         productDao = roomConnection.productDao();
         imageDao = roomConnection.imageDao();
         statusDao = roomConnection.statusDao();
+        subCategoryDao = roomConnection.subCategoryDao();
+        brandDao = roomConnection.brandDao();
         listProducts = productDao.getAll();
 
         createColumns();
@@ -189,6 +197,8 @@ public class ProductAdminActivity extends AppCompatActivity implements Navigatio
 
     private void fillData() {
         for (int i = 0; i < listProducts.size(); i++) {
+            SubCategory subCategory = subCategoryDao.getOneByProduct(listProducts.get(i).getId());
+            Brand brand = brandDao.getOneByProduct(listProducts.get(i).getId());
             Status status = statusDao.getOne(listProducts.get(i).getId());
             TableRow tableRow = new TableRow(this);
             tableRow.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
@@ -197,10 +207,12 @@ public class ProductAdminActivity extends AppCompatActivity implements Navigatio
                 public void onClick(View v) {
                     TableRow currentRow = (TableRow) v;
                     TextView textViewID = (TextView) currentRow.getChildAt(0);
-                    Product product = (Product) listProducts.get(Integer.valueOf(textViewID.getText().toString()));
+                    Product product = listProducts.get(Integer.valueOf(textViewID.getText().toString()) - 1);
                     Intent intent = new Intent(ProductAdminActivity.this, DetailProductAdminActivity.class);
                     intent.putExtra("product", product);
                     intent.putExtra("status", status);
+                    intent.putExtra("subCategory", subCategory);
+                    intent.putExtra("brand", brand);
                     startActivity(intent);
                 }
             });

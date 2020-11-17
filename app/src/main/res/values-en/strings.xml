@@ -147,4 +147,19 @@
     <string name="createDateOrder">Create Date</string>
     <string name="status">Status</string>
     <string name="updateStatusOrder">Update Status Order</string>
+    <string name="detailCate">Detail Category</string>
+    <string name="codeCate">Category Code</string>
+    <string name="cateName">Category Name</string>
+    <string name="updateCate">Update </string>
+    <string name="deleteCate">Delete</string>
+    <string name="detailProductAdmin">Detail Product</string>
+    <string name="productCode">Product code</string>
+    <string name="productNameAdmin">Product Name</string>
+    <string name="productBrand">Brand</string>
+    <string name="sellPrice">Sell Price</string>
+    <string name="originPrice">Origin Price</string>
+    <string name="quantityProduct">Quantity</string>
+    <string name="subCate">Subcate Name</string>
+    <string name="statusProduct">Status Product</string>
+    <string name="description">Description</string>
 </resources>
