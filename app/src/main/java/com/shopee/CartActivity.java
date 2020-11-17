@@ -13,14 +13,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.adapter.AddToCardAdapter;
 import com.fragment.CardEmptyFragment;
 import com.fragment.ListCardFragment;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.model.Brand;
 import com.model.Card;
 import com.util.ObjectSerializer;
 import com.model.Product;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static com.util.Helper.loadLocale;
 
@@ -34,55 +39,30 @@ public class CartActivity extends AppCompatActivity {
         loadLocale(getBaseContext(), "Language", "My_Lang");
         setContentView(R.layout.activity_cart);
         recyclerView = findViewById(R.id.listCardProduct);
-        cards = new ArrayList<>();
+        cards = loadCart();
         // add fragment card
         CardEmptyFragment cardEmptyFragment = new CardEmptyFragment();
         ListCardFragment listCardFragment = new ListCardFragment();
 
-        Product p = (Product) getIntent().getSerializableExtra("cart");
-        Brand brand = (Brand) getIntent().getSerializableExtra("brand");
-        String imageMain = getIntent().getStringExtra("imageMain");
-        if (p != null) {
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        if (!cards.isEmpty()) {
             // co san pham
-            FragmentManager manager = getSupportFragmentManager();
-            FragmentTransaction transaction = manager.beginTransaction();
             transaction.replace(R.id.layoutCard, listCardFragment, listCardFragment.getTag()).commit();
-            // add phan tu card to list Cart
-            Card card = new Card(p.getId(), p.getProductName(), imageMain, p.getSellPrice(), p.getOriginPrice(),
-                    p.getColor(), 1, p.getQuantity(), p.getSellPrice() * p.getQuantity());
-            cards.add(card);
-            AddToCardAdapter addToCardAdapter = new AddToCardAdapter(getApplicationContext(), cards);
-            recyclerView.setAdapter(addToCardAdapter);
-            recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-            // luu vao shared reference
-
-            SharedPreferences prefs = getSharedPreferences("listCart", Context.MODE_PRIVATE);
-            //save the user list to preference
-            SharedPreferences.Editor editor = prefs.edit();
-            try {
-                editor.putString("UserList", ObjectSerializer.serialize((ArrayList) cards));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            editor.commit();
 
         } else {
             // check user have card or not : use shared references
             // empty
-            FragmentManager manager = getSupportFragmentManager();
-            FragmentTransaction transaction = manager.beginTransaction();
             transaction.replace(R.id.layoutCard, cardEmptyFragment, cardEmptyFragment.getTag()).commit();
         }
 
-
-//        if(cards.size() <= 0){
-//
-//        }else{
-//            transaction.replace(R.id.layoutCard,listCardFragment,listCardFragment.getTag()).commit();
-//        }
-        // when have card will replace by first is listCard fragment
-
+    }
+    private List<Card> loadCart(){
+        SharedPreferences preferences = getSharedPreferences("Carts",Context.MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = preferences.getString("listCart",null);
+        Type type = new TypeToken<ArrayList<Card>>(){}.getType();
+        return gson.fromJson(json,type);
     }
 
     @Override

@@ -1,5 +1,7 @@
 package com.fragment;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,10 +15,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.adapter.AddToCardAdapter;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.model.Card;
 import com.shopee.MainActivity;
 import com.shopee.R;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +33,7 @@ import java.util.List;
 public class ListCardFragment extends Fragment {
 
     private RecyclerView recyclerView;
-    private ArrayList<Card> cards;
+    private List<Card> cards;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -81,9 +86,17 @@ public class ListCardFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         recyclerView = view.findViewById(R.id.listCardProduct);
-        cards = MainActivity.cards;
+        cards = loadCart();
         AddToCardAdapter addToCardAdapter = new AddToCardAdapter(getContext(), cards);
+        addToCardAdapter.notifyDataSetChanged();
         recyclerView.setAdapter(addToCardAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+    }
+    private List<Card> loadCart(){
+        SharedPreferences preferences = this.getActivity().getSharedPreferences("Carts", Context.MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = preferences.getString("listCart",null);
+        Type type = new TypeToken<ArrayList<Card>>(){}.getType();
+        return gson.fromJson(json,type);
     }
 }

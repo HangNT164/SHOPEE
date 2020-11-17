@@ -15,6 +15,9 @@ public class Card implements Serializable {
     private double totalPrice;
     private String createDate;
 
+    public Card() {
+    }
+
     public Card(int productId, String productName, String imageLink, double sellPrice, double originPrice, String color, int productQuantity, int quantity, double totalPrice) {
         this.productId = productId;
         this.productName = productName;

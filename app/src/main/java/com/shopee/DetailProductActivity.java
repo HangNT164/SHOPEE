@@ -1,6 +1,8 @@
 package com.shopee;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -8,6 +10,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -15,14 +18,19 @@ import com.dao.BrandDao;
 import com.dao.ImageDao;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textview.MaterialTextView;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.jdbc.RoomConnection;
 import com.model.Brand;
 import com.model.Card;
 import com.model.Image;
 import com.model.Product;
+import com.util.ObjectSerializer;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.jdbc.RoomConnection.getInstance;
@@ -55,6 +63,8 @@ public class DetailProductActivity extends AppCompatActivity {
     private List<Image> listImage;
     private String imageMain;
     private Product product;
+    private List<Card> carts;
+    private SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,51 +89,78 @@ public class DetailProductActivity extends AppCompatActivity {
     private void EventAddToCart() {
         btnAddToCart = findViewById(R.id.btnAddToCart);
         btnBoyNow = findViewById(R.id.btnBuyNow);
-//        btnAddToCart.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if(MainActivity.cards.size() > 0){
-//                    boolean exist = false;
-//                    for(int i=0;i<MainActivity.cards.size();i++){
-//                        if(MainActivity.cards.get(i).getId() == product.getId()){
-//                            int quantity = MainActivity.cards.get(i).getQuantity();
-//                            int productQuantity = MainActivity.cards.get(i).
-//                                    getProductQuantity();
-//                            if(quantity <= productQuantity){
-//                                MainActivity.cards.get(i).setQuantity(quantity + 1);
-//                                MainActivity.cards.get(i).setTotalPrice(quantity * MainActivity.cards.get(i).getSellPrice());
-//                            }
-//                            exist = true;
-//                        }
-//                    }
-//                    if(!exist){
-//                        int quantity = 1;
-//                        MainActivity.cards.add(new Card(product.getId(),productName.toString(),imageMainProduct.toString()
-//                                ,(int)product.getSellPrice(),product.getOriginPrice(),product.getColor(),product.getQuantity(),quantity,
-//                                (int)(quantity*product.getSellPrice())));
-//                    }
-//                }else{
-//                    int quantity = 1;
-//                    MainActivity.cards.add(new Card(product.getId(),productName.toString(),imageMainProduct.toString()
-//                            ,(int)product.getSellPrice(),product.getOriginPrice(),product.getColor(),product.getQuantity(),quantity,
-//                            (int)(quantity*product.getSellPrice())));
-//                }
-//                Intent intent = new Intent(getApplicationContext(),CartActivity.class);
-////                intent.putParcelableArrayListExtra("cards", (ArrayList<? extends Parcelable>) MainActivity.cards);
-//                startActivity(intent);
-//            }
-//        });
+        carts = loadCart();
+        btnAddToCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                carts = addCart(carts,product);
+                if(!carts.isEmpty()){
+                    Toast.makeText(getApplicationContext(),"Add to cart success!",Toast.LENGTH_SHORT).show();
+                }
+                saveCart(carts);
+
+            }
+        });
         btnBoyNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // intent to cart
                 Intent intent = new Intent(DetailProductActivity.this, CartActivity.class);
-                intent.putExtra("product", product);
-                intent.putExtra("brand", brand);
-                intent.putExtra("imageMain", imageMain);
+                carts = addCart(carts,product);
+                saveCart(carts);
                 startActivity(intent);
             }
         });
+    }
+
+    private void saveCart(List<Card> cardList){
+        SharedPreferences preferences = getSharedPreferences("Carts",Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(cardList);
+        editor.putString("listCart",json);
+        editor.commit();
+    }
+
+    private List<Card> loadCart(){
+        SharedPreferences preferences = getSharedPreferences("Carts",Context.MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = preferences.getString("listCart",null);
+        Type type = new TypeToken<ArrayList<Card>>(){}.getType();
+        return gson.fromJson(json,type);
+    }
+
+    private List<Card> addCart(List<Card> cards,Product p){
+        boolean exist = false;
+        if(!cards.isEmpty()){
+            for(int i = 0;i < cards.size();i++){
+                Card c = cards.get(i);
+                if(c.getProductId() == p.getId()){
+                    int quantity = c.getQuantity();
+                    int productQuantity = c.getProductQuantity();
+                    if(quantity < productQuantity){
+                        cards.get(i).setQuantity(c.getQuantity() + 1);
+                    }else{
+                        Toast.makeText(getApplicationContext(), "Sản phẩm đã hết hàng",
+                                Toast.LENGTH_SHORT).show();
+                    }
+                    exist = true;
+                }
+            }
+            if(!exist){
+                Card cart = new Card(p.getId(),p.getProductName(),imageMain,p.getSellPrice(),
+                        p.getOriginPrice(),p.getColor(),p.getQuantity(),
+                        1,1*p.getSellPrice());
+                cards.add(cart);
+            }
+        }else{
+            cards = new ArrayList<>();
+            Card cart = new Card(p.getId(),p.getProductName(),imageMain,p.getSellPrice(),
+                    p.getOriginPrice(),p.getColor(),p.getQuantity(),
+                    1,1*p.getSellPrice());
+            cards.add(cart);
+        }
+        return cards;
     }
 
 

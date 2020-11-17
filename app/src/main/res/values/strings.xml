@@ -119,4 +119,6 @@
     <string name="price">Giá</string>
     <string name="danhgia">ĐÁNH GIÁ SẢN PHẨM</string>
     <string name="timkiem">Tìm kiếm</string>
+    <string name="totalPrice">Total Price</string>
+    <string name="muahang">Mua Hàng</string>
 </resources>
