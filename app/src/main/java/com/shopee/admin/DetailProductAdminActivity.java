@@ -65,7 +65,7 @@ public class DetailProductAdminActivity extends AppCompatActivity {
         // set all adapter
         listBrandAdapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1, listBrand);
         brand.setAdapter(listBrandAdapter);
-        brand.setSelection(brand.getId());
+        brand.setSelection(brandObj.getId());
         listSubAdapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1, listSub);
         subCate.setAdapter(listSubAdapter);
         subCate.setSelection(subCategory.getId());

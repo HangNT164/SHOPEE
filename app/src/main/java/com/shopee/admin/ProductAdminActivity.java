@@ -149,6 +149,14 @@ public class ProductAdminActivity extends AppCompatActivity implements Navigatio
         tableRow.addView(textViewAddress);
 
         // Address column
+        TextView brandName = new TextView(this);
+        brandName.setText("Brand");
+        brandName.setTextColor(Color.BLACK);
+        brandName.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
+        brandName.setPadding(5, 5, 5, 0);
+        tableRow.addView(brandName);
+
+        // Address column
         TextView status = new TextView(this);
         status.setText("Status");
         status.setTextColor(Color.BLACK);
@@ -184,6 +192,14 @@ public class ProductAdminActivity extends AppCompatActivity implements Navigatio
         textViewAddress.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
         textViewAddress.setPadding(5, 5, 5, 0);
         tableRow.addView(textViewAddress);
+
+        // Address column
+        brandName = new TextView(this);
+        brandName.setText("------------------");
+        brandName.setTextColor(Color.BLACK);
+        brandName.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
+        brandName.setPadding(5, 5, 5, 0);
+        tableRow.addView(brandName);
 
         // Address column
         status = new TextView(this);
@@ -233,13 +249,21 @@ public class ProductAdminActivity extends AppCompatActivity implements Navigatio
             tableRow.addView(textViewName);
 
             // Address column
-            listProducts.get(i).getQuantity();
             TextView textViewAddress = new TextView(this);
             textViewAddress.setText(String.valueOf(listProducts.get(i).getQuantity()));
             textViewAddress.setTextColor(Color.BLACK);
             textViewAddress.setTypeface(Typeface.DEFAULT, Typeface.NORMAL);
             textViewAddress.setPadding(5, 5, 5, 0);
             tableRow.addView(textViewAddress);
+
+            // Address column
+            TextView brandName = new TextView(this);
+            brandName.setText(brand.getBrandName()
+            );
+            brandName.setTextColor(Color.BLACK);
+            brandName.setTypeface(Typeface.DEFAULT, Typeface.NORMAL);
+            brandName.setPadding(5, 5, 5, 0);
+            tableRow.addView(brandName);
 
             // Address column
             TextView statusTxt = new TextView(this);
