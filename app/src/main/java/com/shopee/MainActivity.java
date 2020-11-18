@@ -74,10 +74,10 @@ public class MainActivity extends AppCompatActivity {
 
         findInstanceInView();
 
-        layoutManagerHot = new org.solovyev.android.views.llm.LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        layoutManagerNew = new org.solovyev.android.views.llm.LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        layoutManager = new org.solovyev.android.views.llm.LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        layoutManagerCate = new org.solovyev.android.views.llm.LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        layoutManagerHot = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        layoutManagerNew = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        layoutManagerCate = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
 
         // get data for list
         lists = new int[]{R.drawable.home1, R.drawable.home2, R.drawable.home3, R.drawable.home4, R.drawable.home5};

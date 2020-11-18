@@ -73,11 +73,6 @@ public class SubCategory implements Serializable {
 
     @Override
     public String toString() {
-        return "SubCategory{" +
-                "id=" + id +
-                ", categoryID=" + categoryID +
-                ", subCategoryCode='" + subCategoryCode + '\'' +
-                ", subCategoryName='" + subCategoryName + '\'' +
-                '}';
+        return subCategoryName;
     }
 }

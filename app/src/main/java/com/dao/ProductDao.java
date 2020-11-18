@@ -3,9 +3,11 @@ package com.dao;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
+import com.model.AccountDetail;
 import com.model.Product;
 
 import java.util.List;
@@ -39,8 +41,8 @@ public interface ProductDao {
     @Query("SELECT * FROM product WHERE product_name like '%' || :productName || '%'")
     List<Product> searchProductByProductName(String productName);
 
-    @Insert
-    void add(Product product);
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    long add(Product accountDetail);
 
     @Update
     void update(Product product);
