@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -94,9 +95,10 @@ public class ConfirmInforActivity extends AppCompatActivity {
                     OrderDetail orderDetail = new OrderDetail(orderID, c.getProductId(), c.getProductName(), c.getOriginPrice(), c.getSellPrice(), c.getQuantity(), currentDate, currentDate);
                     orderDetailDao.add(orderDetail);
                 }
-                CustomToast.makeText(getApplicationContext(), "Thank you for your purchase. Your order is being processed!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"Thank you for your purchase. Your order is being processed!",Toast.LENGTH_SHORT).show();
+                //CustomToast.makeText(getApplicationContext(), "Thank you for your purchase. Your order is being processed!", Toast.LENGTH_SHORT).show();
                 saveCart(new ArrayList<Card>());
-                Intent intent = new Intent(ConfirmInforActivity.this,CartActivity.class);
+                Intent intent = new Intent(ConfirmInforActivity.this,MainActivity.class);
                 startActivity(intent);
             }
         });
