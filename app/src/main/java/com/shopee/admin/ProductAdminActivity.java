@@ -22,6 +22,7 @@ import com.dao.ImageDao;
 import com.dao.ProductDao;
 import com.dao.StatusDao;
 import com.dao.SubCategoryDao;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.navigation.NavigationView;
 import com.jdbc.RoomConnection;
 import com.model.Brand;
@@ -47,6 +48,7 @@ public class ProductAdminActivity extends AppCompatActivity implements Navigatio
     private TableLayout tableLayout;
     private SubCategoryDao subCategoryDao;
     private BrandDao brandDao;
+    private MaterialButton btnAddProduct;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +59,7 @@ public class ProductAdminActivity extends AppCompatActivity implements Navigatio
         navigationView.setNavigationItemSelectedListener(this);
         drawerLayout = findViewById(R.id.drawer_layout);
         menuView = findViewById(R.id.iconMenu);
+        btnAddProduct = findViewById(R.id.btnAddProduct);
 
         roomConnection = getInstance(this);
         productDao = roomConnection.productDao();
@@ -72,6 +75,14 @@ public class ProductAdminActivity extends AppCompatActivity implements Navigatio
             @Override
             public void onClick(View v) {
                 drawerLayout.openDrawer(GravityCompat.START);
+            }
+        });
+
+        btnAddProduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =  new Intent(ProductAdminActivity.this,AddProductAdminActivity.class);
+                startActivity(intent);
             }
         });
     }

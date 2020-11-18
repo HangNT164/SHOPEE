@@ -54,6 +54,21 @@ public class CategoryAdminActivity extends AppCompatActivity implements Navigati
         categoryDao = roomConnection.categoryDao();
         listCate = categoryDao.getAll();
 
+        findViewById(R.id.addCate).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), AddCategoryAdminActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        findViewById(R.id.addSubCate).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), AddSubCategoryAdminActivity.class);
+                startActivity(intent);
+            }
+        });
         createColumns();
         fillData();
         menuView.setOnClickListener(new View.OnClickListener() {

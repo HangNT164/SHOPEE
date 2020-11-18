@@ -165,4 +165,6 @@
     <string name="description">Description</string>
     <string name="subCateCode">SubCate Code</string>
     <string name="subCateName">Subcate Name</string>
+    <string name="codeProduct">Product Code</string>
+    <string name="productNameAdd">Product Name</string>
 </resources>
