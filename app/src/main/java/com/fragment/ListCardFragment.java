@@ -1,14 +1,32 @@
 package com.fragment;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.adapter.AddToCardAdapter;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.model.Card;
+import com.shopee.ConfirmInforActivity;
 import com.shopee.R;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -16,7 +34,11 @@ import com.shopee.R;
  * create an instance of this fragment.
  */
 public class ListCardFragment extends Fragment {
-
+    double total;
+    private RecyclerView recyclerView;
+    private List<Card> cards;
+    private TextView totalPrice;
+    private Button btnMuaHang;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -62,5 +84,39 @@ public class ListCardFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_list_card, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        recyclerView = view.findViewById(R.id.listCardProduct);
+        totalPrice = view.findViewById(R.id.txtTotalPriceCart);
+        btnMuaHang = view.findViewById(R.id.btnMuaHang);
+        cards = loadCart();
+        total = 0;
+        for (Card c : cards) {
+            total += c.getQuantity() * c.getSellPrice();
+        }
+        totalPrice.setText(String.valueOf(total));
+        AddToCardAdapter addToCardAdapter = new AddToCardAdapter(getContext(), cards);
+        addToCardAdapter.notifyDataSetChanged();
+        recyclerView.setAdapter(addToCardAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        btnMuaHang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), ConfirmInforActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    private List<Card> loadCart() {
+        SharedPreferences preferences = this.getActivity().getSharedPreferences("Carts", Context.MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = preferences.getString("listCart", null);
+        Type type = new TypeToken<ArrayList<Card>>() {
+        }.getType();
+        return gson.fromJson(json, type);
     }
 }

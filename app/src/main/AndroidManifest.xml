@@ -17,6 +17,8 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.SHOPEE">
+        <activity android:name=".ConfirmInforActivity"></activity>
+        <activity android:name=".SearchProduct" />
         <activity android:name=".admin.AddProductAdminActivity"></activity>
         <activity android:name=".admin.AddSubCategoryAdminActivity" />
         <activity android:name=".admin.AddCategoryAdminActivity" />
@@ -35,7 +37,6 @@
         <activity android:name=".admin.DashboardAdminActivity" />
         <activity android:name=".admin.CategoryAdminActivity" />
         <activity android:name=".admin.AccountAdminActivity" />
-        <activity android:name=".SearchProduct" />
         <activity android:name=".ListProductBySubCateActivity" />
         <activity android:name=".VerifyPhoneActivity" />
         <activity android:name=".NewPasswordActivity" />

@@ -119,6 +119,14 @@
     <string name="price">Giá</string>
     <string name="danhgia">ĐÁNH GIÁ SẢN PHẨM</string>
     <string name="timkiem">Tìm kiếm</string>
+    <string name="totalPrice">Total Price</string>
+    <string name="muahang" translatable="false">Mua Hàng</string>
+    <string name="xacNhanThongTin">Xác nhận thông tin</string>
+    <string name="nameCustomer">Tên người nhận</string>
+    <string name="phoneCustomer">Số điện thoại</string>
+    <string name="addressCustomer">Địa chỉ</string>
+    <string name="xacNhan">Xác nhận thanh toán</string>
+    <string name="noteCustomer">Chú ý</string>
     <string name="menu_home">Dashboard</string>
     <string name="menu_profile">Setting</string>
     <string name="menu_history">History</string>
@@ -144,7 +152,6 @@
     <string name="phoneNumber">Phone</string>
     <string name="detailOrder">Order Detail</string>
     <string name="cusotmerName">Customer Name</string>
-    <string name="totalPrice">Total Price</string>
     <string name="createDateOrder">Create Date</string>
     <string name="status">Status</string>
     <string name="updateStatusOrder">Update Status Order</string>

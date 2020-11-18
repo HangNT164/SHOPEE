@@ -19,6 +19,7 @@ import com.dao.ImageCategoryDao;
 import com.dao.ImageDao;
 import com.dao.ProductDao;
 import com.jdbc.RoomConnection;
+import com.model.Card;
 import com.model.Category;
 import com.model.Product;
 import com.synnapps.carouselview.CarouselView;

@@ -3,6 +3,7 @@ package com.dao;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
@@ -21,8 +22,8 @@ public interface CustomInfoDao {
     @Query("SELECT custom_info.* FROM custom_info,`order` WHERE custom_info.id=`order`.custom_info_id and `order`.id=:orderID")
     CustomInfo getOneByOrderID(int orderID);
 
-    @Insert
-    void add(CustomInfo customInfo);
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    long add(CustomInfo accountDetail);
 
     @Update
     void update(CustomInfo customInfo);
