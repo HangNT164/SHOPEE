@@ -95,7 +95,7 @@ public class ListCardFragment extends Fragment {
         cards = loadCart();
         total = 0;
         for (Card c : cards) {
-            total += c.getTotalPrice();
+            total += c.getQuantity() * c.getSellPrice();
         }
         totalPrice.setText(String.valueOf(total));
         AddToCardAdapter addToCardAdapter = new AddToCardAdapter(getContext(), cards);

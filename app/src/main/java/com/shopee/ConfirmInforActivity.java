@@ -1,6 +1,7 @@
 package com.shopee;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -94,6 +95,9 @@ public class ConfirmInforActivity extends AppCompatActivity {
                     orderDetailDao.add(orderDetail);
                 }
                 CustomToast.makeText(getApplicationContext(), "Thank you for your purchase. Your order is being processed!", Toast.LENGTH_SHORT).show();
+                saveCart(new ArrayList<Card>());
+                Intent intent = new Intent(ConfirmInforActivity.this,CartActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -109,5 +113,14 @@ public class ConfirmInforActivity extends AppCompatActivity {
             cards = new ArrayList<>();
         }
         return cards;
+    }
+
+    private void saveCart(List<Card> cardList) {
+        SharedPreferences preferences = getSharedPreferences("Carts", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(cardList);
+        editor.putString("listCart", json);
+        editor.commit();
     }
 }

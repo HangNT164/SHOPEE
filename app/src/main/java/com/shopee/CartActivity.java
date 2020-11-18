@@ -36,7 +36,7 @@ public class CartActivity extends AppCompatActivity {
 
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-        if (cards != null) {
+        if (cards != null && cards.size() != 0) {
             // co san pham
             transaction.replace(R.id.layoutCard, listCardFragment, listCardFragment.getTag()).commit();
 

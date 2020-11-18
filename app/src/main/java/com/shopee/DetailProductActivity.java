@@ -25,6 +25,7 @@ import com.model.Brand;
 import com.model.Card;
 import com.model.Image;
 import com.model.Product;
+import com.toast.CustomToast;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -93,7 +94,7 @@ public class DetailProductActivity extends AppCompatActivity {
             public void onClick(View v) {
                 carts = addCart(carts, product);
                 if (!carts.isEmpty()) {
-                    Toast.makeText(getApplicationContext(), "Add to cart success!", Toast.LENGTH_SHORT).show();
+                    CustomToast.makeText(getApplicationContext(), "Add to cart success!", Toast.LENGTH_SHORT).show();
                 }
                 saveCart(carts);
 
