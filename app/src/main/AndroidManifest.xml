@@ -37,7 +37,6 @@
         <activity android:name=".admin.DashboardAdminActivity" />
         <activity android:name=".admin.CategoryAdminActivity" />
         <activity android:name=".admin.AccountAdminActivity" />
-        <activity android:name=".SearchProduct" />
         <activity android:name=".ListProductBySubCateActivity" />
         <activity android:name=".VerifyPhoneActivity" />
         <activity android:name=".NewPasswordActivity" />
