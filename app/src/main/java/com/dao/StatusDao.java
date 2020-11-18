@@ -15,7 +15,7 @@ public interface StatusDao {
     @Query("SELECT * FROM status")
     List<Status> getAll();
 
-    @Query("SELECT * FROM status WHERE id = :id")
+    @Query("select status.* from status,product where status.product_id=product.id and product.id=:id")
     Status getOne(int id);
 
     @Insert
