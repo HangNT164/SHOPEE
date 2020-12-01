@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey;
 import java.io.Serializable;
 
 @Entity(tableName = "status_order")
-public class StatusOrder  implements Serializable {
+public class StatusOrder implements Serializable {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo
     private int id;
@@ -45,9 +45,6 @@ public class StatusOrder  implements Serializable {
 
     @Override
     public String toString() {
-        return "StatusOrder{" +
-                "id=" + id +
-                ", statusOrderName='" + statusOrderName + '\'' +
-                '}';
+        return this.statusOrderName;
     }
 }

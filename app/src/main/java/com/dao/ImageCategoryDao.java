@@ -18,6 +18,12 @@ public interface ImageCategoryDao {
     @Query("SELECT * FROM image_category WHERE id = :id")
     ImageCategory getOne(int id);
 
+    @Query("select image_link from image_category,category where image_category.category_id= category.id and category.id=:categoryID")
+    String getImageByProductCoverTrue(int categoryID);
+
+    @Query("select image_category.* from image_category,category where image_category.category_id= category.id and category.id=:categoryID")
+    ImageCategory getImageByCategory(int categoryID);
+
     @Insert
     void add(ImageCategory imageCategory);
 
