@@ -102,9 +102,18 @@ public class SettingActivity extends AppCompatActivity {
             }
         });
     }
+
     @Override
     protected void onResume() {
         super.onResume();
+        AccountDetail accountDetail = getSavedObjectFromPreference(getApplicationContext(), "mPreference", "account", AccountDetail.class);
+        Account account = getSavedObjectFromPreference(getApplicationContext(), "accountPreference", "accountOfAccountDetail", Account.class);
+        nameSetting = findViewById(R.id.nameSetting);
+        nameSetting.setText(accountDetail.getName());
+        phoneSetting = findViewById(R.id.phoneSetting);
+        phoneSetting.setText(account.getMobile());
+        addressSetting = findViewById(R.id.addressSetting);
+        addressSetting.setText(accountDetail.getAddress());
         loadLocale(getBaseContext(), "Language", "My_Lang");
     }
 }

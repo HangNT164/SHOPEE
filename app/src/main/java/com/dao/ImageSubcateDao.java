@@ -18,6 +18,9 @@ public interface ImageSubcateDao {
     @Query("SELECT * FROM image_subcate WHERE id = :id")
     ImageSubCate getOne(int id);
 
+    @Query("SELECT image_subcate.image_link FROM category,sub_category,image_subcate where category.id=sub_category.category_id and sub_category.id=image_subcate.subcate_id and category.id=:categoryID")
+    List<String> getImageByProductCoverTrue(int categoryID);
+
     @Insert
     void add(ImageSubCate imageSubCate);
 

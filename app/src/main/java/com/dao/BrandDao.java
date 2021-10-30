@@ -18,6 +18,9 @@ public interface BrandDao {
     @Query("SELECT * FROM brand WHERE id = :id")
     Brand getOne(int id);
 
+    @Query("select * from brand, product where product.brand_id=brand.id and product.id =:productID")
+    Brand getOneByProduct(int productID);
+
     @Insert
     void add(Brand brand);
 

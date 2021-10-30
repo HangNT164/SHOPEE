@@ -12,9 +12,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.dao.AccountDao;
 import com.dao.AccountDetailDao;
+import com.dao.ImageAvatarDao;
 import com.jdbc.RoomConnection;
 import com.model.Account;
 import com.model.AccountDetail;
+import com.model.ImageAvatar;
+import com.shopee.admin.DashboardAdminActivity;
 
 import static com.jdbc.RoomConnection.getInstance;
 import static com.util.Helper.loadLocale;
@@ -24,6 +27,7 @@ import static com.util.ValidateData.isEmpty;
 public class LoginActivity extends AppCompatActivity {
     private RoomConnection roomConnection;
     private AccountDao accountDao;
+    private ImageAvatarDao imageAvatarDao;
     private AccountDetailDao accountDetailDao;
     private EditText phone;
     private EditText password;
@@ -38,6 +42,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         roomConnection = getInstance(getApplicationContext());
         accountDao = roomConnection.accountDao();
+        imageAvatarDao = roomConnection.imageAvatarDao();
         phone = findViewById(R.id.txtPhone);
         password = findViewById(R.id.editTextPassword);
         btnLogin = findViewById(R.id.cirLoginButton);
@@ -53,9 +58,32 @@ public class LoginActivity extends AppCompatActivity {
                     if (account != null) {
                         accountDetailDao = roomConnection.accountDetailDao();
                         AccountDetail accountDetail = accountDetailDao.getOne(account.getAccountDetailID());
-                        saveObjectToSharedPreference(getApplicationContext(), "mPreference", "account", accountDetail);
-                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                        startActivity(intent);
+                        // user
+                        if (account.getRoleID() == 2) {
+                            saveObjectToSharedPreference(getApplicationContext(), "mPreference", "account", accountDetail);
+
+                            // get image
+                            ImageAvatar imageAvatar = imageAvatarDao.getOneByAccountDetail(accountDetail.getId());
+                            ImageAvatar imageBia = imageAvatarDao.getOneByAccountDetailCoverFalse(accountDetail.getId());
+
+                            // save image
+                            saveObjectToSharedPreference(getApplicationContext(), "imageAvatar", "avatar", imageAvatar);
+                            saveObjectToSharedPreference(getApplicationContext(), "imageBia", "bia", imageBia);
+                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            startActivity(intent);
+                        } else { // admin
+                            saveObjectToSharedPreference(getApplicationContext(), "mPreferenceAdmin", "accountAdmin", accountDetail);
+
+//                            // get image
+//                            ImageAvatar imageAvatar = imageAvatarDao.getOneByAccountDetail(accountDetail.getId());
+//                            ImageAvatar imageBia = imageAvatarDao.getOneByAccountDetailCoverFalse(accountDetail.getId());
+
+                            // save image
+//                            saveObjectToSharedPreference(getApplicationContext(), "imageAvatarAdmin", "avatarAdmin", imageAvatar);
+//                            saveObjectToSharedPreference(getApplicationContext(), "imageBiaAdmin", "biaAdmin", imageBia);
+                            Intent intent = new Intent(LoginActivity.this, DashboardAdminActivity.class);
+                            startActivity(intent);
+                        }
                     } else {
                         Toast.makeText(getApplicationContext(), "Login Fail", Toast.LENGTH_LONG).show();
                     }
@@ -79,6 +107,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
     @Override
     protected void onResume() {
         super.onResume();

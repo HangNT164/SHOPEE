@@ -6,6 +6,8 @@ import android.os.Handler;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Locale;
+
 public class IndexActivity extends AppCompatActivity {
 
 
@@ -13,10 +15,11 @@ public class IndexActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_index);
-//        SharedPreferences sharedPreferences = getSharedPreferences("mPreference", Context.MODE_PRIVATE);
-//        SharedPreferences.Editor editor = sharedPreferences.edit();
-//        editor.clear();
-//        editor.commit();
+
+        // Set local default before run after
+        Locale locale = new Locale("en");
+        Locale.setDefault(locale);
+
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override

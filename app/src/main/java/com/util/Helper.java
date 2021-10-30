@@ -8,7 +8,9 @@ import android.content.res.Configuration;
 import com.google.gson.Gson;
 import com.model.Account;
 import com.model.Product;
+import com.model.SubCategory;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -63,6 +65,39 @@ public class Helper {
 
     public List<Product> getListProductByIndex(List<Product> getAll, int index) {
         List<Product> lists = new ArrayList<>();
+        for (int i = 0; i < getAll.size(); i++) {
+            if (index == 1 && i % 2 == 0) { // case even
+                lists.add(getAll.get(i));
+            } else if (index == 2 && i % 2 != 0) { // case odd
+                lists.add(getAll.get(i));
+            }
+        }
+        return lists;
+    }
+
+    public List<SubCategory> getListSubCateByIndex(List<SubCategory> getAll, int index) {
+        List<SubCategory> lists = new ArrayList<>();
+        for (int i = 0; i < getAll.size(); i++) {
+            if (index == 1 && i % 2 == 0) {
+                lists.add(getAll.get(i));
+            } else if (index == 2 && i % 2 != 0) {
+                lists.add(getAll.get(i));
+            }
+        }
+        return lists;
+    }
+
+    public static String formatNumber(int number) {
+        if (Locale.getDefault().toString().equalsIgnoreCase("vi")) {
+            return NumberFormat.getNumberInstance(Locale.getDefault()).format(number) + " Đ";
+        } else if (Locale.getDefault().toString().equalsIgnoreCase("en")) {
+            return "$ " + NumberFormat.getNumberInstance(Locale.getDefault()).format(number / 23);
+        }
+        return "$ " + NumberFormat.getNumberInstance(Locale.getDefault()).format(number / 23);
+    }
+
+    public List<String> getImageSubCateByIndex(List<String> getAll, int index) {
+        List<String> lists = new ArrayList<>();
         for (int i = 0; i < getAll.size(); i++) {
             if (index == 1 && i % 2 == 0) {
                 lists.add(getAll.get(i));

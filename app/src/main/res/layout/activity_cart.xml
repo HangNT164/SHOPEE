@@ -16,78 +16,11 @@
         android:layout_height="wrap_content"></fragment>
 
     <!--    Body-->
-    <LinearLayout
+    <FrameLayout
+        android:id="@+id/layoutCard"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:layout_marginTop="20dp"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:gravity="center"
-            android:textColor="#000000"
-            android:textSize="20dp"
-            tools:text="@string/cart"></TextView>
-
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <com.google.android.material.imageview.ShapeableImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="175dp"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/cart_empty">
-
-                    </com.google.android.material.imageview.ShapeableImageView>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingTop="10dp"
-                        android:gravity="center"
-                        android:text="@string/cartEmpty"
-                        android:textColor="#000000"
-                        android:textSize="20dp"></TextView>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <com.google.android.material.button.MaterialButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingTop="10dp"
-                        android:text="@string/buy"></com.google.android.material.button.MaterialButton>
-                </LinearLayout>
-            </LinearLayout>
-        </ScrollView>
-    </LinearLayout>
+        android:layout_height="wrap_content"
+        android:layout_weight="1"></FrameLayout>
     <!--Footer-->
     <fragment
         android:id="@+id/fragmentFooter"

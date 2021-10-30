@@ -6,14 +6,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.adapter.ListProductsAdapter;
+import com.adapter.ListProductTwoColumAdapter;
 import com.dao.ImageDao;
 import com.dao.ProductDao;
 import com.jdbc.RoomConnection;
-import com.model.Image;
 import com.model.Product;
 import com.util.Helper;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.jdbc.RoomConnection.getInstance;
@@ -25,8 +25,8 @@ public class GetAllProductActivity extends AppCompatActivity {
     private ImageDao imageDao;
     private List<Product> listProduct;
     private RecyclerView recyclerView;
-    private RecyclerView recyclerViewSecond;
-    private List<Image> listImage;
+    private List<String> listImage;
+    private List<String> listImageSecond;
     private List<Product> listEven;
     private List<Product> listOdd;
 
@@ -36,29 +36,29 @@ public class GetAllProductActivity extends AppCompatActivity {
         loadLocale(getBaseContext(), "Language", "My_Lang");
         setContentView(R.layout.activity_get_all_product);
         recyclerView = findViewById(R.id.listProduct);
-        recyclerViewSecond = findViewById(R.id.listProductSecond);
 
         roomConnection = getInstance(getApplicationContext());
         productDao = roomConnection.productDao();
 
         listProduct = productDao.getAll();
         imageDao = roomConnection.imageDao();
-        listImage = imageDao.getAll();
 
         listEven = new Helper().getListProductByIndex(listProduct, 1);
-        listOdd = new Helper().getListProductByIndex(listProduct, 2);
+        listImage = new ArrayList<>();
+        for (Product p : listEven) {
+            listImage.add(imageDao.getImageByProductCoverTrue(p.getId()));
+        }
 
-        ListProductsAdapter listProductsAdapter = new ListProductsAdapter(this, listOdd, listImage);
+        listOdd = new Helper().getListProductByIndex(listProduct, 2);
+        listImageSecond = new ArrayList<>();
+        for (Product p : listOdd) {
+            listImageSecond.add(imageDao.getImageByProductCoverTrue(p.getId()));
+        }
+
+        ListProductTwoColumAdapter listProductsAdapter = new ListProductTwoColumAdapter(this, listEven, listOdd, listImage, listImageSecond);
         recyclerView.setAdapter(listProductsAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        ListProductsAdapter listProductsAdapterSecond = new ListProductsAdapter(this, listEven, listImage);
-        recyclerViewSecond.setAdapter(listProductsAdapterSecond);
-        recyclerViewSecond.setLayoutManager(new LinearLayoutManager(this));
-
-        // Close scoll of recyclerview
-        recyclerView.setNestedScrollingEnabled(false);
-        recyclerViewSecond.setNestedScrollingEnabled(false);
     }
 
     @Override

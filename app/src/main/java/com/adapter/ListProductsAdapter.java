@@ -2,6 +2,8 @@ package com.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.AssetManager;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,20 +14,23 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.card.MaterialCardView;
-import com.model.Image;
 import com.model.Product;
 import com.shopee.DetailProductActivity;
 import com.shopee.R;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
+
+import static com.util.Helper.formatNumber;
 
 public class ListProductsAdapter extends RecyclerView.Adapter<ListProductsAdapter.MyViewHolder> {
     private Context context;
     private List<Product> listProduct;
-    private List<Image> listImage;
+    private List<String> listImage;
 
 
-    public ListProductsAdapter(Context context, List<Product> listProduct, List<Image> listImage) {
+    public ListProductsAdapter(Context context, List<Product> listProduct, List<String> listImage) {
         this.context = context;
         this.listProduct = listProduct;
         this.listImage = listImage;
@@ -58,13 +63,21 @@ public class ListProductsAdapter extends RecyclerView.Adapter<ListProductsAdapte
     @Override
     public void onBindViewHolder(@NonNull ListProductsAdapter.MyViewHolder holder, final int position) {
         holder.productName.setText(listProduct.get(position).getProductName());
-        holder.productPrice.setText(listProduct.get(position).getSellPrice() + "");
-        //  holder.imageView.setImageResource(listImage.get(position).getImageLink());
+        int price = (int) listProduct.get(position).getSellPrice();
+        holder.productPrice.setText(formatNumber(price));
+        try {
+            AssetManager assetManager = context.getAssets();
+            InputStream ims = assetManager.open(listImage.get(position));
+            Drawable d = Drawable.createFromStream(ims, null);
+            holder.imageView.setImageDrawable(d);
+        } catch (IOException ex) {
+            return;
+        }
+
         holder.materialCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, DetailProductActivity.class);
-                // intent.putExtra("image_url", listProduct.get(position).getProductName());
                 Product product = listProduct.get(position);
                 intent.putExtra("product", product);
                 context.startActivity(intent);
